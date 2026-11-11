@@ -1,0 +1,18 @@
+---
+// src/pages/rain-water-harvesting.astro
+// Exact high-fidelity 1000% replication of rain-water-harvesting matching waterenviroengineers.com
+import ProductDetailLayout from '../layouts/ProductDetailLayout.astro';
+
+const pageTitle = "Rainwater Harvesting System | Roof Top RainWater Harvesting | Domestic RainWater harvesting";
+const metaDescription = "";
+const rawHtml = "<div class=\"col-md-9 agileinfo_mail_grid_right\">\n<h1 class=\"w3l_header w3_agileits_header\">Rain Water Harvesting</h1><br/>\n<img alt=\"Rain Water Harvesting\" class=\"img-responsive\" src=\"/images/waterenviro/rainwater-harvesting.jpg\" style=\"border:1px solid white;\"/>\n<br/><p style=\"font-family: Arial, Helvetica, sans-serif;text-align: justify;\n    padding-top: 10px;font-size: 14px;\">\nWe WATER ENVIRO ENGINEERS are the most prominent name in offering of a wide range of <b>RainWater Harvesting system in Dahisar, Mumbai, Navi Mumbai, India </b>with modern infrastructure.RainWater Harvesting is an activity of direct collection of Rain Water and Storage of Rain Water as well as other activities aimed at harvesting and conserving surface and Ground Water, prevention of loss through evaporation and seepage and other hydrological studies and engineering inventions aiming at most efficient utilization of the Rain Water towards best use for the humanity </p>\n<p style=\"font-family: Arial, Helvetica, sans-serif;text-align: justify;\n    padding-top: 10px;font-size: 14px;\">Domestic RainWater harvesting or roof top RainWater harvesting is the technique through which RainWater is captured from roof catchments and stored in tanks/reservoirs/Ground Water acquifers. It consist of conservation of roof top RainWater in urban areas and utilizing it to augment Ground Water storage by artificial recharge. It requires connecting the outlet pipe from roof top to divert collected water to existing well/tube well/bore well or a specially designed well.\n </p>\n<br/>\n<h4>Advantages  of RainWater Harvesting </h4>\n<ol>\n<li style=\"font-size: 14px;letter-spacing: 1px;\">To meet the ever increasing demand for water. Rainwater harvesting to recharge the groundwater enhances the availability of groundwater at specific place and time and thus assures a continuous and reliable access to groundwater.</li>\n<li style=\"font-size: 14px;letter-spacing: 1px;\">To reduce the runoff which chokes storm drains and to avoid flooding of roads. </li>\n<li style=\"font-size: 14px;letter-spacing: 1px;\">To reduce groundwater pollution and to improve the quality of groundwater through dilution when recharged to groundwater thereby providing high quality water, soft and low in minerals.</li>\n<li style=\"font-size: 14px;letter-spacing: 1px;\">It reduces the rate of power consumption for pumping of groundwater. For every 1 m rise in water level, there is a saving of 0.4 KWH of electricity. </li>\n<li style=\"font-size: 14px;letter-spacing: 1px;\">The rooftop rainwater harvesting is less expensive, easy to construct, operate and maintain. </li>\n</ol>\n</div>";
+---
+
+<ProductDetailLayout
+	title={pageTitle}
+	description={metaDescription}
+	activeSlug="rain-water-harvesting"
+	productName="Rain Water Harvesting"
+>
+	<Fragment set:html={rawHtml} />
+</ProductDetailLayout>

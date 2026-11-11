@@ -1,0 +1,890 @@
+---
+// ThermaxReddSection.astro
+// Interactive 3D Mascot "Thermax REDD" Assistant Banner
+// Uses the EXACT original 100% 3D animated video from Thermax (mascot.mp4 / mascot.webm)
+---
+
+<section class="redd-section-outer" id="ask-redd">
+  <div class="redd-container">
+    <div class="redd-card" id="reddCard">
+      <!-- Left: Original 3D Mascot Video Container -->
+      <div class="redd-mascot-col">
+        <div class="redd-skate-entry-rig" id="reddSkateRig">
+          <!-- Greeting speech bubble that pops on arrival -->
+          <div class="redd-speech-bubble" id="reddSpeechBubble" aria-hidden="true">
+            <span>Hi! Ask AquaShakti 👋</span>
+          </div>
+
+          <!-- Exact Original 3D Video Player -->
+          <div class="redd-mascot-wrapper" id="reddMascotWrapper" title="Click to replay skateboard run!">
+            <video
+              id="reddMascotVideo"
+              class="redd-mascot-video"
+              playsinline
+              muted
+              autoplay
+              preload="auto"
+              poster="/images/thermax-redd-perfect-2x.png"
+            >
+              <source src="/images/thermax-redd-mascot.webm" type="video/webm" />
+              <source src="/images/thermax-redd-mascot.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Content & Interactive Search Pill -->
+      <div class="redd-content-col">
+        <!-- Top Row: Heading & Subtitle -->
+        <div class="redd-header-row">
+          <div class="redd-titles">
+            <h2 class="redd-main-title">Have any questions?</h2>
+            <p class="redd-subtitle">Our AquaShakti Expert can help</p>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Animated Pill Search Bar -->
+        <form class="redd-search-pill" id="reddSearchForm" autocomplete="off" onsubmit="event.preventDefault(); window.handleReddSearch();">
+          <div class="redd-input-wrapper">
+            <input
+              type="text"
+              id="reddSearchInput"
+              class="redd-input"
+              aria-label="Ask AquaShakti about specifications, applications and plant capacities"
+              placeholder=""
+              autocomplete="off"
+            />
+            <span class="redd-typewriter-text" id="reddTypewriter"></span>
+            <span class="redd-cursor" id="reddCursor">|</span>
+          </div>
+          <button type="submit" class="redd-search-btn" id="reddSearchBtn" aria-label="Search with AquaShakti">
+            <svg class="redd-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive REDD Assistant Modal -->
+  <div class="redd-modal-backdrop" id="reddModalBackdrop" style="display: none;">
+    <div class="redd-modal-card">
+      <button class="redd-modal-close" id="reddModalClose" aria-label="Close dialog">&times;</button>
+      <div class="redd-modal-header">
+        <div class="redd-modal-avatar">
+          <img src="/images/thermax-redd-perfect-2x.png" alt="AquaShakti" />
+        </div>
+        <div>
+          <h3 class="redd-modal-title">AquaShakti Water Assistant</h3>
+          <p class="redd-modal-sub">Water & Wastewater Engineering Expert</p>
+        </div>
+      </div>
+      <div class="redd-modal-body">
+        <p class="redd-modal-query-preview" id="reddQueryPreview"></p>
+        <p class="redd-modal-answer" id="reddAnswerText">
+          Hi there! AquaShakti is ready to help you with industrial water treatment equipment, turnkey plant engineering, technical specifications, and official quotes.
+        </p>
+        <div class="redd-modal-quick-links" id="reddQuickLinks">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+      <div class="redd-modal-footer">
+        <a href="https://wa.me/918799374555?text=Hello%20AquaShakti,%20I%20have%20an%20inquiry%20about%20water%20treatment%20plants" target="_blank" rel="noopener noreferrer" class="redd-modal-wa-btn">
+          💬 Chat on WhatsApp (+91 8799374555)
+        </a>
+        <a href="tel:+918799374555" class="redd-modal-call-btn">
+          📞 Call AquaShakti: +91 8799374555
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Outer Section */
+  .redd-section-outer {
+    background-color: #ffffff;
+    padding: 3rem 1.25rem;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    font-family: var(--font-manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+    overflow: hidden;
+  }
+
+  .redd-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Rounded Card matching Thermax video background (#f6f4f2) */
+  .redd-card {
+    background-color: #f6f4f2;
+    border-radius: 22px;
+    padding: 1.25rem 2.25rem 1.25rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .redd-card:hover {
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Mascot Column */
+  .redd-mascot-col {
+    flex-shrink: 0;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+  }
+
+  .redd-skate-entry-rig {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 220px;
+  }
+
+  /* Friendly Speech Bubble */
+  .redd-speech-bubble {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    opacity: 0;
+    z-index: 15;
+  }
+
+  .redd-speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px 5px 0 5px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+  }
+
+  .redd-speech-bubble.is-visible {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+
+  /* Mascot Wrapper */
+  .redd-mascot-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #f6f4f2;
+  }
+
+  /* Exact Original 3D Animated Video */
+  .redd-mascot-video {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    display: block;
+    pointer-events: auto;
+    cursor: pointer;
+    background-color: #f6f4f2;
+    transition: transform 0.25s ease;
+  }
+
+  .redd-mascot-video:hover {
+    transform: scale(1.02);
+  }
+
+  /* Content Column */
+  .redd-content-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.15rem;
+  }
+
+  /* Header Row: Titles on left, Brand Logo on right */
+  .redd-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .redd-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .redd-main-title {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.015em;
+  }
+
+  .redd-subtitle {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #6a6a6a;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Wide Rounded Pill Search Bar */
+  .redd-search-pill {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 9999px;
+    height: 54px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1.5rem;
+    padding-right: 0.4rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    position: relative;
+    cursor: text;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .redd-search-pill:hover,
+  .redd-search-pill:focus-within {
+    border-color: rgba(229, 27, 36, 0.45);
+    box-shadow: 0 4px 16px rgba(229, 27, 36, 0.1);
+  }
+
+  .redd-input-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .redd-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.92rem;
+    color: #1a1a1a;
+    font-family: inherit;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Animated Typewriter Placeholder */
+  .redd-typewriter-text {
+    position: absolute;
+    left: 0;
+    color: #8c8c8c;
+    font-size: 0.92rem;
+    font-weight: 400;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 95%;
+    z-index: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .redd-cursor {
+    position: absolute;
+    color: #e51b24;
+    font-weight: 700;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+    animation: reddCursorBlink 0.9s infinite;
+  }
+
+  @keyframes reddCursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Thermax Red Search Button */
+  .redd-search-btn {
+    background-color: #e51b24;
+    color: #ffffff;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(229, 27, 36, 0.3);
+  }
+
+  .redd-search-btn:hover {
+    background-color: #cb131b;
+    transform: scale(1.06);
+    box-shadow: 0 4px 14px rgba(229, 27, 36, 0.45);
+  }
+
+  .redd-search-btn:active {
+    transform: scale(0.96);
+  }
+
+  .redd-search-icon {
+    width: 17px;
+    height: 17px;
+    stroke: #ffffff;
+    stroke-width: 2.4;
+    transition: transform 0.2s ease;
+  }
+
+  .redd-search-btn:hover .redd-search-icon {
+    transform: scale(1.1);
+  }
+
+  /* Modal Popup for Assistant Responses */
+  .redd-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    box-sizing: border-box;
+    animation: reddModalFadeIn 0.25s ease-out;
+  }
+
+  @keyframes reddModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .redd-modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    padding: 1.75rem;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    animation: reddModalPopUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes reddModalPopUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .redd-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .redd-modal-close:hover {
+    color: #e51b24;
+  }
+
+  .redd-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .redd-modal-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #f7f4f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid #e51b24;
+    flex-shrink: 0;
+  }
+
+  .redd-modal-avatar img {
+    width: 85%;
+    height: auto;
+  }
+
+  .redd-modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  .redd-modal-sub {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0.15rem 0 0 0;
+  }
+
+  .redd-modal-query-preview {
+    font-size: 0.9rem;
+    color: #e51b24;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    padding: 0.4rem 0.75rem;
+    background: rgba(229, 27, 36, 0.06);
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  .redd-modal-answer {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #333333;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .redd-modal-quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .redd-link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0.95rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    color: #0059a8;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s ease, transform 0.15s ease;
+    border: 1px solid #e9ecef;
+  }
+
+  .redd-link-item:hover {
+    background: #eef5fc;
+    transform: translateX(4px);
+    border-color: #0059a8;
+  }
+
+  .redd-modal-footer {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .redd-modal-wa-btn {
+    flex: 1;
+    min-width: 180px;
+    background: #25D366;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+  }
+
+  .redd-modal-wa-btn:hover {
+    background: #20bd5a;
+  }
+
+  .redd-modal-call-btn {
+    flex: 1;
+    min-width: 180px;
+    background: #1a1a1a;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+  }
+
+  .redd-modal-call-btn:hover {
+    background: #333;
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 900px) {
+    .redd-card {
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+    }
+    .redd-mascot-col {
+      width: 170px;
+    }
+    .redd-skate-entry-rig,
+    .redd-mascot-wrapper,
+    .redd-mascot-video {
+      width: 170px;
+      height: 170px;
+    }
+    .redd-main-title {
+      font-size: 1.4rem;
+    }
+    .redd-subtitle {
+      font-size: 0.88rem;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .redd-section-outer {
+      padding: 1.75rem 1rem;
+    }
+    .redd-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1.5rem 1.25rem;
+      gap: 1.25rem;
+    }
+    .redd-mascot-col {
+      width: 100%;
+      margin: 0;
+      justify-content: center;
+    }
+    .redd-skate-entry-rig,
+    .redd-mascot-wrapper,
+    .redd-mascot-video {
+      width: 190px;
+      height: 190px;
+    }
+    .redd-content-col {
+      width: 100%;
+    }
+    .redd-header-row {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .redd-titles {
+      align-items: center;
+    }
+    .redd-main-title {
+      font-size: 1.35rem;
+    }
+    .redd-search-pill {
+      height: 50px;
+      padding-left: 1rem;
+    }
+    .redd-input,
+    .redd-typewriter-text {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Original 3D Video Player Controller, Typewriter & Interactive Assistant Logic
+  (function initThermaxRedd() {
+    const videoEl = document.getElementById("reddMascotVideo");
+    const speechBubble = document.getElementById("reddSpeechBubble");
+    const sectionEl = document.getElementById("ask-redd");
+
+    function playMascotVideo() {
+      if (!videoEl) return;
+      videoEl.currentTime = 0;
+      const playPromise = videoEl.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function() {
+          // Autoplay fallback
+        });
+      }
+    }
+
+    // Scroll Observer: Triggers exact video when user scrolls this section into view!
+    if (sectionEl && "IntersectionObserver" in window) {
+      let observerTriggered = false;
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !observerTriggered) {
+            observerTriggered = true;
+            playMascotVideo();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+      observer.observe(sectionEl);
+    } else {
+      setTimeout(playMascotVideo, 300);
+    }
+
+    // Click on Video: re-runs the entire 3D skate arrival
+    if (videoEl) {
+      videoEl.addEventListener("click", function() {
+        playMascotVideo();
+      });
+
+      // Show greeting bubble when video completes landing
+      videoEl.addEventListener("ended", function() {
+        if (speechBubble) {
+          speechBubble.querySelector("span").textContent = "Hi! Ask AquaShakti 👋";
+          speechBubble.classList.add("is-visible");
+          setTimeout(function() {
+            speechBubble.classList.remove("is-visible");
+          }, 3200);
+        }
+      });
+    }
+
+    // Typewriter Phrases for Search Bar (AquaShakti-tailored)
+    const phrases = [
+      "Ask about AquaShakti Industrial Reverse Osmosis (RO) plants...",
+      "Ask about Sewage Treatment Plants (STP) & MBBR biological process...",
+      "Ask about Effluent Treatment Plants (ETP) & GPCB / CPCB consent norms...",
+      "Ask about Industrial Water Softeners, Demineralization & Mix-Bed plants...",
+      "Ask about Swimming Pool Filters, Rain Water Harvesting & Ozonation...",
+      "Ask about Turnkey Plant Engineering, Capacities & Quotations..."
+    ];
+
+    const typewriterEl = document.getElementById("reddTypewriter");
+    const cursorEl = document.getElementById("reddCursor");
+    const inputEl = document.getElementById("reddSearchInput");
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let isPaused = false;
+    let typeTimer = null;
+
+    function typeLoop() {
+      if (!typewriterEl || !cursorEl || !inputEl) return;
+
+      if (inputEl.value.trim().length > 0 || isPaused) {
+        typewriterEl.style.display = "none";
+        cursorEl.style.display = "none";
+        return;
+      } else {
+        typewriterEl.style.display = "inline";
+        cursorEl.style.display = "inline";
+      }
+
+      const currentPhrase = phrases[phraseIndex];
+
+      if (!isDeleting) {
+        charIndex++;
+        typewriterEl.textContent = currentPhrase.slice(0, charIndex);
+        cursorEl.style.left = typewriterEl.offsetWidth + 4 + "px";
+
+        if (charIndex === currentPhrase.length) {
+          isDeleting = true;
+          typeTimer = setTimeout(typeLoop, 3200);
+          return;
+        }
+        typeTimer = setTimeout(typeLoop, 45);
+      } else {
+        charIndex--;
+        typewriterEl.textContent = currentPhrase.slice(0, charIndex);
+        cursorEl.style.left = typewriterEl.offsetWidth + 4 + "px";
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          typeTimer = setTimeout(typeLoop, 400);
+          return;
+        }
+        typeTimer = setTimeout(typeLoop, 20);
+      }
+    }
+
+    if (inputEl) {
+      inputEl.addEventListener("focus", function() {
+        isPaused = true;
+        if (typewriterEl) typewriterEl.style.display = "none";
+        if (cursorEl) cursorEl.style.display = "none";
+      });
+
+      inputEl.addEventListener("blur", function() {
+        if (!inputEl.value.trim()) {
+          isPaused = false;
+          if (typewriterEl) typewriterEl.style.display = "inline";
+          if (cursorEl) cursorEl.style.display = "inline";
+          typeLoop();
+        }
+      });
+
+      inputEl.addEventListener("input", function() {
+        if (inputEl.value.trim()) {
+          if (typewriterEl) typewriterEl.style.display = "none";
+          if (cursorEl) cursorEl.style.display = "none";
+        }
+      });
+    }
+
+    typeLoop();
+
+    // Modal & Search handler
+    const modal = document.getElementById("reddModalBackdrop");
+    const modalClose = document.getElementById("reddModalClose");
+    const queryPreview = document.getElementById("reddQueryPreview");
+    const answerText = document.getElementById("reddAnswerText");
+    const quickLinks = document.getElementById("reddQuickLinks");
+
+    if (modalClose && modal) {
+      modalClose.addEventListener("click", function() {
+        modal.style.display = "none";
+      });
+      modal.addEventListener("click", function(e) {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+
+    window.handleReddSearch = function() {
+      let q = (inputEl ? inputEl.value : "").trim();
+      if (!q) {
+        q = phrases[phraseIndex];
+      }
+      const lower = q.toLowerCase();
+
+      if (lower.includes("reverse") || lower.includes("osmosis") || lower.includes(" ro ") || lower === "ro") {
+        window.location.href = "/reverse-osmosis-system";
+        return;
+      }
+      if (lower.includes("sewage") || lower.includes("stp") || lower.includes("biological")) {
+        window.location.href = "/sewage-treatement-plant";
+        return;
+      }
+      if (lower.includes("effluent") || lower.includes("etp") || lower.includes("zld")) {
+        window.location.href = "/effluent-treatement-plant";
+        return;
+      }
+      if (lower.includes("pool") || lower.includes("swimming")) {
+        window.location.href = "/swimming-pool-filter";
+        return;
+      }
+      if (lower.includes("softener") || lower.includes("softner") || lower.includes("hardness")) {
+        window.location.href = "/water-softner";
+        return;
+      }
+      if (lower.includes("demineralisation") || lower.includes("demineralization") || lower.includes("dm plant") || lower.includes("mixed bed")) {
+        window.location.href = "/demineralisation-plant";
+        return;
+      }
+      if (lower.includes("rain") || lower.includes("harvesting") || lower.includes("ground water recharge")) {
+        window.location.href = "/rain-water-harvesting";
+        return;
+      }
+      if (lower.includes("ozone") || lower.includes("ozonation")) {
+        window.location.href = "/ozonation-system";
+        return;
+      }
+
+      if (modal && queryPreview && answerText && quickLinks) {
+        queryPreview.textContent = '“' + q + '”';
+        answerText.textContent = "AquaShakti has matched your inquiry with our turnkey industrial water & wastewater solutions. Explore our dedicated product portfolios or connect directly with our engineering team below:";
+
+        quickLinks.innerHTML = `
+          <a href="/reverse-osmosis-system" class="redd-link-item">
+            <span>💧 Industrial Reverse Osmosis (RO) Plants</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="/sewage-treatement-plant" class="redd-link-item">
+            <span>🏭 Sewage Treatment Plants (STP)</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="/effluent-treatement-plant" class="redd-link-item">
+            <span>⚙️ Effluent Treatment Plants (ETP)</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="/water-softner" class="redd-link-item">
+            <span>🛡️ Water Softener Plants</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="/demineralisation-plant" class="redd-link-item">
+            <span>🔬 Demineralisation (DM) Plants</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="/swimming-pool-filter" class="redd-link-item">
+            <span>🏊 Swimming Pool Filters</span>
+            <span>&rarr;</span>
+          </a>
+        `;
+
+        modal.style.display = "flex";
+      }
+    };
+  })();
+</script>

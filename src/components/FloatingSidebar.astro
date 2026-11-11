@@ -1,0 +1,219 @@
+---
+// src/components/FloatingSidebar.astro
+// Right-edge floating dock with "Book a Demo" tab, WhatsApp chat, and Direct Helpline Call button
+// Perfectly aligned in a single vertical straight line
+---
+
+<aside class="as-floating-dock" aria-label="Quick Action Buttons">
+	<!-- 1. "Book a Demo" Vertical Capsule Button -->
+	<button
+		type="button"
+		class="as-dock-tab"
+		data-quote-trigger="true"
+		data-plant="Industrial Water Plant Demo & Sizing"
+		data-capacity="Custom Sizing"
+		aria-label="Book a Demo"
+		title="Book a Free Demo"
+	>
+		<span class="as-tab-text">Book a Demo</span>
+		<span class="as-dock-tooltip">Book a Free Plant Demo</span>
+	</button>
+
+	<!-- 2. WhatsApp Circular Button -->
+	<a
+		href="https://api.whatsapp.com/send?phone=918799374555&text=Hello%20AquaShakti%2C%20I%20am%20interested%20in%20a%20product%20demo%20and%20quotation."
+		target="_blank"
+		rel="noopener noreferrer"
+		class="as-dock-circle as-dock-wa"
+		aria-label="Chat on WhatsApp"
+		title="Chat on WhatsApp"
+	>
+		<svg class="as-wa-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+			<path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.41a8.16 8.16 0 0 1 2.4 5.83c0 4.54-3.7 8.24-8.24 8.24-1.42 0-2.82-.37-4.06-1.08l-.29-.17-3.12.82.83-3.04-.19-.31c-.78-1.28-1.2-2.76-1.2-4.46 0-4.54 3.7-8.24 8.25-8.24v.01zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.43.13-.14.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.71 4.29 3.8 2.52 1.09 2.52.73 2.97.69.45-.04 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/>
+		</svg>
+		<span class="as-dock-tooltip">Chat on WhatsApp</span>
+	</a>
+
+	<!-- 3. Direct Helpline Call Button -->
+	<a
+		href="tel:+918799374555"
+		class="as-dock-circle as-dock-call"
+		aria-label="Call Plant Support Engineer"
+		title="Call Support: +91 8799374555"
+	>
+		<svg class="as-call-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+			<path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+		</svg>
+		<span class="as-dock-tooltip">Call: +91 8799374555</span>
+	</a>
+</aside>
+
+<style>
+	/* ========================================================
+	   Floating Sidebar Dock (Right Center)
+	   Strict Single-Line Vertical Alignment (Desktop & Mobile)
+	   ======================================================== */
+	.as-floating-dock {
+		position: fixed;
+		right: 12px;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 9999;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		width: 46px;
+		pointer-events: none;
+	}
+
+	.as-floating-dock > * {
+		pointer-events: auto;
+	}
+
+	/* 1. Book a Demo Capsule Tab */
+	.as-dock-tab {
+		position: relative;
+		width: 46px;
+		box-sizing: border-box;
+		background: #1c2f76;
+		color: #ffffff;
+		border: 1.5px solid rgba(255, 255, 255, 0.2);
+		border-radius: 23px;
+		padding: 16px 0;
+		margin: 0;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 4px 16px rgba(28, 47, 118, 0.35);
+		transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+		user-select: none;
+		outline: none;
+	}
+
+	.as-tab-text {
+		writing-mode: vertical-rl;
+		transform: rotate(180deg);
+		font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 0.8px;
+		white-space: nowrap;
+		text-transform: none;
+		line-height: 1;
+	}
+
+	.as-dock-tab:hover {
+		background: #f26522;
+		border-color: rgba(255, 255, 255, 0.4);
+		transform: scale(1.06) translateX(-3px);
+		box-shadow: 0 6px 20px rgba(242, 101, 34, 0.45);
+	}
+
+	/* Common Circular Floating Action Buttons */
+	.as-dock-circle {
+		position: relative;
+		width: 46px;
+		height: 46px;
+		box-sizing: border-box;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		margin: 0;
+		border: 1.5px solid rgba(255, 255, 255, 0.2);
+		transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+		cursor: pointer;
+		outline: none;
+	}
+
+	/* 2. WhatsApp Button */
+	.as-dock-wa {
+		background: #25d366;
+		color: #ffffff;
+		box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+	}
+
+	.as-dock-wa:hover {
+		background: #20ba5a;
+		border-color: rgba(255, 255, 255, 0.5);
+		transform: scale(1.08) translateX(-3px);
+		box-shadow: 0 6px 22px rgba(37, 211, 102, 0.65);
+	}
+
+	.as-wa-svg {
+		width: 22px;
+		height: 22px;
+		display: block;
+	}
+
+	/* 3. Direct Helpline Call Button */
+	.as-dock-call {
+		background: #f26522;
+		color: #ffffff;
+		box-shadow: 0 4px 16px rgba(242, 101, 34, 0.45);
+	}
+
+	.as-dock-call:hover {
+		background: #d85413;
+		border-color: rgba(255, 255, 255, 0.5);
+		transform: scale(1.08) translateX(-3px);
+		box-shadow: 0 6px 22px rgba(242, 101, 34, 0.65);
+	}
+
+	.as-call-svg {
+		width: 20px;
+		height: 20px;
+		display: block;
+	}
+
+	/* Tooltip (Smooth Fly-out to the Left on Hover) */
+	.as-dock-tooltip {
+		position: absolute;
+		right: calc(100% + 10px);
+		top: 50%;
+		transform: translateY(-50%) translateX(6px);
+		background: #0f172a;
+		color: #ffffff;
+		padding: 6px 12px;
+		border-radius: 6px;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		white-space: nowrap;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+		z-index: 10000;
+	}
+
+	.as-dock-tooltip::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 100%;
+		transform: translateY(-50%);
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent transparent transparent #0f172a;
+	}
+
+	.as-dock-tab:hover .as-dock-tooltip,
+	.as-dock-circle:hover .as-dock-tooltip {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(-50%) translateX(0);
+	}
+
+	/* Hide completely on mobile & tablet views */
+	@media (max-width: 1040px) {
+		.as-floating-dock {
+			display: none !important;
+		}
+	}
+</style>

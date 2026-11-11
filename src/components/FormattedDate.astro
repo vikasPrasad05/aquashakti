@@ -1,0 +1,29 @@
+---
+interface Props {
+	date: Date;
+	locale?: string;
+	relative?: boolean;
+}
+
+const { date, locale = 'en-IN', relative = false } = Astro.props;
+
+const absolute = date.toLocaleDateString(locale, {
+	year: 'numeric',
+	month: 'short',
+	day: 'numeric',
+});
+
+let display = absolute;
+if (relative) {
+	const diffDays = Math.floor((Date.now() - date.getTime()) / 86_400_000);
+	if (diffDays >= 0 && diffDays < 7) {
+		if (diffDays === 0) display = 'Today';
+		else if (diffDays === 1) display = 'Yesterday';
+		else display = `${diffDays} days ago`;
+	}
+}
+---
+
+<time datetime={date.toISOString()} title={absolute}>
+	{display}
+</time>

@@ -1,0 +1,120 @@
+---
+interface Props {
+	showTagline?: boolean;
+	light?: boolean;
+	size?: 'sm' | 'md' | 'lg';
+}
+
+const { showTagline = true, light = false, size = 'md' } = Astro.props;
+
+const dimensions = size === 'sm' ? 40 : size === 'lg' ? 64 : 50;
+---
+
+<div class={`brand-logo ${light ? 'brand-logo-light' : ''} size-${size}`}>
+	<!-- The image itself -->
+	<img 
+		src="/images/logo.png" 
+		alt="Aqua Shakti Logo" 
+		class="brand-emblem" 
+		height={dimensions} 
+		width={dimensions}
+		loading="eager"
+		decoding="async"
+	/>
+
+	<div class="brand-text">
+		<span class="brand-title">AQUA SHAKTI</span>
+		{showTagline && (
+			<span class="brand-subtitle">Water Treatment Plant & Chemicals</span>
+		)}
+	</div>
+</div>
+
+<style>
+	:root {
+		color-scheme: light; 
+	}
+
+	.brand-logo {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		text-decoration: none;
+	}
+
+	.brand-emblem {
+		object-fit: contain;
+		flex-shrink: 0;
+		display: block;
+		max-width: 100%;
+		max-height: 100%;
+		
+		/* THE FIX: Blends the white JPG background into the header */
+		mix-blend-mode: multiply; 
+		
+		/* Slight scale up to fill the space nicely */
+		transform: scale(1.15); 
+	}
+
+	.brand-text {
+		display: flex;
+		flex-direction: column;
+		line-height: 1.1;
+	}
+
+	.brand-title {
+		font-family: var(--font-display, sans-serif);
+		font-size: 1.45rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		color: #0369a1;
+		background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.brand-subtitle {
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: var(--text-muted, #64748b);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-top: 2px;
+	}
+
+	/* Light variant for dark backgrounds (used in footer/mobile) */
+	.brand-logo-light .brand-title {
+		background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.brand-logo-light .brand-subtitle {
+		color: #94a3b8;
+	}
+	
+	/* Keep the blend mode working if it's placed on a dark background */
+	.brand-logo-light .brand-emblem {
+		mix-blend-mode: screen;
+	}
+
+	.size-sm .brand-title { font-size: 1.1rem; }
+	.size-sm .brand-subtitle { font-size: 0.6rem; }
+
+	.size-lg .brand-title { font-size: 1.85rem; }
+	.size-lg .brand-subtitle { font-size: 0.8rem; }
+
+	@media (max-width: 520px) {
+		.brand-logo { gap: 0.5rem; }
+		.brand-emblem { width: 40px !important; height: 40px !important; transform: scale(1.1); }
+		.brand-title { font-size: 1.15rem; }
+		.brand-subtitle { font-size: 0.6rem; }
+	}
+
+	@media (max-width: 380px) {
+		.brand-logo { gap: 0.4rem; }
+		.brand-emblem { width: 36px !important; height: 36px !important; transform: scale(1.05); }
+		.brand-title { font-size: 1.05rem; }
+		.brand-subtitle { font-size: 0.56rem; }
+	}
+</style>

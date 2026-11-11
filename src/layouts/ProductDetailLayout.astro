@@ -1,0 +1,527 @@
+---
+// src/layouts/ProductDetailLayout.astro
+// High-fidelity layout matching waterenviroengineers.com context, design, colors and structure
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+import { COMPANY_NAME, COMPANY_PHONE } from '../consts';
+
+interface Props {
+	title: string;
+	description?: string;
+	keywords?: string;
+	activeSlug: string;
+	productName: string;
+}
+
+const { title, description, keywords, activeSlug, productName } = Astro.props;
+
+const productsList = [
+	{ name: 'Sewage Treatement Plant', slug: 'sewage-treatement-plant', href: '/sewage-treatement-plant' },
+	{ name: 'Reverse Osmosis Plants', slug: 'reverse-osmosis-system', href: '/reverse-osmosis-system' },
+	{ name: 'Swimming Pool Filter', slug: 'swimming-pool-filter', href: '/swimming-pool-filter' },
+	{ name: 'Effluent Treatment Plant', slug: 'effluent-treatement-plant', href: '/effluent-treatement-plant' },
+	{ name: 'Demineralisation Plant', slug: 'demineralisation-plant', href: '/demineralisation-plant' },
+	{ name: 'Rain Water Harvesting', slug: 'rain-water-harvesting', href: '/rain-water-harvesting' },
+	{ name: 'Ozonation System', slug: 'ozonation-system', href: '/ozonation-system' },
+	{ name: 'Water Softner Plant', slug: 'water-softner', href: '/water-softner' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={title}
+			description={description || `${productName} manufactured by ${COMPANY_NAME}. High-grade industrial water treatment solutions.`}
+		/>
+		{keywords && <meta name="keywords" content={keywords} />}
+	</head>
+	<body class="product-detail-body">
+		<Header />
+
+		<!-- Breadcrumb Header Banner -->
+		<section class="we-breadcrumb-banner">
+			<div class="we-site-container">
+				<div class="we-breadcrumb-content">
+					<h2 class="we-breadcrumb-title">{productName}</h2>
+					<ul class="we-breadcrumb-trail">
+						<li><a href="/">Home</a></li>
+						<li class="we-separator">/</li>
+						<li><span>Products</span></li>
+						<li class="we-separator">/</li>
+						<li class="we-current">{productName}</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- Main 2-Column Section (Content + Sidebar) -->
+		<section class="we-main-section">
+			<div class="we-site-container">
+				<div class="we-layout-grid">
+					<!-- Left: Main Product Detailed Content -->
+					<div class="we-content-col">
+						<div class="we-product-article">
+							<slot />
+						</div>
+					</div>
+
+					<!-- Right: Sidebar matching target site -->
+					<aside class="we-sidebar-col">
+						<div class="we-sidebar-card">
+							<h3 class="we-sidebar-heading">Our Products</h3>
+							<div class="we-sidebar-category-tag">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+									<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+								</svg>
+								<span>Water Treatment</span>
+							</div>
+
+							<ul class="we-sidebar-menu">
+								{productsList.map((item) => (
+									<li class="we-sidebar-item">
+										<a
+											href={item.href}
+											class:list={['we-sidebar-link', { active: activeSlug === item.slug }]}
+										>
+											<svg class="we-link-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+												<path d="M9 18l6-6-6-6"/>
+											</svg>
+											<span>{item.name}</span>
+										</a>
+									</li>
+								))}
+							</ul>
+
+							<!-- Quick Inquiry Box inside Sidebar -->
+							<div class="we-sidebar-cta">
+								<h4 class="we-cta-title">Need Plant Sizing?</h4>
+								<p class="we-cta-desc">Speak directly with our chief water engineers for custom capacity sizing & P&ID.</p>
+								<a href="tel:+918799374555" class="we-cta-phone-btn">
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+										<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+									</svg>
+									<span>+91 8799374555</span>
+								</a>
+								<a href={`https://api.whatsapp.com/send?phone=+918799374555&text=Hello,%20I%20am%20interested%20in%20${encodeURIComponent(productName)}.`} target="_blank" rel="noopener noreferrer" class="we-cta-whatsapp-btn">
+									<span>Enquire on WhatsApp &rarr;</span>
+								</a>
+							</div>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</section>
+
+		<Footer />
+		<QuoteModal />
+	</body>
+</html>
+
+<style is:global>
+	/* 1000% Matching Water Enviro Engineers Typography & Color Tokens */
+	:root {
+		--we-primary-blue: #0059a8;
+		--we-text-color: #444444;
+		--we-body-bg: #ffffff;
+		--we-border-color: #e5e7eb;
+	}
+
+	.product-detail-body {
+		background-color: #ffffff;
+		color: #333333;
+		font-family: Arial, Helvetica, sans-serif;
+		margin: 0;
+		padding: 0;
+	}
+
+	.we-site-container {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.25rem;
+		box-sizing: border-box;
+	}
+
+	/* Breadcrumb Banner */
+	.we-breadcrumb-banner {
+		background: #f4f7fa;
+		border-bottom: 1px solid #e2e8f0;
+		padding: 1.25rem 0;
+	}
+
+	.we-breadcrumb-content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.we-breadcrumb-title {
+		font-size: 1.4rem;
+		font-weight: 700;
+		color: #0059a8;
+		margin: 0;
+	}
+
+	.we-breadcrumb-trail {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-size: 0.88rem;
+	}
+
+	.we-breadcrumb-trail a {
+		color: #64748b;
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+
+	.we-breadcrumb-trail a:hover {
+		color: #0059a8;
+	}
+
+	.we-separator {
+		color: #94a3b8;
+	}
+
+	.we-current {
+		color: #0059a8;
+		font-weight: 600;
+	}
+
+	/* Main 2-Column Layout */
+	.we-main-section {
+		padding: 2.5rem 0 4rem;
+	}
+
+	.we-layout-grid {
+		display: grid;
+		grid-template-columns: 1fr 310px;
+		gap: 2.5rem;
+		align-items: start;
+	}
+
+	/* Left Content Column */
+	.we-content-col {
+		min-width: 0;
+	}
+
+	.we-product-article {
+		font-family: Arial, Helvetica, sans-serif;
+		color: #333333;
+		line-height: 1.85;
+	}
+
+	.we-product-article h1.w3l_header,
+	.we-product-article h1 {
+		color: #0059a8;
+		font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+		font-weight: 700;
+		margin: 0 0 1.25rem;
+		line-height: 1.3;
+	}
+
+	.we-product-article h4 {
+		color: #0059a8;
+		font-size: 1.25rem;
+		font-weight: 700;
+		margin: 1.75rem 0 0.75rem;
+		border-left: 4px solid #0059a8;
+		padding-left: 0.75rem;
+	}
+
+	.we-product-article h5 {
+		color: #0059a8;
+		font-size: 1.05rem;
+		font-weight: 700;
+		margin: 1.25rem 0 0.5rem;
+	}
+
+	.we-product-article p {
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: justify;
+		font-size: 14.5px;
+		line-height: 1.85;
+		color: #444444;
+		margin: 0 0 1rem;
+	}
+
+	.we-product-article p b,
+	.we-product-article strong {
+		color: #1e293b;
+	}
+
+	.we-product-article a {
+		color: #0059a8;
+		text-decoration: underline;
+		font-weight: 600;
+	}
+
+	.we-product-article a:hover {
+		color: #f26522;
+	}
+
+	.we-product-article ol,
+	.we-product-article ul {
+		margin: 0 0 1.5rem;
+		padding-left: 1.5rem;
+	}
+
+	.we-product-article li {
+		font-size: 14.5px;
+		line-height: 1.8;
+		color: #444444;
+		margin-bottom: 0.4rem;
+	}
+
+	.we-product-article img.img-responsive,
+	.we-product-article img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+		border-radius: 6px;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+		margin: 1rem 0 1.5rem;
+	}
+
+	.we-product-article .row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin: 1rem 0;
+	}
+
+	.we-product-article .col-md-12 {
+		flex: 1 1 100%;
+	}
+
+	.we-product-article .col-md-6 {
+		flex: 1 1 calc(50% - 0.5rem);
+		min-width: 260px;
+	}
+
+	.we-product-article .col-md-4 {
+		flex: 1 1 calc(33.333% - 0.7rem);
+		min-width: 180px;
+	}
+
+	/* One horizontal line image gallery */
+	.we-img-row-horizontal {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25rem;
+		margin: 1.5rem 0 2rem;
+		align-items: stretch;
+	}
+
+	.we-img-box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+		padding: 0.75rem;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		box-sizing: border-box;
+	}
+
+	.we-img-box:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+	}
+
+	.we-img-box img {
+		max-width: 100%;
+		height: 250px;
+		width: 100%;
+		object-fit: contain;
+		margin: 0 !important;
+		box-shadow: none !important;
+		border-radius: 4px;
+	}
+
+	@media (max-width: 768px) {
+		.we-img-row-horizontal {
+			grid-template-columns: 1fr;
+		}
+		.we-img-box img {
+			height: auto;
+			max-height: 280px;
+		}
+	}
+
+	/* Right Sidebar */
+	.we-sidebar-col {
+		position: sticky;
+		top: 80px;
+	}
+
+	.we-sidebar-card {
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-top: 3px solid #0059a8;
+		border-radius: 8px;
+		padding: 1.5rem;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+	}
+
+	.we-sidebar-heading {
+		font-size: 1.25rem;
+		font-weight: 800;
+		color: #0059a8;
+		text-align: center;
+		margin: 0 0 1rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 2px solid #0059a8;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+	}
+
+	.we-sidebar-category-tag {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #1e293b;
+		margin-bottom: 0.85rem;
+		padding: 0.35rem 0.5rem;
+		background: #eef4fb;
+		border-radius: 4px;
+	}
+
+	.we-sidebar-menu {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.we-sidebar-item {
+		margin: 0;
+	}
+
+	.we-sidebar-link {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		padding: 0.65rem 0.75rem;
+		font-size: 0.88rem;
+		font-weight: 500;
+		color: #334155;
+		text-decoration: none;
+		border-radius: 6px;
+		transition: all 0.18s ease;
+		border-left: 3px solid transparent;
+	}
+
+	.we-link-chevron {
+		color: #94a3b8;
+		flex-shrink: 0;
+		transition: transform 0.15s ease, color 0.15s ease;
+	}
+
+	.we-sidebar-link:hover {
+		background-color: #eef4fb;
+		color: #0059a8;
+		border-left-color: #0059a8;
+		padding-left: 1rem;
+	}
+
+	.we-sidebar-link:hover .we-link-chevron {
+		color: #0059a8;
+		transform: translateX(2px);
+	}
+
+	.we-sidebar-link.active {
+		background-color: #0059a8;
+		color: #ffffff;
+		font-weight: 700;
+		border-left-color: #f26522;
+	}
+
+	.we-sidebar-link.active .we-link-chevron {
+		color: #ffffff;
+	}
+
+	/* Sidebar CTA Box */
+	.we-sidebar-cta {
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px dashed #cbd5e1;
+		text-align: center;
+	}
+
+	.we-cta-title {
+		font-size: 1.05rem;
+		font-weight: 700;
+		color: #18346f;
+		margin: 0 0 0.35rem;
+	}
+
+	.we-cta-desc {
+		font-size: 0.82rem;
+		color: #64748b;
+		line-height: 1.5;
+		margin: 0 0 1rem;
+	}
+
+	.we-cta-phone-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		background: #0059a8;
+		color: #ffffff;
+		text-decoration: none;
+		padding: 0.65rem 1rem;
+		border-radius: 6px;
+		font-weight: 700;
+		font-size: 0.92rem;
+		margin-bottom: 0.5rem;
+		transition: background-color 0.15s ease;
+	}
+
+	.we-cta-phone-btn:hover {
+		background: #004482;
+	}
+
+	.we-cta-whatsapp-btn {
+		display: block;
+		background: #25d366;
+		color: #ffffff;
+		text-decoration: none;
+		padding: 0.65rem 1rem;
+		border-radius: 6px;
+		font-weight: 700;
+		font-size: 0.86rem;
+		transition: background-color 0.15s ease;
+	}
+
+	.we-cta-whatsapp-btn:hover {
+		background: #20bd5a;
+	}
+
+	@media (max-width: 900px) {
+		.we-layout-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.we-sidebar-col {
+			position: static;
+			margin-top: 2rem;
+		}
+	}
+</style>
+

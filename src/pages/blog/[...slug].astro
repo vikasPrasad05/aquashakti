@@ -1,0 +1,86 @@
+---
+// src/pages/blog/[...slug].astro
+// Detail page for CFEdge-CMS Headless Blog Post
+import BlogPost from '../../layouts/BlogPost.astro';
+import { getBlogPosts, getBlogPostById } from '../../lib/cms';
+import type { BlogRecord } from '../../types/cms';
+export async function getStaticPaths() {
+	const posts = await getBlogPosts({ limit: 100 });
+
+	const paths = [];
+	for (const post of posts) {
+		const cleanId = (post.id || '').trim();
+		if (!cleanId) continue;
+
+		// 1. Path by ID (as per spec: /blog/:id)
+		paths.push({
+			params: { slug: cleanId },
+			props: { post },
+		});
+
+		// 2. Also path by slugified title
+		if (post.data?.title) {
+			const slug = post.data.title
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, '-')
+				.replace(/^-+|-+$/g, '');
+			if (slug && slug !== cleanId) {
+				paths.push({
+					params: { slug },
+					props: { post },
+				});
+			}
+		}
+	}
+	return paths;
+}
+
+interface Props {
+	post?: BlogRecord;
+}
+
+const rawSlug = Astro.params.slug || '';
+const cleanSlug = typeof rawSlug === 'string' ? rawSlug.replace(/^\/+|\/+$/g, '').trim() : '';
+let post = Astro.props.post;
+
+// If post wasn't passed in props (e.g. dynamic request or newly published in CMS), fetch it!
+if (!post && cleanSlug) {
+	post = await getBlogPostById(cleanSlug);
+	if (!post) {
+		const all = await getBlogPosts({ limit: 100 });
+		post = all.find((p) => {
+			if ((p.id || '').trim().toLowerCase() === cleanSlug.toLowerCase()) return true;
+			const s = (p.data?.title || '')
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, '-')
+				.replace(/^-+|-+$/g, '');
+			return s === cleanSlug.toLowerCase();
+		}) || null;
+	}
+}
+
+const isNotFound = !post;
+if (isNotFound) {
+	Astro.response.status = 404;
+}
+
+const title = post?.data?.title || 'Article Not Found';
+const description = post?.data?.description || (isNotFound ? 'The requested blog article could not be found.' : '');
+const pubDate = new Date(post?.data?.published || post?.created_at || Date.now());
+const heroImage = post?.data?.thumbnail || '';
+const contentHtml = post?.data?.content || (isNotFound
+	? `<p>Sorry, this article is no longer available or has been moved.</p><p><a href="/blog">&larr; Back to all articles</a></p>`
+	: '');
+---
+
+<BlogPost
+	title={title}
+	description={description}
+	pubDate={pubDate}
+	heroImage={heroImage}
+	category="ETP & RO Systems"
+	tags={['ETP', 'RO Plant', 'Wastewater Treatment', 'Industrial Water']}
+	author="Aqua Shakti Technical Engineering Team"
+	readingTime="5 min read"
+	contentHtml={contentHtml}
+/>

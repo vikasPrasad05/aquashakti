@@ -1,0 +1,604 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	pubDate: Date;
+	updatedDate?: Date;
+	heroImage?: string;
+	category?: string;
+	tags?: string[];
+	author?: string;
+	readingTime?: string;
+	contentHtml?: string;
+}
+
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	category = 'Water Treatment',
+	tags = [],
+	author = 'Aqua Shakti Engineering Team',
+	readingTime = '5 min read',
+	contentHtml = '',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${title} | Aqua Shakti Blog`} description={description} image={heroImage} />
+	</head>
+
+	<body>
+		<!-- Reading Progress Bar -->
+		<div id="reading-progress-bar" class="reading-progress-bar" aria-hidden="true"></div>
+		<Header />
+		
+		<main class="blog-article-page">
+			<div class="article-top-hero-area">
+			<!-- Breadcrumb & Back Link -->
+			<div class="container container-narrow article-nav-bar">
+				<div class="article-breadcrumb">
+					<a href="/">&larr; Home</a>
+					<span class="crumb-sep">/</span>
+					<a href="/blog">Technical Guides</a>
+					<span class="crumb-sep">/</span>
+					<span class="active-crumb">{category}</span>
+				</div>
+			</div>
+
+			</div>
+
+			<article class="container container-narrow">
+				<header class="article-header">
+					<div class="article-badges">
+						<span class="kokonut-pill-badge">{category}</span>
+						<span class="reading-time-badge">
+							<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+							{readingTime}
+						</span>
+					</div>
+
+					<h1 class="article-title">{title}</h1>
+					<p class="article-description">{description}</p>
+
+					<div class="article-meta">
+						<div class="author-info">
+							<div class="author-avatar">AS</div>
+							<div>
+								<div class="author-name">{author}</div>
+								<div class="publish-date">
+									Published on <FormattedDate date={pubDate} />
+									{updatedDate && (
+										<span> • Updated <FormattedDate date={updatedDate} /></span>
+									)}
+								</div>
+							</div>
+						</div>
+
+						{tags && tags.length > 0 && (
+							<div class="article-tags">
+								{tags.map((tag: string) => (
+									<span class="tag-pill">#{tag}</span>
+								))}
+							</div>
+						)}
+					</div>
+				</header>
+
+				{heroImage && heroImage.trim() !== '' && (
+					<div class="hero-image-wrapper">
+						<img src={heroImage} alt={title} class="article-hero-img" />
+					</div>
+				)}
+
+				<div class="prose">
+					{contentHtml ? <Fragment set:html={contentHtml} /> : <slot />}
+				</div>
+
+				<!-- Kokonut UI 3D Callout Card -->
+				<div class="blog-post-cta">
+					<div class="cta-accent-glow"></div>
+					<div class="cta-inner">
+						<div class="cta-badge">Aqua Shakti Engineering Support • Vapi, Gujarat</div>
+						<h3>Need Technical Sizing or Plant Quotation?</h3>
+						<p>Consult directly with our water treatment engineers for customized Reverse Osmosis, Softeners, DM Units, or ZLD wastewater treatment skids.</p>
+						<div class="cta-btns">
+							<button type="button" class="btn btn-primary" data-quote-trigger data-plant={title}>
+								Request Plant Quote &rarr;
+							</button>
+							<a href="https://wa.me/919825176420" target="_blank" rel="noopener noreferrer" class="btn btn-accent">
+								<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.07-1.111-.067-.27-.087-.62-.218-1.077-.417-1.928-.838-3.197-2.775-3.292-2.906-.095-.131-.774-1.03-.774-1.966 0-.936.488-1.398.662-1.589.174-.19.381-.238.508-.238.127 0 .254.001.365.007.118.006.276-.045.432.333.16.388.544 1.328.592 1.425.048.098.08.213.016.34-.063.127-.095.207-.19.317-.095.111-.2.248-.286.333-.095.096-.194.2-.084.389.111.19.493.814 1.057 1.317.726.647 1.339.848 1.529.943.19.096.301.079.412-.047.112-.127.476-.556.603-.746.127-.19.254-.159.428-.095.175.063 1.111.524 1.302.619.19.095.317.143.365.222.048.079.048.46-.096.865z"/></svg>
+								WhatsApp Technical Head
+							</a>
+						</div>
+					</div>
+				</div>
+
+			</article>
+		</main>
+
+		<Footer />
+		<QuoteModal />
+
+		<script is:inline>
+			// Reading Progress Bar
+			window.addEventListener('scroll', () => {
+				const progressBar = document.getElementById('reading-progress-bar');
+				if (!progressBar) return;
+				const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+				const scrolled = (winScroll / height) * 100;
+				progressBar.style.width = scrolled + '%';
+			}, { passive: true });
+		</script>
+
+		<style>
+			/* Reading Progress Bar */
+			.reading-progress-bar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 3px;
+				width: 0%;
+				background: linear-gradient(90deg, #0284c7 0%, #38bdf8 100%);
+				z-index: 9999;
+				transition: width 0.1s linear;
+			}
+
+			.blog-article-page {
+				padding-top: 0;
+				padding-bottom: 5rem;
+				background: #ffffff;
+			}
+
+			:global(html.dark) .blog-article-page {
+				background: #0b1121;
+			}
+
+			.article-top-hero-area {
+				position: relative;
+				background: linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%);
+				padding-top: 1.5rem;
+				margin-bottom: 2rem;
+				border-bottom: 1px solid #f1f5f9;
+			}
+
+			:global(html.dark) .article-top-hero-area {
+				background: linear-gradient(180deg, #0b1429 0%, #0b1121 100%);
+				border-bottom-color: rgba(255, 255, 255, 0.08);
+			}
+
+			.article-nav-bar {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding-top: 0.5rem;
+				padding-bottom: 1.25rem;
+
+
+
+			}
+
+			:global(html.dark) .article-nav-bar {
+				border-bottom-color: rgba(255, 255, 255, 0.08);
+			}
+
+			.article-breadcrumb {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 0.85rem;
+				color: #64748b;
+				overflow-x: auto;
+				scrollbar-width: none;
+			}
+
+			.article-breadcrumb a {
+				color: #64748b;
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			.article-breadcrumb a:hover {
+				color: #0284c7;
+			}
+
+			.crumb-sep {
+				color: #cbd5e1;
+			}
+
+			.active-crumb {
+				color: #0284c7;
+				font-weight: 700;
+			}
+
+			/* Kokonut UI Copy Link Button */
+			.copy-link-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				padding: 0.35rem 0.8rem;
+				border-radius: 9999px;
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: #475569;
+				cursor: pointer;
+				transition: all 0.2s;
+			}
+
+			.copy-link-btn:hover {
+				background: #f1f5f9;
+				border-color: #cbd5e1;
+				color: #0f172a;
+			}
+
+			.copy-link-btn.copied {
+				background: #dcfce7;
+				border-color: #86efac;
+				color: #166534;
+			}
+
+			.article-header {
+
+
+				padding-bottom: 2rem;
+				border-bottom: 1px solid #e2e8f0;
+			}
+
+			.article-badges {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				margin-bottom: 1rem;
+			}
+
+			.kokonut-pill-badge {
+				background: #e0f2fe;
+				color: #0369a1;
+				font-size: 0.75rem;
+				font-weight: 700;
+				padding: 0.25rem 0.75rem;
+				border-radius: 9999px;
+				letter-spacing: 0.03em;
+			}
+
+			.reading-time-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-size: 0.82rem;
+				color: #64748b;
+				font-weight: 600;
+			}
+
+			.article-title {
+				font-size: clamp(2rem, 3.8vw, 2.85rem);
+				color: #0f172a;
+				line-height: 1.2;
+				margin-bottom: 1rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+			}
+
+			.article-description {
+				font-size: 1.15rem;
+				color: #475569;
+				line-height: 1.65;
+				margin-bottom: 1.75rem;
+			}
+
+			.article-meta {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1.5rem;
+				flex-wrap: wrap;
+			}
+
+			.author-info {
+				display: flex;
+				align-items: center;
+				gap: 0.85rem;
+			}
+
+			.author-avatar {
+				width: 42px;
+				height: 42px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+				color: #ffffff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 800;
+				font-size: 0.85rem;
+				box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+			}
+
+			.author-name {
+				font-weight: 700;
+				font-size: 0.95rem;
+				color: #0f172a;
+			}
+
+			.publish-date {
+				font-size: 0.82rem;
+				color: #64748b;
+			}
+
+			.article-tags {
+				display: flex;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+
+			.tag-pill {
+				background: #f1f5f9;
+				color: #0369a1;
+				font-size: 0.75rem;
+				font-weight: 600;
+				padding: 0.25rem 0.65rem;
+				border-radius: 9999px;
+			}
+
+			.hero-image-wrapper {
+				margin-bottom: 2.5rem;
+				border-radius: 1.25rem;
+				overflow: hidden;
+				box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+			}
+
+			.article-hero-img {
+				width: 100%;
+				max-height: 480px;
+				object-fit: cover;
+			}
+
+			/* Kokonut UI CTA Box */
+			.blog-post-cta {
+				position: relative;
+				margin: 3.5rem 0 2rem 0;
+				border: 1px solid #bae6fd;
+				background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+				padding: 2.25rem;
+				border-radius: 1.25rem;
+				overflow: hidden;
+				box-shadow: 0 10px 30px rgba(2, 132, 199, 0.08);
+			}
+
+			.cta-badge {
+				display: inline-block;
+				font-size: 0.75rem;
+				font-weight: 800;
+				color: #0284c7;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				margin-bottom: 0.5rem;
+			}
+
+			.cta-inner h3 {
+				color: #0f172a;
+				margin-bottom: 0.5rem;
+				font-size: 1.4rem;
+				font-weight: 800;
+			}
+
+			.cta-inner p {
+				color: #334155;
+				margin-bottom: 1.5rem;
+				line-height: 1.55;
+			}
+
+			.cta-btns {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+
+			/* Kokonut UI Expandable Closure */
+			.tech-closure-card {
+				background: #f8fafc;
+				border: 1px solid #e2e8f0;
+				border-radius: 1rem;
+				padding: 1rem 1.25rem;
+				margin-top: 1.5rem;
+				transition: all 0.2s ease;
+			}
+
+			.tech-closure-card[open] {
+				background: #ffffff;
+				border-color: #cbd5e1;
+				box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+			}
+
+			.tech-closure-summary {
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+				cursor: pointer;
+				list-style: none;
+				font-size: 0.9rem;
+				color: #0f172a;
+				user-select: none;
+			}
+
+			.tech-closure-summary::-webkit-details-marker {
+				display: none;
+			}
+
+			.closure-toggle {
+				margin-left: auto;
+				width: 22px;
+				height: 22px;
+				border-radius: 50%;
+				background: #e2e8f0;
+				color: #0f172a;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.85rem;
+				font-weight: 700;
+			}
+
+			.tech-closure-content {
+				padding-top: 0.85rem;
+				margin-top: 0.85rem;
+				border-top: 1px dashed #e2e8f0;
+				font-size: 0.88rem;
+				color: #475569;
+				line-height: 1.6;
+			}
+
+			/* ==========================================================
+			   DARK MODE ENHANCEMENTS FOR BLOG POST ARTICLE
+			   ========================================================== */
+			:global(html.dark) .article-breadcrumb a {
+				color: #94a3b8;
+			}
+
+			:global(html.dark) .article-breadcrumb a:hover {
+				color: #38bdf8;
+			}
+
+			:global(html.dark) .active-crumb {
+				color: #38bdf8;
+			}
+
+			:global(html.dark) .copy-link-btn {
+				background: rgba(255, 255, 255, 0.06);
+				border-color: rgba(255, 255, 255, 0.12);
+				color: #cbd5e1;
+			}
+
+			:global(html.dark) .copy-link-btn:hover {
+				background: rgba(255, 255, 255, 0.12);
+				color: #ffffff;
+			}
+
+			:global(html.dark) .article-header {
+				border-bottom-color: rgba(255, 255, 255, 0.1);
+			}
+
+			:global(html.dark) .kokonut-pill-badge {
+				background: rgba(2, 132, 199, 0.25);
+				color: #38bdf8;
+			}
+
+			:global(html.dark) .reading-time-badge {
+				color: #94a3b8;
+			}
+
+			:global(html.dark) .article-title {
+				color: #ffffff;
+			}
+
+			:global(html.dark) .article-description {
+				color: #94a3b8;
+			}
+
+			:global(html.dark) .author-name {
+				color: #ffffff;
+			}
+
+			:global(html.dark) .publish-date {
+				color: #94a3b8;
+			}
+
+			:global(html.dark) .tag-pill {
+				background: #1e293b;
+				color: #38bdf8;
+			}
+
+			:global(html.dark) .blog-post-cta {
+				background: linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%), #0f172a;
+				border-color: rgba(255, 255, 255, 0.12);
+				box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+			}
+
+			:global(html.dark) .cta-badge {
+				color: #38bdf8;
+			}
+
+			:global(html.dark) .cta-inner h3 {
+				color: #ffffff;
+			}
+
+			:global(html.dark) .cta-inner p {
+				color: #cbd5e1;
+			}
+
+			:global(html.dark) .tech-closure-card {
+				background: #0f172a;
+				border-color: rgba(255, 255, 255, 0.1);
+			}
+
+			:global(html.dark) .tech-closure-card[open] {
+				background: #111c33;
+				border-color: rgba(56, 189, 248, 0.3);
+			}
+
+			:global(html.dark) .tech-closure-summary {
+				color: #f8fafc;
+			}
+
+			:global(html.dark) .closure-toggle {
+				background: #1e293b;
+				color: #38bdf8;
+			}
+
+			:global(html.dark) .tech-closure-content {
+				border-top-color: rgba(255, 255, 255, 0.1);
+				color: #94a3b8;
+			}
+
+			@media (max-width: 600px) {
+				.article-top-hero-area {
+				position: relative;
+				background: linear-gradient(180deg, #e0f2fe 0%, #ffffff 100%);
+				padding-top: 1.5rem;
+				margin-bottom: 2rem;
+				border-bottom: 1px solid #f1f5f9;
+			}
+
+			:global(html.dark) .article-top-hero-area {
+				background: linear-gradient(180deg, #0b1429 0%, #0b1121 100%);
+				border-bottom-color: rgba(255, 255, 255, 0.08);
+			}
+
+			.article-nav-bar {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 0.75rem;
+				}
+				.cta-btns {
+					flex-direction: column;
+				}
+				.cta-btns .btn {
+					width: 100%;
+					text-align: center;
+				}
+				.blog-post-cta {
+					padding: 1.5rem 1.25rem;
+				}
+				.article-meta {
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 1rem;
+				}
+			}
+		</style>
+	</body>
+</html>

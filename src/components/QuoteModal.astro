@@ -1,0 +1,334 @@
+---
+// Quote / Consultation Modal Component
+// All visuals are inline SVG — no emojis, no Unicode glyphs used as icons.
+---
+
+<div id="quote-modal" class="modal-overlay" aria-hidden="true">
+	<div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title">
+		<button type="button" class="modal-close" id="modal-close-btn" aria-label="Close modal">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M18 6 6 18"/>
+				<path d="m6 6 12 12"/>
+			</svg>
+		</button>
+
+		<div class="modal-header">
+			<span class="badge badge-blue">ISO 9001:2008 quality assured</span>
+			<h3 id="quote-modal-title" class="modal-title">Request plant quote &amp; consultation</h3>
+			<p class="modal-lead">
+				Speak with an Aqua Shakti engineer for custom sizing and pricing — Gujarat &amp; PAN-India.
+			</p>
+		</div>
+
+		<form id="quote-form" onsubmit="event.preventDefault(); handleQuoteSubmit(event);">
+			<div class="form-group">
+				<label class="form-label" for="quote-plant">System / plant requirement</label>
+				<select class="form-control" id="quote-plant" name="plant" required>
+					<option value="Industrial RO Plant">Industrial RO Plant (500 to 50,000+ LPH)</option>
+					<option value="Commercial RO Plant">Commercial RO Plant (25 to 1000 LPH)</option>
+					<option value="Sewage Treatment Plant (STP)">Sewage Treatment Plant (STP – DELTA PR)</option>
+					<option value="Effluent Treatment Plant (ETP)">Effluent Treatment Plant (ETP)</option>
+					<option value="Water Softener Plant">Industrial Water Softener Plant</option>
+					<option value="DM / Mix Bed Plant">Demineralization (DM) / Mix Bed Plant</option>
+					<option value="Ozonation & Mineral Bottling">Ozonation &amp; Packaged Drinking Water</option>
+					<option value="Chilling Plant & Coolers">Online Chilling Plant &amp; Water Coolers</option>
+					<option value="Spares & Treatment Chemicals">Membranes, resins, antiscalant &amp; spares</option>
+				</select>
+			</div>
+
+			<div class="modal-form-row">
+				<div class="form-group">
+					<label class="form-label" for="quote-capacity">Capacity / flow rate</label>
+					<input type="text" class="form-control" id="quote-capacity" name="capacity" placeholder="e.g. 1,000 LPH / 20 KLD" required />
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="quote-source">Raw water source</label>
+					<select class="form-control" id="quote-source" name="source">
+						<option value="Borewell / Ground Water">Borewell / Ground water</option>
+						<option value="Industrial Effluent">Industrial effluent (ETP)</option>
+						<option value="Domestic Sewage">Domestic sewage (STP)</option>
+						<option value="River / Surface Canal">River / Surface canal</option>
+						<option value="Municipal Corporation">Municipal supply</option>
+						<option value="Sea / Brackish Water">Sea / Brackish water</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="modal-form-row">
+				<div class="form-group">
+					<label class="form-label" for="quote-name">Your full name</label>
+					<input type="text" class="form-control" id="quote-name" name="name" placeholder="Name / Company" required />
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="quote-phone">Phone / WhatsApp</label>
+					<input type="tel" class="form-control" id="quote-phone" name="phone" placeholder="+91 98XXX XXXXX" required />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="form-label" for="quote-location">Installation location</label>
+				<input type="text" class="form-control" id="quote-location" name="location" placeholder="City / District" required />
+			</div>
+
+			<div class="form-group">
+				<label class="form-label" for="quote-message">Project notes / raw-water TDS</label>
+				<textarea class="form-control" id="quote-message" name="message" rows="2" placeholder="Mention raw-water TDS, hardness, or discharge limits if known..."></textarea>
+			</div>
+
+			<div class="modal-actions">
+				<button type="button" class="btn btn-secondary btn-sm" id="modal-cancel-btn">Cancel</button>
+				<button type="submit" class="btn btn-primary" id="modal-submit-btn">
+					<span>Send enquiry via WhatsApp</span>
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M5 12h14"/>
+						<path d="m12 5 7 7-7 7"/>
+					</svg>
+				</button>
+			</div>
+		</form>
+
+		<div id="quote-success" class="quote-success" style="display: none;">
+			<div class="success-badge" aria-hidden="true">
+				<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+					<polyline points="20 6 9 17 4 12"/>
+				</svg>
+			</div>
+			<h3 class="success-title">Enquiry prepared</h3>
+			<p class="success-copy">
+				Thank you for reaching out to <strong>Aqua Shakti Industries</strong>. Opening the direct WhatsApp line with our technical head now.
+			</p>
+			<a id="quote-whatsapp-link" href="#" target="_blank" rel="noopener" class="btn btn-primary">
+				<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+				</svg>
+				<span>Open WhatsApp chat</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+<script is:inline>
+	function openQuoteModal(plantName = '', capacity = '') {
+		const modal = document.getElementById('quote-modal');
+		if (!modal) return;
+		if (plantName) {
+			const select = document.getElementById('quote-plant');
+			if (select) {
+				for (let option of select.options) {
+					if (option.value.toLowerCase().includes(plantName.toLowerCase())) {
+						option.selected = true;
+						break;
+					}
+				}
+			}
+		}
+		if (capacity) {
+			const capInput = document.getElementById('quote-capacity');
+			if (capInput) capInput.value = capacity;
+		}
+		modal.classList.add('active');
+		modal.setAttribute('aria-hidden', 'false');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeQuoteModal() {
+		const modal = document.getElementById('quote-modal');
+		if (!modal) return;
+		modal.classList.remove('active');
+		modal.setAttribute('aria-hidden', 'true');
+		document.body.style.overflow = '';
+	}
+
+	function handleQuoteSubmit(e) {
+		const form = document.getElementById('quote-form');
+		const plant = form.elements['plant'].value;
+		const capacity = form.elements['capacity'].value;
+		const source = form.elements['source'].value;
+		const name = form.elements['name'].value;
+		const phone = form.elements['phone'].value;
+		const location = form.elements['location'].value;
+		const message = form.elements['message'].value;
+
+		const waText = encodeURIComponent(
+			`*Aqua Shakti Quotation Enquiry*\n` +
+			`*Plant Requirement:* ${plant}\n` +
+			`*Capacity:* ${capacity}\n` +
+			`*Water Source:* ${source}\n` +
+			`*Customer Name:* ${name}\n` +
+			`*Phone:* ${phone}\n` +
+			`*Location:* ${location}\n` +
+			(message ? `*Notes:* ${message}\n` : '') +
+			`*Source:* aquashakti.in`
+		);
+
+		const waUrl = `https://wa.me/919913936995?text=${waText}`;
+
+		document.getElementById('quote-form').style.display = 'none';
+		const success = document.getElementById('quote-success');
+		success.style.display = 'block';
+		document.getElementById('quote-whatsapp-link').href = waUrl;
+
+		window.open(waUrl, '_blank');
+	}
+
+	function initQuoteModal() {
+		const modal = document.getElementById('quote-modal');
+		const closeBtn = document.getElementById('modal-close-btn');
+		const cancelBtn = document.getElementById('modal-cancel-btn');
+
+		if (closeBtn) closeBtn.addEventListener('click', closeQuoteModal);
+		if (cancelBtn) cancelBtn.addEventListener('click', closeQuoteModal);
+
+		if (modal) {
+			modal.addEventListener('click', (e) => {
+				if (e.target === modal) closeQuoteModal();
+			});
+		}
+
+		document.querySelectorAll('[data-quote-trigger]').forEach((el) => {
+			el.addEventListener('click', (ev) => {
+				ev.preventDefault();
+				const plant = el.getAttribute('data-plant') || '';
+				const cap = el.getAttribute('data-capacity') || '';
+				openQuoteModal(plant, cap);
+			});
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initQuoteModal);
+	} else {
+		initQuoteModal();
+	}
+	document.addEventListener('astro:page-load', initQuoteModal);
+</script>
+
+<style>
+	:root {
+		color-scheme: light; /* Force light mode */
+	}
+
+	/* Base modal container styles */
+	.modal-overlay {
+		display: none;
+		position: fixed;
+		inset: 0;
+		background: rgba(10, 17, 40, 0.7);
+		backdrop-filter: blur(6px);
+		z-index: 9999;
+		align-items: center;
+		justify-content: center;
+		padding: 1.5rem;
+	}
+
+	.modal-overlay.active {
+		display: flex;
+	}
+
+	.modal-content {
+		background: #ffffff;
+		border-radius: 16px;
+		max-width: 600px;
+		width: 100%;
+		padding: 2.25rem;
+		position: relative;
+		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+		max-height: 90vh;
+		overflow-y: auto;
+	}
+
+	.modal-header { margin-bottom: 1rem; }
+
+	.modal-title {
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: var(--ink-900);
+		margin: 0.5rem 0 0.35rem 0;
+		letter-spacing: -0.015em;
+		line-height: 1.25;
+	}
+
+	.modal-lead {
+		font-size: 0.88rem;
+		color: var(--ink-500);
+		line-height: 1.55;
+		margin: 0 0 1.25rem 0;
+	}
+
+	.modal-form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+
+	.modal-actions {
+		display: flex;
+		gap: 0.75rem;
+		align-items: center;
+		justify-content: flex-end;
+		margin-top: 1rem;
+	}
+
+	/* Success panel */
+	.quote-success {
+		text-align: center;
+		padding: 2rem 1rem;
+	}
+
+	.success-badge {
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		background: #ecfdf5;
+		color: var(--green-600);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto 1rem auto;
+	}
+
+	.success-title {
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: var(--green-700);
+		margin: 0 0 0.4rem 0;
+	}
+
+	.success-copy {
+		font-size: 0.9rem;
+		color: var(--ink-500);
+		line-height: 1.55;
+		margin: 0 0 1rem 0;
+	}
+
+	.success-copy strong { color: var(--ink-900); }
+
+	/* Close button icon centering (shell comes from global.css) */
+	.modal-close {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.modal-close svg { display: block; }
+
+	/* ==========================================================
+	   RESPONSIVE
+	   ========================================================== */
+	@media (max-width: 580px) {
+		.modal-form-row {
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+
+		.modal-actions {
+			flex-direction: column-reverse;
+		}
+
+		.modal-actions .btn {
+			width: 100%;
+			text-align: center;
+			justify-content: center;
+		}
+	}
+</style>

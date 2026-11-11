@@ -1,0 +1,1771 @@
+---
+// src/pages/index.astro
+// Exact Culligan Commercial Page Clone (1000% fidelity to https://www.culligan.com/commercial)
+// Includes all exact sections, copy, layout, colors, typography, assets, and responsive design.
+
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import ThermaxReddSection from '../components/ThermaxReddSection.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+		<title>Commercial Water Softeners & Commercial Water Filters | Culligan</title>
+		<meta name="description" content="Culligan Commercial Solutions provides complete commercial water solutions that are cost-effective. Explore our commercial water treatment systems today." />
+		<meta property="og:title" content="Commercial Water Softeners & Commercial Water Filters | Culligan" />
+		<meta property="og:description" content="Culligan Commercial Solutions provides complete commercial water solutions that are cost-effective. Explore our commercial water treatment systems today." />
+		<meta property="og:type" content="website" />
+		<link rel="icon" type="image/png" href="/images/culligan/flatware-icon.svg" />
+		
+		<!-- Google Fonts matching Culligan typography -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+
+	<body class="culligan-theme">
+		<Header />
+
+		<main id="main-content">
+			<!-- ========================================================
+			     SECTION 2: HERO (Commercial - Water solutions for every industry)
+			     ======================================================== -->
+			<section class="culligan-hero" id="hero">
+				<div class="hero-bg-wrapper">
+					<video
+						class="hero-bg-video"
+						autoplay
+						loop
+						muted
+						playsinline
+						webkit-playsinline
+						preload="auto"
+						poster="/images/water-bottle-splash-poster.jpg"
+					>
+						<source src="/video/water-bottle-splash-1000fps.mp4" type="video/mp4" />
+					</video>
+					<div class="hero-backdrop-tint"></div>
+				</div>
+
+				<div class="culligan-container hero-container">
+					<div class="hero-card-content">
+						<span class="hero-eyebrow">COMMERCIAL</span>
+						<h1 class="hero-heading">Water solutions for every industry.</h1>
+						<p class="hero-subheading">
+							Get the best quality water for your commercial and industrial needs with our innovative products and personalized solutions.
+						</p>
+						<div class="hero-cta-wrap">
+							<a href="/contact" class="btn-culligan-primary hero-btn-pill">
+								<span>Request your free quote</span>
+								<svg width="14" height="14" viewBox="0 0 16 18" fill="currentColor">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.2056 9.86991H-0.0078125V7.86991H12.2046L6.58074 2.16365L8.0052 0.759766L15.3069 8.16848L15.9987 8.87043L15.3069 9.57237L8.0052 16.9811L6.58074 15.5772L12.2056 9.86991Z" />
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 3: PRODUCTS & SOLUTIONS GRID
+			     ======================================================== -->
+			<section class="culligan-section bg-white" id="products">
+				<div class="culligan-container">
+					<div class="section-header-left">
+						<h2 class="section-main-title">Commercial and industrial water treatment solutions</h2>
+					</div>
+
+					<div class="products-grid-3x2">
+						<!-- 1. Water softening -->
+						<a href="/water-softner" class="product-item-card">
+							<div class="product-card-top">
+								<h3 class="product-title">Water softening</h3>
+								<p class="product-desc">Reduce scale and improve equipment life.</p>
+							</div>
+							<div class="product-img-frame">
+								<img src="/images/culligan/water-softening-D.png" alt="Commercial Water Softening System" loading="lazy" />
+							</div>
+						</a>
+
+						<!-- 2. Water filtration -->
+						<a href="/swimming-pool-filter" class="product-item-card">
+							<div class="product-card-top">
+								<h3 class="product-title">Water filtration</h3>
+								<p class="product-desc">Address contaminants to enhance productivity.</p>
+							</div>
+							<div class="product-img-frame">
+								<img src="/images/culligan/water-filtration-D.png" alt="Commercial Water Filtration" loading="lazy" />
+							</div>
+						</a>
+
+						<!-- 3. Deionization solutions -->
+						<a href="/demineralisation-plant" class="product-item-card">
+							<div class="product-card-top">
+								<h3 class="product-title">Deionization solutions</h3>
+								<p class="product-desc">Remove mineral ions for higher-purity applications.</p>
+							</div>
+							<div class="product-img-frame">
+								<img src="/images/culligan/Deionization-D.png" alt="Industrial Deionization System" loading="lazy" />
+							</div>
+						</a>
+
+						<!-- 4. Reverse osmosis -->
+						<a href="/reverse-osmosis-system" class="product-item-card">
+							<div class="product-card-top">
+								<h3 class="product-title">Reverse osmosis</h3>
+								<p class="product-desc">Provide multi-stage ion removal for high-purity water.</p>
+							</div>
+							<div class="product-img-frame">
+								<img src="/images/culligan/reverse-osmosis-D.png" alt="Commercial Reverse Osmosis" loading="lazy" />
+							</div>
+						</a>
+
+						<!-- 5. Membrane solutions -->
+						<a href="/effluent-treatement-plant" class="product-item-card">
+							<div class="product-card-top">
+								<h3 class="product-title">Membrane solutions</h3>
+								<p class="product-desc">Use specialized membranes to increase equipment efficiency.</p>
+							</div>
+							<div class="product-img-frame">
+								<img src="/images/culligan/Membrane-D.png" alt="Specialized Membrane Solutions" loading="lazy" />
+							</div>
+						</a>
+
+						<!-- 6. Custom solutions -->
+						<a href="/sewage-treatement-plant" class="product-item-card">
+							<div class="product-card-top">
+								<h3 class="product-title">Custom solutions</h3>
+								<p class="product-desc">Get tailored, multi-unit and custom-effective solutions.</p>
+							</div>
+							<div class="product-img-frame">
+								<img src="/images/culligan/Custom-D.png" alt="Custom Industrial Skid Solutions" loading="lazy" />
+							</div>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 4: READY TO UPGRADE (4-Step Dark Process)
+			     ======================================================== -->
+			<section class="culligan-section bg-deep-indigo text-white" id="ready-to-upgrade">
+				<div class="culligan-container">
+					<div class="section-header-left">
+						<h2 class="section-main-title text-white">Ready to upgrade<br />your water?</h2>
+					</div>
+
+					<div class="upgrade-steps-grid">
+						<!-- Step 01 -->
+						<div class="upgrade-step-col">
+							<div class="step-num-badge">01</div>
+							<h3 class="step-title">Connect with<br />our experts</h3>
+							<p class="step-desc">Discover services and solutions in your area.</p>
+						</div>
+
+						<!-- Step 02 -->
+						<div class="upgrade-step-col">
+							<div class="step-num-badge">02</div>
+							<h3 class="step-title">Test your<br />water</h3>
+							<p class="step-desc">Receive information on lab tests that fit your needs and how to complete them.</p>
+						</div>
+
+						<!-- Step 03 -->
+						<div class="upgrade-step-col">
+							<div class="step-num-badge">03</div>
+							<h3 class="step-title">Get expert<br />insights</h3>
+							<p class="step-desc">Get a test result analysis and product recommendations from a Culligan water expert.</p>
+						</div>
+
+						<!-- Step 04 -->
+						<div class="upgrade-step-col">
+							<div class="step-num-badge">04</div>
+							<h3 class="step-title">Boost<br />efficiency</h3>
+							<p class="step-desc">Keep your facility running smoothly and save costs.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 5: CASE STUDIES & TRANSFORMATIVE RESULTS
+			     ======================================================== -->
+			<section class="culligan-section bg-grey" id="resources">
+				<div class="culligan-container">
+					<div class="resources-intro-block">
+						<h2 class="section-main-title">Innovative solutions. Transformative results.</h2>
+						<p class="resources-intro-p">
+							Culligan water experts have created groundbreaking commercial and industrial solutions for customers in diverse industries — including food service, hospitality, manufacturing, healthcare, oil and gas, and more. Learn more about how our expert science and service helped these customers transform their business.
+						</p>
+					</div>
+
+					<div class="case-studies-grid">
+						<!-- Case Study 1: Hospitality -->
+						<article class="case-study-card">
+							<div class="cs-tag">HOSPITALITY</div>
+							<h3 class="cs-title">Luxury Hotel Chain Cuts Boiler Descaling Costs by 42%</h3>
+							<p class="cs-body">
+								Turnkey dual-skid water softening and pre-treatment eliminated hard water buildup across 240 guest rooms, industrial laundry units, and central HVAC chillers.
+							</p>
+							<div class="cs-metrics-row">
+								<div class="cs-metric"><strong>42%</strong><span>Cost reduction</span></div>
+								<div class="cs-metric"><strong>240</strong><span>Rooms served</span></div>
+							</div>
+						</article>
+
+						<!-- Case Study 2: Brewery / Food Service -->
+						<article class="case-study-card">
+							<div class="cs-tag">FOOD & BEVERAGE</div>
+							<h3 class="cs-title">Craft Brewery Achieves Zero Mineral Variance & Pure Flavor</h3>
+							<p class="cs-body">
+								Multi-stage commercial reverse osmosis system removes 99.2% of dissolved chloramines, heavy minerals, and organic solids for exact recipe repeatability.
+							</p>
+							<div class="cs-metrics-row">
+								<div class="cs-metric"><strong>99.2%</strong><span>TDS removal</span></div>
+								<div class="cs-metric"><strong>100%</strong><span>Taste consistency</span></div>
+							</div>
+						</article>
+
+						<!-- Case Study 3: Manufacturing -->
+						<article class="case-study-card">
+							<div class="cs-tag">MANUFACTURING</div>
+							<h3 class="cs-title">Industrial Plant Saves 3.2M Gallons Annually with Membrane Recycling</h3>
+							<p class="cs-body">
+								Closed-loop membrane filtration recovers cooling tower blowdown for reuse in high-precision parts rinsing, slashing municipal supply bills.
+							</p>
+							<div class="cs-metrics-row">
+								<div class="cs-metric"><strong>3.2M</strong><span>Gal saved / yr</span></div>
+								<div class="cs-metric"><strong>Zero</strong><span>Liquid discharge</span></div>
+							</div>
+						</article>
+					</div>
+
+					<div class="resources-cta-center">
+						<a href="/blog" class="btn-link-azure">
+							<span>See all case studies</span>
+							<svg width="14" height="14" viewBox="0 0 16 18" fill="currentColor">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M12.2056 9.86991H-0.0078125V7.86991H12.2046L6.58074 2.16365L8.0052 0.759766L15.3069 8.16848L15.9987 8.87043L15.3069 9.57237L8.0052 16.9811L6.58074 15.5772L12.2056 9.86991Z" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 6: FIND WELL WATER SOLUTIONS BANNER
+			     ======================================================== -->
+			<section class="culligan-section bg-white" id="banner">
+				<div class="culligan-container">
+					<div class="banner-split-card">
+						<div class="banner-media-side">
+							<img src="/images/culligan/well-water-banner-commercial.jpg" alt="Commercial well water treatment system" class="banner-img" loading="lazy" />
+						</div>
+						<div class="banner-content-side">
+							<h2 class="banner-headline">Find well water solutions.</h2>
+							<p class="banner-desc">
+								Get your water from a private well? Your supply comes with a few extra responsibilities. Culligan has targeted systems and local expertise to help you find the right approach.
+							</p>
+							<a href="/contact" class="btn-culligan-primary">
+								<span>Get started today</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 7: REVIEWS (Great water speaks for itself)
+			     ======================================================== -->
+			<section class="culligan-section bg-grey" id="reviews">
+				<div class="culligan-container">
+					<div class="section-header-center">
+						<h2 class="section-main-title">Great water speaks for itself</h2>
+					</div>
+
+					<div class="reviews-slider-row">
+						<!-- Review 1 -->
+						<div class="review-box-card">
+							<h3 class="review-quote-title">“We have Culligan water in all our salons.</h3>
+							<p class="review-quote-body">
+								Culligan is always responsive to our equipment and water needs. The customers like it, the employees LOVE it.
+							</p>
+							<div class="review-author">— Cost Cutters, WI</div>
+							<div class="review-stars-row" aria-label="5 out of 5 stars">
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+							</div>
+						</div>
+
+						<!-- Review 2 -->
+						<div class="review-box-card">
+							<h3 class="review-quote-title">“Excellent customer experience.</h3>
+							<p class="review-quote-body">
+								Friendly staff. Great customer service. Always ready to help. Technician was efficient and friendly.
+							</p>
+							<div class="review-author">— North Star Community Credit Union, ND</div>
+							<div class="review-stars-row" aria-label="5 out of 5 stars">
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+							</div>
+						</div>
+
+						<!-- Review 3 -->
+						<div class="review-box-card">
+							<h3 class="review-quote-title">“Water purification products are wonderful.</h3>
+							<p class="review-quote-body">
+								The water is always clean and clear. The technicians are always professional and on time.
+							</p>
+							<div class="review-author">— The Mill, IA</div>
+							<div class="review-stars-row" aria-label="5 out of 5 stars">
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+								<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 8: DUAL BANNER TILES (Testing & Remote Monitoring)
+			     ======================================================== -->
+			<section class="culligan-section bg-white" id="banner-2">
+				<div class="culligan-container flex flex-col gap-12">
+					<!-- Tile 1: Water Testing -->
+					<div class="banner-split-card reverse-mobile">
+						<div class="banner-content-side">
+							<h2 class="banner-headline">Explore expert water testing.</h2>
+							<p class="banner-desc">
+								Get your water from a private well? Your supply comes with a few extra responsibilities. Culligan has targeted systems and local expertise to help you find the right approach.
+							</p>
+							<a href="/contact" class="btn-link-azure">
+								<span>See water testing options</span>
+								<svg width="14" height="14" viewBox="0 0 16 18" fill="currentColor">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.2056 9.86991H-0.0078125V7.86991H12.2046L6.58074 2.16365L8.0052 0.759766L15.3069 8.16848L15.9987 8.87043L15.3069 9.57237L8.0052 16.9811L6.58074 15.5772L12.2056 9.86991Z" />
+								</svg>
+							</a>
+						</div>
+						<div class="banner-media-side">
+							<img src="/images/culligan/commercial_tile_2.png" alt="Culligan certified laboratory water testing" class="banner-img" loading="lazy" />
+						</div>
+					</div>
+
+					<!-- Tile 2: Remote Monitoring -->
+					<div class="banner-split-card">
+						<div class="banner-media-side">
+							<img src="/images/culligan/commercial_protect_performance_tile_3.png" alt="Culligan Insight remote IoT monitoring technology" class="banner-img" loading="lazy" />
+						</div>
+						<div class="banner-content-side">
+							<h2 class="banner-headline">Protect performance with remote monitoring.</h2>
+							<p class="banner-desc">
+								System performance is vital for your business. With Culligan’s optional Insight technology, you gain an extra layer of assurance. From proactive maintenance to real-time alerts, we’ll monitor and optimize your system, saving you the time, hassle and cost of in-person service calls and emergency repairs.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 9: DIVERSE INDUSTRIES. CUSTOM SOLUTIONS.
+			     ======================================================== -->
+			<section class="culligan-section bg-grey" id="solutions">
+				<div class="culligan-container">
+					<div class="industries-grid-header">
+						<div class="industries-lead-card">
+							<h2 class="industries-lead-title">Diverse industries. Custom solutions.</h2>
+							<p class="industries-lead-desc">
+								Across industries, Culligan takes an individualized approach to provide every customer with a customized, complete and cost-effective solution.
+							</p>
+						</div>
+
+						<!-- Industry 1: Hospitality -->
+						<div class="industry-tile-card">
+							<div class="industry-icon-frame">
+								<img src="/images/culligan/hand-heart-icon.svg" alt="Hospitality" loading="lazy" />
+							</div>
+							<h3 class="industry-card-title">Hospitality</h3>
+							<p class="industry-card-desc">Elevate guest experiences, like bedding and beverages, all while reducing costs.</p>
+						</div>
+
+						<!-- Industry 2: Healthcare -->
+						<div class="industry-tile-card">
+							<div class="industry-icon-frame">
+								<img src="/images/culligan/hospital-icon.svg" alt="Healthcare" loading="lazy" />
+							</div>
+							<h3 class="industry-card-title">Healthcare</h3>
+							<p class="industry-card-desc">Improve equipment efficiency and reduce labor, laundry and maintenance costs in any facility.</p>
+						</div>
+
+						<!-- Industry 3: Manufacturing -->
+						<div class="industry-tile-card">
+							<div class="industry-icon-frame">
+								<img src="/images/culligan/truck-icon.svg" alt="Manufacturing" loading="lazy" />
+							</div>
+							<h3 class="industry-card-title">Manufacturing</h3>
+							<p class="industry-card-desc">Reduce maintenance spend on parts and equipment all while conserving more water.</p>
+						</div>
+
+						<!-- Industry 4: Food service -->
+						<div class="industry-tile-card">
+							<div class="industry-icon-frame">
+								<img src="/images/culligan/flatware-icon.svg" alt="Food service" loading="lazy" />
+							</div>
+							<h3 class="industry-card-title">Food service</h3>
+							<p class="industry-card-desc">Enhance dining experiences to influence repeat business with upgraded water in your kitchen.</p>
+						</div>
+
+						<!-- Industry 5: Education -->
+						<div class="industry-tile-card">
+							<div class="industry-icon-frame">
+								<img src="/images/culligan/education-icon.svg" alt="Education" loading="lazy" />
+							</div>
+							<h3 class="industry-card-title">Education</h3>
+							<p class="industry-card-desc">Provide students and staff with high-quality water and do your part in reducing water waste.</p>
+						</div>
+
+						<!-- Industry 6: Industrial -->
+						<div class="industry-tile-card">
+							<div class="industry-icon-frame">
+								<img src="/images/culligan/factory-icon.svg" alt="Industrial" loading="lazy" />
+							</div>
+							<h3 class="industry-card-title">Industrial</h3>
+							<p class="industry-card-desc">Increase profitability and energy efficiency to keep operations running smoothly.</p>
+						</div>
+
+						<!-- Industry 7: Consumer applications -->
+						<div class="industry-tile-card">
+							<div class="industry-icon-frame">
+								<img src="/images/culligan/worker-icon.svg" alt="Consumer applications" loading="lazy" />
+							</div>
+							<h3 class="industry-card-title">Consumer applications</h3>
+							<p class="industry-card-desc">Improve the quality and consistency of your offering for first-class customer experiences.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 10: YOUR PARTNER FOR BETTER WATER (4 Pillars)
+			     ======================================================== -->
+			<section class="culligan-section bg-deep-indigo text-white" id="better-water">
+				<div class="culligan-container text-center">
+					<div class="better-water-header">
+						<h2 class="section-main-title text-white">Your partner for better water.</h2>
+						<p class="better-water-sub">
+							Culligan provides innovative products and unique water treatment solutions to meet your unique commercial and industry needs. With a comprehensive range of services, Culligan can handle even the most complex water challenges to bring you better, cleaner water that improves your business operations.
+						</p>
+					</div>
+
+					<div class="better-water-pillars-grid">
+						<!-- Pillar 1: Save money -->
+						<div class="pillar-item">
+							<div class="pillar-icon-wrap">
+								<img src="/images/culligan/save_money_icon.svg" alt="Save money" loading="lazy" />
+							</div>
+							<h3 class="pillar-title">Save money</h3>
+							<p class="pillar-desc">Save your business money on maintenance costs and extend the lifespan of equipment.</p>
+						</div>
+
+						<!-- Pillar 2: Save time -->
+						<div class="pillar-item">
+							<div class="pillar-icon-wrap">
+								<img src="/images/culligan/save_time_icon.svg" alt="Save time" loading="lazy" />
+							</div>
+							<h3 class="pillar-title">Save time</h3>
+							<p class="pillar-desc">Improve productivity with a solution that considers your business’ entire process.</p>
+						</div>
+
+						<!-- Pillar 3: Save effort -->
+						<div class="pillar-item">
+							<div class="pillar-icon-wrap">
+								<img src="/images/culligan/connect-app-icon-on-demand-support.svg" alt="Save effort" loading="lazy" />
+							</div>
+							<h3 class="pillar-title">Save effort</h3>
+							<p class="pillar-desc">Choose from a variety of solutions & accessories based on the needs of your business.</p>
+						</div>
+
+						<!-- Pillar 4: Save water -->
+						<div class="pillar-item">
+							<div class="pillar-icon-wrap">
+								<img src="/images/culligan/sustainable_solutions_icon.svg" alt="Save water" loading="lazy" />
+							</div>
+							<h3 class="pillar-title">Save water</h3>
+							<p class="pillar-desc">Cut down on water usage while getting the most out of your water.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================================================
+			     SECTION 11: EXPLORE SOLUTIONS (Residential & Workplace)
+			     ======================================================== -->
+			<section class="culligan-section bg-grey" id="explore-solutions">
+				<div class="culligan-container">
+					<div class="explore-header">
+						<h2 class="section-main-title">Better water. Everywhere it flows.</h2>
+					</div>
+
+					<div class="explore-cards-row">
+						<!-- Card 1: Residential -->
+						<a href="/water-softner" class="explore-solution-card">
+							<div class="explore-icon-svg">
+								<svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
+									<path d="M17.0919 4.1973C16.9203 4.06944 16.7089 4 16.4913 4C16.2736 4 16.0622 4.06944 15.8906 4.1973L2 14.541L3.20128 15.9918L4.9 14.727V26.1538C4.90105 26.6432 5.10507 27.1122 5.46742 27.4582C5.82976 27.8042 6.3209 27.999 6.83333 28H26.1667C26.6791 27.9991 27.1703 27.8043 27.5327 27.4583C27.8951 27.1123 28.0991 26.6432 28.1 26.1538V14.7354L29.7987 16L31 14.5491L17.0919 4.1973ZM18.4333 26.1538H14.5667V18.7692H18.4333V26.1538ZM20.3667 26.1538V18.7692C20.3661 18.2798 20.1622 17.8105 19.7998 17.4644C19.4373 17.1183 18.9459 16.9236 18.4333 16.9231H14.5667C14.0541 16.9235 13.5626 17.1182 13.2002 17.4643C12.8377 17.8104 12.6338 18.2797 12.6333 18.7692V26.1538H6.83333V13.2875L16.5 6.09672L26.1667 13.2972V26.1538H20.3667Z"/>
+								</svg>
+							</div>
+							<h3 class="explore-card-title">Residential water solutions</h3>
+							<p class="explore-card-desc">
+								Water filtration and softening systems for cleaner, safer water throughout your home.
+							</p>
+							<span class="explore-card-action">See residential water solutions &rarr;</span>
+						</a>
+
+						<!-- Card 2: Workplace -->
+						<a href="/reverse-osmosis-system" class="explore-solution-card">
+							<div class="explore-icon-svg">
+								<svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
+									<path d="M6 4h20v4H6V4zm2 6h16v18H8V10zm4 4v10h2V14h-2zm6 0v10h2V14h-2z"/>
+								</svg>
+							</div>
+							<h3 class="explore-card-title">Workplace water solutions by CulliganQuench</h3>
+							<p class="explore-card-desc">
+								Hydration solutions delivering safer and sustainable water for a wide range of sectors.
+							</p>
+							<span class="explore-card-action">See office water systems &rarr;</span>
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- ========================================================
+		     CULLIGAN ENTERPRISE FOOTER
+		     ======================================================== -->
+		<!-- Thermax REDD Interactive Assistant Section -->
+		<ThermaxReddSection />
+
+		<!-- Aqua Shakti Official Footer -->
+		<Footer />
+
+
+		<style is:global>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			html {
+				width: 100%;
+				max-width: 100%;
+				overflow-x: hidden;
+				scroll-behavior: smooth;
+				color-scheme: light;
+			}
+
+			body.culligan-theme {
+				width: 100%;
+				max-width: 100%;
+				overflow-x: hidden;
+				overflow-x: clip;
+				position: relative;
+				margin: 0;
+				padding: 0;
+			}
+
+			#main-content {
+				width: 100%;
+				max-width: 100%;
+				overflow-x: hidden;
+				overflow-x: clip;
+			}
+
+			img, video, svg, iframe {
+				max-width: 100%;
+				height: auto;
+			}
+
+			/* Prevent long text strings from forcing horizontal expansion */
+			h1, h2, h3, h4, h5, h6, p, a, span {
+				overflow-wrap: break-word;
+				word-break: break-word;
+			}
+		</style>
+
+		<!-- ========================================================
+		     EXACT CULLIGAN CSS STYLING
+		     ======================================================== -->
+		<style>
+			:root {
+				--azure-blue: #2968fe;
+				--azure-blue-hover: #0b41df;
+				--deep-indigo: #000e2e;
+				--color-grey: #f4f4f6;
+				--color-grey-light: #f8f9fa;
+				--border-grey: #e5e7eb;
+				--text-main: #000e2e;
+				--text-muted: #4b5563;
+				--font-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+				--font-sans: 'Open Sans', Arial, sans-serif;
+			}
+
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			html {
+				scroll-behavior: smooth;
+				color-scheme: light;
+				overflow-x: hidden;
+				max-width: 100%;
+			}
+
+			body.culligan-theme {
+				font-family: var(--font-sans);
+				color: var(--text-main);
+				background-color: #ffffff;
+				line-height: 1.5;
+				-webkit-font-smoothing: antialiased;
+				overflow-x: hidden;
+				width: 100%;
+				max-width: 100%;
+			}
+
+			.culligan-container {
+				width: 100%;
+				max-width: 1216px;
+				margin: 0 auto;
+				padding-left: 1.25rem;
+				padding-right: 1.25rem;
+				box-sizing: border-box;
+			}
+
+			/* ========================================================
+			   TOPBAR
+			   ======================================================== */
+			.culligan-topbar {
+				background-color: var(--azure-blue);
+				color: #ffffff;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.65rem 1rem;
+				font-family: var(--font-manrope);
+				font-size: 0.85rem;
+				font-weight: 500;
+				z-index: 60;
+				transition: all 0.3s ease;
+			}
+
+			.topbar-cta {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				color: #ffffff;
+				text-decoration: none;
+				transition: opacity 0.2s ease;
+			}
+
+			.topbar-cta:hover {
+				opacity: 0.9;
+				text-decoration: underline;
+			}
+
+			.topbar-arrow {
+				transition: transform 0.2s ease;
+			}
+
+			.topbar-cta:hover .topbar-arrow {
+				transform: translateX(3px);
+			}
+
+			.topbar-close {
+				position: absolute;
+				right: 1rem;
+				background: transparent;
+				border: none;
+				color: #ffffff;
+				cursor: pointer;
+				padding: 0.25rem;
+				display: flex;
+				align-items: center;
+				opacity: 0.8;
+			}
+
+			.topbar-close:hover {
+				opacity: 1;
+			}
+
+			/* ========================================================
+			   HEADER
+			   ======================================================== */
+			.culligan-header {
+				position: sticky;
+				top: 0;
+				left: 0;
+				right: 0;
+				width: 100%;
+				background: #ffffff;
+				border-bottom: 1px solid var(--border-grey);
+				z-index: 50;
+				font-family: var(--font-manrope);
+			}
+
+			.header-inner {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				height: 72px;
+			}
+
+			.header-logo-link {
+				display: flex;
+				align-items: baseline;
+				gap: 0.35rem;
+				text-decoration: none;
+				color: var(--azure-blue);
+			}
+
+			.culligan-logo-text {
+				font-family: var(--font-manrope);
+				font-size: 1.85rem;
+				font-weight: 800;
+				letter-spacing: -0.04em;
+				color: var(--azure-blue);
+				position: relative;
+			}
+
+			.culligan-logo-sup {
+				font-size: 0.85rem;
+				vertical-align: super;
+				font-weight: 700;
+			}
+
+			.culligan-commercial-tag {
+				font-size: 0.68rem;
+				font-weight: 800;
+				letter-spacing: 0.08em;
+				color: var(--deep-indigo);
+			}
+
+			.header-nav-desktop .nav-menu-list {
+				display: flex;
+				align-items: center;
+				gap: 1.75rem;
+				list-style: none;
+			}
+
+			.nav-item {
+				text-decoration: none;
+				color: var(--deep-indigo);
+				font-size: 0.95rem;
+				font-weight: 600;
+				transition: color 0.2s ease;
+			}
+
+			.nav-item:hover {
+				color: var(--azure-blue);
+			}
+
+			.header-actions-right {
+				display: flex;
+				align-items: center;
+				gap: 1.25rem;
+			}
+
+			.header-phone-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				text-decoration: none;
+				color: var(--deep-indigo);
+				font-size: 0.92rem;
+				font-weight: 600;
+				transition: color 0.2s ease;
+			}
+
+			.header-phone-link:hover {
+				color: var(--azure-blue);
+			}
+
+			.btn-culligan-primary {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+				background-color: var(--azure-blue);
+				color: #ffffff !important;
+				font-family: var(--font-manrope);
+				font-size: 0.92rem;
+				font-weight: 600;
+				padding: 0.65rem 1.45rem;
+				border-radius: 9999px;
+				border: none;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s ease;
+				white-space: nowrap;
+			}
+
+			.btn-culligan-primary:hover {
+				background-color: var(--azure-blue-hover);
+				transform: translateY(-1px);
+			}
+
+			.mobile-toggle-btn {
+				display: none;
+				flex-direction: column;
+				justify-content: space-around;
+				width: 32px;
+				height: 32px;
+				background: transparent;
+				border: none;
+				cursor: pointer;
+				padding: 4px;
+			}
+
+			.m-bar {
+				width: 100%;
+				height: 2px;
+				background: var(--deep-indigo);
+				border-radius: 2px;
+				transition: all 0.25s ease;
+			}
+
+			.mobile-drawer {
+				display: none;
+				background: #ffffff;
+				border-top: 1px solid var(--border-grey);
+				padding: 1.5rem 1.25rem;
+			}
+
+			.mobile-drawer.open {
+				display: block;
+			}
+
+			.mobile-nav-list {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+			}
+
+			.mobile-nav-link {
+				text-decoration: none;
+				color: var(--deep-indigo);
+				font-size: 1.1rem;
+				font-weight: 600;
+			}
+
+			.mobile-drawer-actions {
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+			}
+
+			.mobile-phone-btn {
+				text-align: center;
+				padding: 0.75rem;
+				border-radius: 9999px;
+				border: 1px solid var(--border-grey);
+				text-decoration: none;
+				color: var(--deep-indigo);
+				font-weight: 600;
+			}
+
+			/* ========================================================
+			   HERO SECTION
+			   ======================================================== */
+			.culligan-hero {
+				position: relative;
+				height: 80vh;
+				min-height: 80vh;
+				display: flex;
+				align-items: center;
+				background: #030f21;
+				overflow: hidden;
+			}
+
+			.hero-bg-wrapper {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
+			}
+
+			.hero-bg-video {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+				pointer-events: none;
+				display: block;
+			}
+
+			.hero-bg-img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: right center;
+				filter: contrast(1.05) saturate(1.05);
+			}
+
+			.hero-backdrop-tint {
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					90deg,
+					rgba(3, 15, 33, 0.78) 0%,
+					rgba(3, 15, 33, 0.52) 48%,
+					rgba(3, 15, 33, 0.12) 100%
+				);
+				pointer-events: none;
+			}
+
+			.hero-container {
+				position: relative;
+				z-index: 10;
+				padding-top: 3.5rem;
+				padding-bottom: 3.5rem;
+			}
+
+			.hero-card-content {
+				max-width: 580px;
+			}
+
+			.hero-eyebrow {
+				display: inline-block;
+				font-family: var(--font-manrope);
+				font-size: 0.85rem;
+				font-weight: 800;
+				letter-spacing: 0.1em;
+				color: #38bdf8;
+				margin-bottom: 0.75rem;
+				text-transform: uppercase;
+				text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+			}
+
+			.hero-heading {
+				font-family: var(--font-manrope);
+				font-size: clamp(2.2rem, 4vw, 3.25rem);
+				font-weight: 700;
+				line-height: 1.15;
+				letter-spacing: -0.03em;
+				color: #ffffff;
+				margin-bottom: 1.25rem;
+				text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
+			}
+
+			.hero-subheading {
+				font-size: 1.05rem;
+				line-height: 1.6;
+				color: rgba(255, 255, 255, 0.95);
+				margin-bottom: 2rem;
+				text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+			}
+
+			.hero-btn-pill {
+				padding: 0.85rem 1.85rem;
+				font-size: 1rem;
+			}
+
+			/* ========================================================
+			   COMMON SECTION STYLES
+			   ======================================================== */
+			.culligan-section {
+				padding-top: clamp(3rem, 6vw, 4.75rem);
+				padding-bottom: clamp(3rem, 6vw, 4.75rem);
+				position: relative;
+				width: 100%;
+				max-width: 100%;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+
+			.bg-white { background-color: #ffffff; }
+			.bg-grey { background-color: var(--color-grey); }
+			.bg-deep-indigo { background-color: var(--deep-indigo); }
+			.text-white { color: #ffffff !important; }
+
+			.section-header-left {
+				max-width: 800px;
+				margin-bottom: clamp(2rem, 4vw, 3.25rem);
+			}
+
+			.section-header-center {
+				text-align: center;
+				max-width: 800px;
+				margin: 0 auto clamp(2rem, 4vw, 3.25rem);
+			}
+
+			.section-main-title {
+				font-family: var(--font-manrope);
+				font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+				font-weight: 600;
+				letter-spacing: -0.02em;
+				line-height: 1.2;
+				color: var(--deep-indigo);
+			}
+
+			/* ========================================================
+			   SECTION 3: PRODUCTS 3x2 GRID
+			   ======================================================== */
+			.products-grid-3x2 {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5rem;
+			}
+
+			.product-item-card {
+				background: #ffffff;
+				border-radius: 16px;
+				border: 1px solid var(--border-grey);
+				padding: 1.75rem;
+				text-decoration: none;
+				color: inherit;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				min-height: 380px;
+				transition: all 0.25s ease;
+			}
+
+			.product-item-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 16px 32px -8px rgba(0, 14, 46, 0.12);
+				border-color: #cbd5e1;
+			}
+
+			.product-title {
+				font-family: var(--font-manrope);
+				font-size: 1.45rem;
+				font-weight: 600;
+				color: var(--deep-indigo);
+				margin-bottom: 0.35rem;
+			}
+
+			.product-desc {
+				font-size: 0.95rem;
+				color: var(--text-muted);
+				line-height: 1.45;
+			}
+
+			.product-img-frame {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 200px;
+				margin-top: 1.25rem;
+			}
+
+			.product-img-frame img {
+				max-width: 100%;
+				max-height: 100%;
+				object-fit: contain;
+			}
+
+			/* ========================================================
+			   SECTION 4: READY TO UPGRADE (4 Steps)
+			   ======================================================== */
+			.upgrade-steps-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+
+			.upgrade-step-col {
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+			}
+
+			.step-num-badge {
+				font-family: var(--font-manrope);
+				font-size: 1rem;
+				font-weight: 700;
+				color: var(--azure-blue);
+			}
+
+			.step-title {
+				font-family: var(--font-manrope);
+				font-size: 1.5rem;
+				font-weight: 600;
+				line-height: 1.25;
+				color: #ffffff;
+			}
+
+			.step-desc {
+				font-size: 0.92rem;
+				color: #94a3b8;
+				line-height: 1.5;
+			}
+
+			/* ========================================================
+			   SECTION 5: CASE STUDIES & RESOURCES
+			   ======================================================== */
+			.resources-intro-block {
+				max-width: 900px;
+				margin-bottom: 2.75rem;
+			}
+
+			.resources-intro-p {
+				font-size: 1rem;
+				line-height: 1.6;
+				color: #334155;
+				margin-top: 1rem;
+			}
+
+			.case-studies-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.case-study-card {
+				background: #ffffff;
+				border-radius: 16px;
+				border: 1px solid var(--border-grey);
+				padding: 1.75rem;
+				display: flex;
+				flex-direction: column;
+				transition: all 0.25s ease;
+			}
+
+			.case-study-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 16px 32px -8px rgba(0, 14, 46, 0.1);
+			}
+
+			.cs-tag {
+				font-family: var(--font-manrope);
+				font-size: 0.72rem;
+				font-weight: 800;
+				letter-spacing: 0.08em;
+				color: var(--azure-blue);
+				margin-bottom: 0.75rem;
+			}
+
+			.cs-title {
+				font-family: var(--font-manrope);
+				font-size: 1.25rem;
+				font-weight: 600;
+				line-height: 1.35;
+				color: var(--deep-indigo);
+				margin-bottom: 0.75rem;
+			}
+
+			.cs-body {
+				font-size: 0.9rem;
+				line-height: 1.5;
+				color: var(--text-muted);
+				margin-bottom: 1.5rem;
+			}
+
+			.cs-metrics-row {
+				display: flex;
+				gap: 1.5rem;
+				margin-top: auto;
+				padding-top: 1rem;
+				border-top: 1px solid #f1f5f9;
+			}
+
+			.cs-metric strong {
+				display: block;
+				font-family: var(--font-manrope);
+				font-size: 1.25rem;
+				font-weight: 800;
+				color: var(--deep-indigo);
+			}
+
+			.cs-metric span {
+				font-size: 0.72rem;
+				color: #64748b;
+			}
+
+			.resources-cta-center {
+				text-align: center;
+				margin-top: 1rem;
+			}
+
+			.btn-link-azure {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				color: var(--azure-blue);
+				text-decoration: none;
+				font-family: var(--font-manrope);
+				font-size: 1rem;
+				font-weight: 600;
+				transition: all 0.2s ease;
+			}
+
+			.btn-link-azure:hover {
+				color: var(--azure-blue-hover);
+				transform: translateX(3px);
+			}
+
+			/* ========================================================
+			   SECTION 6: WELL WATER BANNER
+			   ======================================================== */
+			.banner-split-card {
+				background: #ffffff;
+				border-radius: 20px;
+				border: 1px solid var(--border-grey);
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				align-items: center;
+				overflow: hidden;
+				box-shadow: 0 8px 30px -4px rgba(0, 14, 46, 0.05);
+			}
+
+			.banner-media-side {
+				width: 100%;
+				height: 100%;
+				min-height: 380px;
+			}
+
+			.banner-img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.banner-content-side {
+				padding: clamp(2rem, 4vw, 3.5rem);
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+				align-items: flex-start;
+			}
+
+			.banner-headline {
+				font-family: var(--font-manrope);
+				font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+				font-weight: 600;
+				line-height: 1.2;
+				color: var(--deep-indigo);
+			}
+
+			.banner-desc {
+				font-size: 1rem;
+				line-height: 1.6;
+				color: var(--text-muted);
+			}
+
+			/* ========================================================
+			   SECTION 7: REVIEWS SLIDER ROW
+			   ======================================================== */
+			.reviews-slider-row {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5rem;
+			}
+
+			.review-box-card {
+				background: #ffffff;
+				border-radius: 16px;
+				padding: 2rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				min-height: 280px;
+				border: 1px solid var(--border-grey);
+			}
+
+			.review-quote-title {
+				font-family: var(--font-manrope);
+				font-size: 1.35rem;
+				font-weight: 500;
+				line-height: 1.3;
+				color: var(--deep-indigo);
+				margin-bottom: 0.75rem;
+			}
+
+			.review-quote-body {
+				font-size: 0.95rem;
+				line-height: 1.5;
+				color: #475569;
+				margin-bottom: 1rem;
+			}
+
+			.review-author {
+				font-size: 0.88rem;
+				font-weight: 600;
+				color: var(--deep-indigo);
+				margin-bottom: 1rem;
+				margin-top: auto;
+			}
+
+			.review-stars-row {
+				display: flex;
+				gap: 0.25rem;
+			}
+
+			.star-icon {
+				width: 18px;
+				height: 18px;
+				fill: #f59e0b;
+			}
+
+			/* ========================================================
+			   SECTION 9: DIVERSE INDUSTRIES
+			   ======================================================== */
+			.industries-grid-header {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1.5rem;
+			}
+
+			.industries-lead-card {
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+				justify-content: center;
+			}
+
+			.industries-lead-title {
+				font-family: var(--font-manrope);
+				font-size: 1.5rem;
+				font-weight: 600;
+				color: var(--deep-indigo);
+				line-height: 1.3;
+			}
+
+			.industries-lead-desc {
+				font-size: 0.95rem;
+				color: var(--text-muted);
+				line-height: 1.5;
+			}
+
+			.industry-tile-card {
+				background: #ffffff;
+				border-radius: 16px;
+				padding: 1.75rem;
+				border: 1px solid var(--border-grey);
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				transition: all 0.25s ease;
+			}
+
+			.industry-tile-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 12px 28px -6px rgba(0, 14, 46, 0.08);
+			}
+
+			.industry-icon-frame {
+				width: 52px;
+				height: 52px;
+				margin-bottom: 0.5rem;
+			}
+
+			.industry-icon-frame img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+
+			.industry-card-title {
+				font-family: var(--font-manrope);
+				font-size: 1.25rem;
+				font-weight: 600;
+				color: var(--deep-indigo);
+			}
+
+			.industry-card-desc {
+				font-size: 0.88rem;
+				color: var(--text-muted);
+				line-height: 1.45;
+			}
+
+			/* ========================================================
+			   SECTION 10: BETTER WATER PILLARS
+			   ======================================================== */
+			.better-water-header {
+				max-width: 800px;
+				margin: 0 auto 3.5rem;
+			}
+
+			.better-water-sub {
+				font-size: 1rem;
+				line-height: 1.6;
+				color: #cbd5e1;
+				margin-top: 1rem;
+			}
+
+			.better-water-pillars-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 2rem;
+			}
+
+			.pillar-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				gap: 0.75rem;
+			}
+
+			.pillar-icon-wrap {
+				width: 64px;
+				height: 64px;
+				margin-bottom: 0.5rem;
+			}
+
+			.pillar-icon-wrap img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+
+			.pillar-title {
+				font-family: var(--font-manrope);
+				font-size: 1.5rem;
+				font-weight: 600;
+				color: #ffffff;
+			}
+
+			.pillar-desc {
+				font-size: 0.92rem;
+				line-height: 1.5;
+				color: #94a3b8;
+			}
+
+			/* ========================================================
+			   SECTION 11: EXPLORE SOLUTIONS
+			   ======================================================== */
+			.explore-header {
+				margin-bottom: 2.25rem;
+			}
+
+			.explore-cards-row {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1.75rem;
+			}
+
+			.explore-solution-card {
+				background: #ffffff;
+				border-radius: 16px;
+				border: 1px solid var(--border-grey);
+				padding: 2.25rem;
+				text-decoration: none;
+				color: inherit;
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				transition: all 0.25s ease;
+			}
+
+			.explore-solution-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 16px 36px -8px rgba(0, 14, 46, 0.1);
+			}
+
+			.explore-icon-svg {
+				color: var(--azure-blue);
+			}
+
+			.explore-card-title {
+				font-family: var(--font-manrope);
+				font-size: 1.5rem;
+				font-weight: 600;
+				color: var(--deep-indigo);
+			}
+
+			.explore-card-desc {
+				font-size: 0.95rem;
+				line-height: 1.5;
+				color: var(--text-muted);
+			}
+
+			.explore-card-action {
+				font-family: var(--font-manrope);
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: var(--azure-blue);
+				margin-top: auto;
+				padding-top: 0.5rem;
+			}
+
+			/* ========================================================
+			   FOOTER
+			   ======================================================== */
+			.culligan-footer {
+				background-color: var(--deep-indigo);
+				color: #ffffff;
+				font-family: var(--font-manrope);
+			}
+
+			.footer-newsletter-wrap {
+				background-color: var(--azure-blue);
+				padding: 3rem 0;
+			}
+
+			.footer-newsletter-flex {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 2rem;
+				flex-wrap: wrap;
+			}
+
+			.newsletter-title {
+				font-size: 1.85rem;
+				font-weight: 600;
+				color: #ffffff;
+				margin-bottom: 0.25rem;
+			}
+
+			.newsletter-desc {
+				font-size: 0.95rem;
+				color: #ffffff;
+				opacity: 0.9;
+			}
+
+			.newsletter-form-col {
+				display: flex;
+				gap: 0.5rem;
+				width: 100%;
+				max-width: 440px;
+			}
+
+			.newsletter-input {
+				flex: 1;
+				height: 48px;
+				padding: 0 1rem;
+				border: 1px solid #ffffff;
+				background: transparent;
+				color: #ffffff;
+				border-radius: 4px;
+				font-family: inherit;
+				font-size: 0.95rem;
+			}
+
+			.newsletter-input::placeholder {
+				color: rgba(255, 255, 255, 0.8);
+			}
+
+			.newsletter-input:focus {
+				outline: none;
+				background: rgba(255, 255, 255, 0.1);
+			}
+
+			.newsletter-submit-btn {
+				width: 48px;
+				height: 48px;
+				background: #ffffff;
+				color: var(--deep-indigo);
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: background 0.2s ease;
+			}
+
+			.newsletter-submit-btn:hover {
+				background: #f1f5f9;
+			}
+
+			.footer-links-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 2rem;
+				padding-top: 4rem;
+				padding-bottom: 4rem;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+			}
+
+			.footer-col-title {
+				font-size: 1.05rem;
+				font-weight: 700;
+				margin-bottom: 1.25rem;
+				color: #ffffff;
+			}
+
+			.footer-ul {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 0.75rem;
+			}
+
+			.footer-ul a {
+				color: #94a3b8;
+				text-decoration: none;
+				font-size: 0.92rem;
+				transition: color 0.2s ease;
+			}
+
+			.footer-ul a:hover {
+				color: #ffffff;
+			}
+
+			.footer-bottom-bar {
+				padding: 2rem 1.25rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 1.5rem;
+				font-size: 0.85rem;
+				color: #94a3b8;
+			}
+
+			.footer-social-row {
+				display: flex;
+				gap: 1rem;
+				align-items: center;
+			}
+
+			.footer-social-row a {
+				color: #ffffff;
+				opacity: 0.8;
+				transition: opacity 0.2s ease;
+			}
+
+			.footer-social-row a:hover {
+				opacity: 1;
+			}
+
+			.footer-legal-links {
+				display: flex;
+				align-items: center;
+				gap: 1.25rem;
+				flex-wrap: wrap;
+			}
+
+			.footer-legal-links a {
+				color: #94a3b8;
+				text-decoration: none;
+			}
+
+			.footer-legal-links a:hover {
+				color: #ffffff;
+			}
+
+			.footer-lang-pill {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				color: #ffffff;
+				font-weight: 600;
+			}
+
+			/* ========================================================
+			   RESPONSIVE BREAKPOINTS
+			   ======================================================== */
+			@media (max-width: 1040px) {
+				.header-nav-desktop { display: none; }
+				.mobile-toggle-btn { display: flex; }
+				.products-grid-3x2 { grid-template-columns: repeat(2, 1fr); }
+				.upgrade-steps-grid { grid-template-columns: repeat(2, 1fr); }
+				.case-studies-grid { grid-template-columns: 1fr; }
+				.reviews-slider-row { grid-template-columns: 1fr; }
+				.industries-grid-header { grid-template-columns: repeat(2, 1fr); }
+				.better-water-pillars-grid { grid-template-columns: repeat(2, 1fr); }
+				.footer-links-grid { grid-template-columns: repeat(2, 1fr); }
+				.banner-split-card { grid-template-columns: 1fr; }
+			}
+
+			@media (max-width: 768px) {
+				.culligan-hero { height: auto; min-height: 75vh; }
+				.culligan-container { padding-left: 1rem; padding-right: 1rem; }
+				.culligan-section { padding-top: 2.75rem; padding-bottom: 2.75rem; }
+				.products-grid-3x2 { grid-template-columns: 1fr; gap: 1.25rem; }
+				.product-item-card { padding: 1.25rem 1.15rem; min-height: auto; }
+				.upgrade-steps-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+				.case-studies-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+				.case-study-card { padding: 1.35rem 1.15rem; }
+				.cs-metrics-row { flex-wrap: wrap; gap: 1rem; }
+				.reviews-slider-row { grid-template-columns: 1fr; gap: 1.25rem; }
+				.review-box-card { padding: 1.35rem 1.15rem; min-height: auto; }
+				.industries-grid-header { grid-template-columns: 1fr; gap: 1.25rem; }
+				.industry-tile-card { padding: 1.25rem 1.15rem; }
+				.better-water-pillars-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+				.explore-cards-row { grid-template-columns: 1fr; gap: 1.25rem; }
+				.explore-solution-card { padding: 1.5rem 1.25rem; }
+				.banner-content-side { padding: 1.75rem 1.15rem; }
+				.banner-media-side { min-height: 240px; }
+				.footer-links-grid { grid-template-columns: 1fr; }
+				.header-phone-link span { display: none; }
+				.btn-culligan-primary { padding: 0.65rem 1.25rem; font-size: 0.88rem; }
+				.section-main-title { font-size: 1.75rem; }
+				.hero-heading { font-size: 2rem; }
+			}
+
+			@media (max-width: 480px) {
+				.culligan-container { padding-left: 0.85rem; padding-right: 0.85rem; }
+				.hero-heading { font-size: 1.85rem; }
+				.section-main-title { font-size: 1.55rem; }
+			}
+		</style>
+
+		<!-- Script for mobile toggle and topbar close -->
+		<script is:inline>
+			function initCulliganPage() {
+				// 1. Topbar dismiss
+				const closeBtn = document.getElementById('topbar-close-btn');
+				const topbar = document.getElementById('topbar-section');
+				closeBtn?.addEventListener('click', () => {
+					if (topbar) topbar.style.display = 'none';
+				});
+
+				// 2. Mobile toggle
+				const toggleBtn = document.getElementById('mobile-toggle-btn');
+				const drawer = document.getElementById('mobile-drawer');
+				toggleBtn?.addEventListener('click', () => {
+					const isOpen = drawer?.classList.toggle('open');
+					toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+				});
+
+				// Close drawer on link click
+				drawer?.querySelectorAll('a').forEach(link => {
+					link.addEventListener('click', () => {
+						drawer.classList.remove('open');
+						toggleBtn?.setAttribute('aria-expanded', 'false');
+					});
+				});
+
+				// 3. Ensure hero video autoplays smoothly
+				const heroVideo = document.querySelector('.hero-bg-video');
+				if (heroVideo) {
+					heroVideo.muted = true;
+					const playPromise = heroVideo.play();
+					if (playPromise !== undefined) {
+						playPromise.catch(() => {
+							// Autoplay was prevented, wait for interaction if necessary
+						});
+					}
+				}
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initCulliganPage);
+			} else {
+				initCulliganPage();
+			}
+			document.addEventListener('astro:page-load', initCulliganPage);
+		</script>
+	</body>
+</html>

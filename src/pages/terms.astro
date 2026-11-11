@@ -1,0 +1,393 @@
+---
+// src/pages/terms.astro
+// Terms of Supply, Manufacturing & Warranty for Aqua Shakti Industries
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+import { COMPANY_NAME, COMPANY_PHONE, COMPANY_EMAIL, COMPANY_LOCATION } from '../consts';
+
+const lastUpdated = 'October 2026';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Terms of Supply & Warranty | ${COMPANY_NAME}`}
+			description="Official commercial terms of supply, manufacturing standards, Factory Acceptance Testing (FAT), installation, and warranty policies for Aqua Shakti Industries water treatment plants."
+			image="/images/hero-plant.jpg"
+		/>
+	</head>
+	<body class="legal-page-body">
+		<Header />
+		<main id="main-content" class="legal-page-main">
+			<!-- Header Banner -->
+			<section class="legal-hero-section">
+				<div class="site-container">
+					<div class="legal-hero-content">
+						<span class="legal-category-pill">COMMERCIAL &amp; SUPPLY TERMS</span>
+						<h1 class="legal-main-title">Terms of Supply &amp; Warranty</h1>
+						<p class="legal-subtitle">
+							Manufacturing standards, Factory Acceptance Testing (FAT), dispatch protocol, erection commissioning, and warranty covenants governing all Aqua Shakti water treatment equipment.
+						</p>
+						<div class="legal-meta-bar">
+							<span>Last updated: {lastUpdated}</span>
+							<span class="meta-dot" aria-hidden="true">&bull;</span>
+							<span>Governed by Commercial Law of Gujarat, India</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Content Section -->
+			<section class="legal-content-section">
+				<div class="site-container">
+					<div class="legal-layout-grid">
+						<!-- Sticky Table of Contents -->
+						<aside class="legal-toc-aside">
+							<div class="legal-toc-card">
+								<h3 class="toc-title">Table of Contents</h3>
+								<nav class="toc-nav" aria-label="Terms of supply sections">
+									<a href="#scope-quotations" class="toc-link">1. Scope &amp; Quotations</a>
+									<a href="#fat-inspection" class="toc-link">2. Factory Acceptance Testing (FAT)</a>
+									<a href="#dispatch-transit" class="toc-link">3. Dispatch &amp; Transit Insurance</a>
+									<a href="#site-readiness" class="toc-link">4. Site Readiness &amp; Commissioning</a>
+									<a href="#warranty-coverage" class="toc-link">5. Warranty Terms &amp; Limits</a>
+									<a href="#amc-servicing" class="toc-link">6. AMC &amp; Preventive Servicing</a>
+									<a href="#dispute-jurisdiction" class="toc-link">7. Governing Law &amp; Jurisdiction</a>
+								</nav>
+							</div>
+						</aside>
+
+						<!-- Main Policy Copy -->
+						<article class="legal-article">
+							<section id="scope-quotations" class="legal-block">
+								<h2>1. Scope of Supply &amp; Quotation Validity</h2>
+								<p>
+									All engineering proposals, technical sizing calculations, and commercial price schedules issued by Aqua Shakti Industries are based on the inlet water chemistry and capacity parameters specified in the preliminary consultation.
+								</p>
+								<ul class="legal-checklist">
+									<li><strong>Quotation Validity:</strong> Formal techno-commercial quotations remain valid for thirty (30) calendar days from issuance, subject to raw material market stability (SS 304 / SS 316 steel plates, composite FRP vessel resin, and membrane foreign exchange parity).</li>
+									<li><strong>Turnkey Specification:</strong> Supply includes the base skid, high-pressure pumps, pre-treatment media vessels, RO/DM/ETP module racks, local piping manifolds, and PLC/microprocessor control consoles explicitly detailed in the signed Bill of Quantities (BOQ).</li>
+									<li><strong>Civil &amp; External Utilities:</strong> Civil construction, raw water inlet feed sumps, treated water storage tanks, and main power cabling up to the skid isolator switch remain outside the standard manufacturing scope unless contracted under a turnkey EPC scope.</li>
+								</ul>
+							</section>
+
+							<section id="fat-inspection" class="legal-block">
+								<h2>2. Factory Acceptance Testing (FAT) at Vapi Works</h2>
+								<p>
+									Quality assurance is integral to our manufacturing methodology. Prior to dispatch, all plants assembled at our Vapi, Gujarat works undergo stringent quality and safety verifications:
+								</p>
+								<ul class="legal-checklist">
+									<li><strong>Hydrostatic Pressure Testing:</strong> All high-pressure manifolds (SS 316 / UPVC) and vessel connections are pressure tested at 1.5 times the rated maximum design operating pressure for a minimum of 4 hours.</li>
+									<li><strong>Electrical &amp; Logic Simulation:</strong> Control panels undergo insulation resistance testing (megger test), dry run interlock verification, and PLC logic sequence simulation to guarantee foolproof fail-safe trips.</li>
+									<li><strong>Client Inspection:</strong> Clients or their authorized Third-Party Inspection Agencies (TPIA) are welcome to inspect and witness the FAT at Plot No. 42, Vapi Timber Compound prior to final containerization and crating.</li>
+								</ul>
+							</section>
+
+							<section id="dispatch-transit" class="legal-block">
+								<h2>3. Dispatch, Packaging &amp; Transit Insurance</h2>
+								<p>
+									Standard supply is executed on an Ex-Works (Vapi, Gujarat) basis unless door-delivery freight is expressly agreed upon in the commercial purchase order.
+								</p>
+								<ul class="legal-checklist">
+									<li><strong>Protective Packaging:</strong> Equipment is crated using reinforced structural wooden pallets, shrink-wrapped anti-dust weather poly-barriers, and specialized protective cushions for delicate membrane pressure vessels and digital sensors.</li>
+									<li><strong>Transit Insurance:</strong> The buyer or designated logistics carrier must ensure comprehensive transit insurance coverage from the moment goods exit our factory premises in Vapi until final site receipt.</li>
+								</ul>
+							</section>
+
+							<section id="site-readiness" class="legal-block">
+								<h2>4. Site Readiness, Erection &amp; Commissioning</h2>
+								<p>
+									Upon physical arrival of the plant at the buyer's site, our senior erection engineers supervise skid placement, interconnecting piping connections, instrument calibration, and initial chemical sanitization.
+								</p>
+								<ul class="legal-checklist">
+									<li><strong>Buyer Pre-requisites:</strong> The client must guarantee level concrete civil flooring, continuous unfluctuating 415V &plusmn; 5% 3-phase power supply, raw water supply at required feed pressure, and adequate effluent drainage channels.</li>
+									<li><strong>Performance Run:</strong> A continuous 72-hour trial run is conducted upon system stabilization to demonstrate guaranteed permeate flow rate, TDS rejection percentage (&gt; 98.5%), and statutory effluent limits.</li>
+								</ul>
+							</section>
+
+							<section id="warranty-coverage" class="legal-block">
+								<h2>5. 12-Month Skid Warranty &amp; OEM Standards</h2>
+								<p>
+									Aqua Shakti Industries warrants all newly fabricated water treatment systems against manufacturing defects and structural craftsmanship failures:
+								</p>
+								<ul class="legal-checklist">
+									<li><strong>Skid &amp; Structural Warranty:</strong> Twelve (12) months from the date of successful commissioning or fourteen (14) months from the date of dispatch from Vapi works, whichever occurs earlier.</li>
+									<li><strong>OEM Components:</strong> High-pressure pumps, pressure switches, dosing units, and digital rotameters carry original equipment manufacturer warranties passed through directly to the client.</li>
+									<li><strong>Exclusions:</strong> Warranty does not cover normal wear-and-tear items, consumable filter cartridges, chemical dosing reagents, or membrane fouling resulting from raw water deviation beyond agreed baseline parameters (e.g., severe silica scaling, bio-fouling, or heavy free chlorine exposure without dechlorination).</li>
+								</ul>
+							</section>
+
+							<section id="amc-servicing" class="legal-block">
+								<h2>6. Annual Maintenance Contracts (AMC) &amp; Technical Support</h2>
+								<p>
+									To ensure uninterrupted operational life across Gujarat and Maharashtra's industrial clusters, we offer structured Comprehensive and Non-Comprehensive Annual Maintenance Contracts:
+								</p>
+								<ul class="legal-checklist">
+									<li><strong>Quarterly Preventive Audits:</strong> Periodic on-site membrane CIP (Clean-In-Place) chemical descaling, pressure drop analysis, vessel backwash valve servicing, and dosing pump calibration.</li>
+									<li><strong>Emergency Breakdown Response:</strong> Guaranteed technician dispatch within 24–48 hours across Vapi, Umbergaon, Sarigam, Ankleshwar, Dahej, Silvassa, and Mumbai industrial zones.</li>
+									<li><strong>Genuine Spares Supply:</strong> Guaranteed availability of genuine Dow/Toray membranes, ion exchange resins, antiscalant chemicals, and micron filter cartridges ex-stock from our central Vapi warehouse.</li>
+								</ul>
+							</section>
+
+							<section id="dispute-jurisdiction" class="legal-block">
+								<h2>7. Governing Law &amp; Legal Jurisdiction</h2>
+								<p>
+									All commercial purchase orders, contracts of sale, and supply warranties executed with Aqua Shakti Industries are governed by and construed in accordance with the substantive laws of the Republic of India.
+								</p>
+								<p>
+									Any dispute, claim, or difference arising out of or in connection with the supply of equipment or engineering services shall be subject exclusively to the territorial jurisdiction of the competent courts in <strong>Vapi / Valsad District, Gujarat, India</strong>.
+								</p>
+								<div class="legal-contact-callout">
+									<strong>Aqua Shakti Industries — Commercial &amp; Contracts Desk</strong><br />
+									Plot No. 42, Vapi Timber Compound, Opp. Chandralok Tower, Nr. D-Mart, Chanod, Vapi - 396195, Gujarat, India.<br />
+									Direct Line: <a href={`tel:${COMPANY_PHONE.replace(/\s+/g, '')}`}>{COMPANY_PHONE}</a> &bull; Email: <a href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a>
+								</div>
+							</section>
+						</article>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+		<QuoteModal />
+	</body>
+</html>
+
+<style>
+	:root {
+		color-scheme: light;
+	}
+
+	.legal-page-body {
+		background-color: #faf8ff;
+		color: #0f172a;
+		font-family: 'Inter', -apple-system, sans-serif;
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
+	}
+
+	.legal-page-main {
+		width: 100%;
+		padding-top: 0;
+	}
+
+	.site-container {
+		width: 100%;
+		max-width: 1720px;
+		margin: 0 auto;
+		padding-left: clamp(1rem, 2.5vw, 2.25rem);
+		padding-right: clamp(1rem, 2.5vw, 2.25rem);
+		box-sizing: border-box;
+	}
+
+	/* Hero */
+	.legal-hero-section {
+		background: linear-gradient(180deg, #f0f9ff 0%, #faf8ff 100%);
+		border-bottom: 1px solid #e2e8f0;
+		position: relative;
+		padding-top: clamp(2.5rem, 5vw, 4rem);
+		padding-bottom: clamp(2.5rem, 5vh, 4rem);
+	}
+
+	.legal-hero-content {
+		max-width: 960px;
+	}
+
+	.legal-category-pill {
+		display: inline-block;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #006194;
+		background: #cce5ff;
+		border: 1px solid #93ccff;
+		padding: 0.35rem 0.85rem;
+		border-radius: 9999px;
+		margin-bottom: 1rem;
+	}
+
+	.legal-main-title {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		font-size: clamp(2.2rem, 4vw, 3.2rem);
+		font-weight: 800;
+		color: #0f172a;
+		line-height: 1.15;
+		margin: 0 0 1rem;
+		letter-spacing: -0.03em;
+	}
+
+	.legal-subtitle {
+		font-size: clamp(1rem, 1.6vw, 1.15rem);
+		line-height: 1.6;
+		color: #475569;
+		margin: 0 0 1.5rem;
+	}
+
+	.legal-meta-bar {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		font-size: 0.82rem;
+		color: #64748b;
+		flex-wrap: wrap;
+	}
+
+	.meta-dot {
+		color: #cbd5e1;
+	}
+
+	/* Layout */
+	.legal-content-section {
+		padding: clamp(3rem, 6vw, 5rem) 0;
+	}
+
+	.legal-layout-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+		align-items: flex-start;
+	}
+
+	@media (min-width: 1024px) {
+		.legal-layout-grid {
+			grid-template-columns: 320px 1fr;
+			gap: 4.5rem;
+		}
+	}
+
+	/* Table of Contents Aside */
+	.legal-toc-aside {
+		position: sticky;
+		top: 6.5rem;
+	}
+
+	.legal-toc-card {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 1.15rem;
+		padding: 1.5rem;
+		box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+	}
+
+	.toc-title {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		font-size: 0.88rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: #0f172a;
+		margin: 0 0 1rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid #f1f5f9;
+	}
+
+	.toc-nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+	}
+
+	.toc-link {
+		font-size: 0.84rem;
+		color: #475569;
+		text-decoration: none;
+		line-height: 1.4;
+		transition: color 0.15s ease, transform 0.15s ease;
+	}
+
+	.toc-link:hover {
+		color: #006194;
+		transform: translateX(3px);
+	}
+
+	/* Article Copy */
+	.legal-article {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 1.25rem;
+		padding: clamp(2rem, 4vw, 3.5rem);
+		box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+	}
+
+	.legal-block {
+		margin-bottom: 3rem;
+		scroll-margin-top: 7rem;
+	}
+
+	.legal-block:last-child {
+		margin-bottom: 0;
+	}
+
+	.legal-block h2 {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+		font-weight: 800;
+		color: #0f172a;
+		letter-spacing: -0.02em;
+		margin: 0 0 1rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid #f0f9ff;
+	}
+
+	.legal-block p {
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: #334155;
+		margin: 0 0 1.15rem;
+	}
+
+	.legal-checklist {
+		list-style: none;
+		padding: 0;
+		margin: 1rem 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.legal-checklist li {
+		position: relative;
+		padding-left: 1.5rem;
+		font-size: 0.92rem;
+		line-height: 1.55;
+		color: #334155;
+	}
+
+	.legal-checklist li::before {
+		content: '✔';
+		position: absolute;
+		left: 0;
+		top: 0;
+		color: #0284c7;
+		font-size: 0.85rem;
+		font-weight: bold;
+	}
+
+	.legal-contact-callout {
+		background: #f8fafc;
+		border-left: 4px solid #006194;
+		border-radius: 0 0.85rem 0.85rem 0;
+		padding: 1.25rem 1.5rem;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: #1e293b;
+		margin-top: 1rem;
+	}
+
+	.legal-contact-callout a {
+		color: #006194;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.legal-contact-callout a:hover {
+		text-decoration: underline;
+	}
+</style>

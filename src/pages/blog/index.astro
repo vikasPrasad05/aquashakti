@@ -1,0 +1,1366 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import QuoteModal from '../../components/QuoteModal.astro';
+import { COMPANY_NAME } from '../../consts';
+import { getBlogPosts } from '../../lib/cms';
+import type { BlogRecord } from '../../types/cms';
+
+const cmsBlogs: BlogRecord[] = await getBlogPosts({ limit: 100 });
+
+// Transform CMS records to article structure for the Atlas Tile template
+const articles = cmsBlogs.map((item) => {
+	const raw = item.data || {};
+	const title = raw.title || 'Untitled Blog Post';
+	let desc = raw.description || '';
+	if (!desc && raw.content) {
+		desc = raw.content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 190) + '...';
+	}
+	const thumbnail = raw.thumbnail || '';
+	const published = raw.published || item.created_at?.slice(0, 10) || new Date().toISOString().slice(0, 10);
+	const slug = (item.id || '').trim();
+
+	return {
+		id: item.id,
+		title,
+		description: desc,
+		image: thumbnail,
+		subtitle: 'BLOG',
+		slug,
+		published,
+		markets: ['Industrial Water', 'Utility Infrastructure'],
+		applications: ['Effluent Treatment Plant (ETP)', 'Reverse Osmosis (RO)'],
+		topics: ['ETP & RO', 'Thought Leadership', 'Compliance'],
+		blog: 'Aqua Shakti Engineering',
+		category: 'Blogs'
+	};
+});
+
+const totalCount = articles.length;
+
+const filterCategories = [
+	{
+		id: 'market',
+		name: 'Market',
+		options: [
+			{ name: 'Industrial Water', count: totalCount },
+			{ name: 'Utility Infrastructure', count: totalCount },
+			{ name: 'Chemical & Pharma', count: totalCount },
+			{ name: 'Textile & Dyeing', count: totalCount }
+		]
+	},
+	{
+		id: 'applications',
+		name: 'Applications',
+		options: [
+			{ name: 'Effluent Treatment Plant (ETP)', count: totalCount },
+			{ name: 'Reverse Osmosis (RO)', count: totalCount },
+			{ name: 'Wastewater Recycling', count: totalCount },
+			{ name: 'Industrial Water Treatment', count: totalCount }
+		]
+	},
+	{
+		id: 'blog',
+		name: 'Blog',
+		options: [
+			{ name: 'Aqua Shakti Engineering', count: totalCount }
+		]
+	},
+	{
+		id: 'topics',
+		name: 'Topics',
+		options: [
+			{ name: 'ETP & RO', count: totalCount },
+			{ name: 'Thought Leadership', count: totalCount },
+			{ name: 'Industrial Solutions', count: totalCount },
+			{ name: 'Pollution Control & GPCB', count: totalCount }
+		]
+	},
+	{
+		id: 'category',
+		name: 'Resource Category',
+		options: [
+			{ name: 'Blogs', count: totalCount }
+		]
+	}
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Expert Insights | Global Water Technology & Solutions | ${COMPANY_NAME}`}
+			description="All posts tagged with 'Expert Insights'. Reimagining industrial water from commodity to strategic asset, digital intelligence, and global wastewater reuse."
+			image={articles[0]?.image || undefined}
+		/>
+	</head>
+	<body class="search-results-page newui Xylem-style-page">
+		<Header />
+
+		<div class="site-container">
+			<div class="primary-layout">
+				<div class="themeable-section xds-resources-section">
+					<div class="grid-wrapper">
+						<div class="block-content">
+							
+							<!-- Breadcrumbs (Exact Xylem) -->
+							<nav class="xds-breadcrumbs-nav" aria-label="Breadcrumb">
+								<ol class="xds-breadcrumbs-list">
+									<li class="xds-breadcrumb-item"><a href="/">Home</a></li>
+									<li class="xds-breadcrumb-sep" aria-hidden="true">/</li>
+									<li class="xds-breadcrumb-item"><a href="/#services-section">Resources</a></li>
+									<li class="xds-breadcrumb-sep" aria-hidden="true">/</li>
+									<li class="xds-breadcrumb-item"><a href="/blog">Blogs</a></li>
+									<li class="xds-breadcrumb-sep" aria-hidden="true">/</li>
+									<li class="xds-breadcrumb-item"><a href="/blog">Making Waves</a></li>
+									<li class="xds-breadcrumb-sep" aria-hidden="true">/</li>
+									<li class="xds-breadcrumb-item active" aria-current="page">Expert Insights</li>
+								</ol>
+							</nav>
+
+							<!-- Top Section Heading -->
+							<section class="top-heading-wrapper">
+								<div class="prose top-section">
+									<h1 class="xds-main-h1">All posts tagged with 'Expert Insights'</h1>
+								</div>
+							</section>
+
+							<!-- Container Top: Search, Filter Toggle, Sort -->
+							<div class="search-results-page__container-top">
+								<div class="d-flex gap-3 align-items-center flex-wrap flex-grow-1">
+									<form class="search-results-page__query-input-form" id="searchForm" onsubmit="return false;">
+										<div class="field-text xds-p-0">
+											<div class="input-text-wrapper">
+												<svg class="search-lens-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+													<circle cx="11" cy="11" r="8"></circle>
+													<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+												</svg>
+												<input
+													class="input-text"
+													id="xylemSearchInput"
+													name="query"
+													placeholder="Search"
+													type="text"
+													autocomplete="off"
+												/>
+												<button type="button" id="clearSearchInputBtn" class="clear-search-btn" style="display: none;" title="Clear search">✕</button>
+											</div>
+										</div>
+									</form>
+
+									<button
+										aria-expanded="true"
+										aria-label="Show/hide filters"
+										class="xds-button secondary fixed-width xds-toggle"
+										id="toggleFiltersBtn"
+										type="button"
+									>
+										<svg class="slider-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+											<line x1="4" y1="21" x2="4" y2="14"></line>
+											<line x1="4" y1="10" x2="4" y2="3"></line>
+											<line x1="12" y1="21" x2="12" y2="12"></line>
+											<line x1="12" y1="8" x2="12" y2="3"></line>
+											<line x1="20" y1="21" x2="20" y2="16"></line>
+											<line x1="20" y1="12" x2="20" y2="3"></line>
+											<line x1="1" y1="14" x2="7" y2="14"></line>
+											<line x1="9" y1="8" x2="15" y2="8"></line>
+											<line x1="17" y1="16" x2="23" y2="16"></line>
+										</svg>
+										<span class="d-none d-md-inline">Show/hide filters</span>
+									</button>
+								</div>
+
+								<!-- Sort by Single Select -->
+								<div class="dropdown single-sort-dropdown" id="sortDropdownContainer">
+									<div class="dropdown--trigger">
+										<button class="select sort-btn-trigger" id="sortTriggerBtn" type="button" aria-expanded="false">
+											<span id="sortCurrentLabel">Sort by</span>
+											<svg class="chevron-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+										</button>
+									</div>
+									<div class="dropdown--content" id="sortDropdownMenu" style="display: none;">
+										<ul class="dropdown--facets--container">
+											<li><button type="button" class="sort-option-btn active" data-sort="relevance">Relevance</button></li>
+											<li><button type="button" class="sort-option-btn" data-sort="az">Alphabetic [A-Z]</button></li>
+											<li><button type="button" class="sort-option-btn" data-sort="za">Alphabetic [Z-A]</button></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Main Layout: Sidebar Filters + Search Results Grid -->
+							<div class="xds-main-grid-layout" id="mainGridLayout">
+								
+								<!-- Left Sidebar Filters -->
+								<aside class="search--filters--container expanded" id="searchFiltersSidebar">
+									<div class="content">
+										{filterCategories.map((cat) => (
+											<div class="dropdown-filter-group open" data-group-id={cat.id}>
+												<div class="dropdown--trigger">
+													<button class="select group-header-btn" type="button" aria-expanded="true">
+														<span>{cat.name}</span>
+														<svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+													</button>
+												</div>
+												<div class="dropdown--content-body">
+													<div class="dropdown--facets--container">
+														{cat.options.map((opt) => (
+															<div class="checkbox-group">
+																<div class="field-check">
+																	<input
+																		type="checkbox"
+																		id={`opt-${cat.id}-${opt.name.replace(/[^a-zA-Z0-9]/g, '-')}`}
+																		data-group={cat.id}
+																		data-value={opt.name}
+																		class="facet-checkbox"
+																	/>
+																	<label for={`opt-${cat.id}-${opt.name.replace(/[^a-zA-Z0-9]/g, '-')}`}>
+																		{opt.name}
+																		<span class="facet-count">({opt.count})</span>
+																	</label>
+																</div>
+															</div>
+														))}
+													</div>
+												</div>
+											</div>
+										))}
+									</div>
+								</aside>
+
+								<!-- Right Content Area (Search Results) -->
+								<main class="search-results" id="searchResultsMain">
+									
+									<!-- Active Pills & Clear All -->
+									<div class="d-flex justify-content-between align-items-start gap-8 xds-mb-12">
+										<div class="d-flex flex-wrap gap-2" id="pillContainer">
+											<div class="active-facet-pill permanent-tag" id="mainTagPill" data-pill-value="Expert Insights">
+												<span>Expert Insights</span>
+												<button type="button" class="pill-remove-btn" title="Remove filter" aria-label="Remove filter">✕</button>
+											</div>
+										</div>
+										<div class="clear-all-wrapper">
+											<button class="xds-button secondary danger fixed-width" id="clearAllBtn" type="button">
+												Clear all
+											</button>
+										</div>
+									</div>
+
+									<!-- Article List -->
+									<section class="article-content">
+										<h2 class="hidden" style="display: none;">All posts tagged with 'Expert Insights'</h2>
+										<div class="article-content__top-section">
+											<div class="d-flex flex-column gap-6">
+												<ul class="atlas-tile-grid list-reset" id="atlasTileList">
+													{articles.map((art) => (
+														<li
+															class="atlas-tile-item"
+															data-id={art.id}
+															data-title={art.title.toLowerCase()}
+															data-desc={art.description.toLowerCase()}
+															data-markets={JSON.stringify(art.markets)}
+															data-applications={JSON.stringify(art.applications)}
+															data-topics={JSON.stringify(art.topics)}
+															data-blog={art.blog}
+															data-category={art.category}
+														>
+															<a href={`/blog/${art.slug}`} class="atlas-tile-anchor" aria-label={`Read article: ${art.title}`}>
+																<article class="atlas-tile" data-has-image={art.image ? "true" : "false"} data-testid="product-element" data-tile-type="contentpage">
+																	<div class="atlas-tile__content">
+																		<header class="atlas-tile__header">
+																			<div class="atlas-tile__subtitle">
+																				{art.subtitle || 'Blog Page'}
+																			</div>
+																			<h3 class="atlas-tile__title" data-testid="product-title-heading">
+																				<span class="a-link" title={art.title}>
+																					{art.title}
+																				</span>
+																			</h3>
+																		</header>
+																		<div class="atlas-tile__pricing-info"></div>
+																		<div class="atlas-tile__description">
+																			{art.description}
+																		</div>
+																	</div>
+																	{art.image && (
+																		<div class="atlas-tile__graphic">
+																			<div class="tile-image-link">
+																				<picture>
+																					<source media="(min-width: 1025px)" srcset={art.image} />
+																					<source media="(min-width: 768px)" srcset={art.image} />
+																					<img
+																						src={art.image}
+																						alt={art.title}
+																						loading="lazy"
+																						width="250"
+																						height="150"
+																					/>
+																				</picture>
+																			</div>
+																		</div>
+																	)}
+																</article>
+															</a>
+														</li>
+													))}
+												</ul>
+
+												<!-- Empty State when no articles or filters yield 0 results -->
+												<div id="noResultsState" class="no-results-box" style={articles.length === 0 ? "display: block;" : "display: none;"}>
+													<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5">
+														<circle cx="11" cy="11" r="8"></circle>
+														<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+													</svg>
+													<h3 id="noResultsHeading">{articles.length === 0 ? "No published items yet" : "No articles found"}</h3>
+													<p id="noResultsText">{articles.length === 0 ? "Published articles from CFEdge-CMS will appear here." : "No posts matched your active filter or search keywords. Try adjusting your search query or clearing filters."}</p>
+													<button type="button" class="xds-button secondary" id="emptyResetBtn">Reset all filters</button>
+												</div>
+											</div>
+										</div>
+
+										<!-- Pagination Section -->
+										<div class="pagination" id="paginationBar">
+											<span class="items-info" id="paginationItemsInfo">
+												1 – <span id="displayedCount">{articles.length}</span> of <span id="totalCount">{articles.length}</span>
+											</span>
+											<input id="total-pages" type="hidden" value="1" />
+											<input id="current-page" type="hidden" value="1" />
+											<div class="pagination-controls">
+												<ul>
+													<li class="page-number active" data-page="1">
+														<a href="#!">1</a>
+													</li>
+												</ul>
+											</div>
+											<div class="items-per-page">
+												<div class="page-size-label">
+													Items per page
+												</div>
+												<div class="dropdown single-pagesize-dropdown" id="pageSizeContainer">
+													<div class="dropdown--trigger">
+														<button class="select pagesize-btn" id="pageSizeBtn" type="button">
+															<span id="pageSizeLabel">24</span>
+															<svg class="chevron-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+														</button>
+													</div>
+													<div class="dropdown--content" id="pageSizeMenu" style="display: none;">
+														<ul class="dropdown--facets--container">
+															<li><button type="button" class="pagesize-option active" data-size="24">24</button></li>
+															<li><button type="button" class="pagesize-option" data-size="48">48</button></li>
+															<li><button type="button" class="pagesize-option" data-size="96">96</button></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</main>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<Footer />
+		<QuoteModal />
+
+		<!-- 1000% Exact Xylem Styles -->
+		<style is:global>
+			/* Xylem Base Variables & Fonts */
+			:root {
+				--xylem-navy: #001a40;
+				--xylem-dark: #002d38;
+				--xylem-teal: #0095a8;
+				--xylem-teal-hover: #00738c;
+				--xylem-teal-light: #e6f7f9;
+				--xylem-border: #d1d5db;
+				--xylem-border-subtle: #e5e7eb;
+				--xylem-text-main: #1f2937;
+				--xylem-text-heading: #111827;
+				--xylem-text-muted: #6b7280;
+				--xylem-bg-gray: #f9fafb;
+				--xylem-danger: #dc2626;
+				--xylem-danger-border: #ef4444;
+			}
+
+			/* Allow sticky positioning on search results page */
+			html:has(body.search-results-page),
+			body.search-results-page {
+				overflow-x: visible !important;
+				overflow-y: visible !important;
+			}
+
+			body.Xylem-style-page {
+				background-color: #ffffff;
+				color: var(--xylem-text-main);
+				font-family: 'Noto Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+				-webkit-font-smoothing: antialiased;
+				margin: 0;
+				padding: 0;
+			}
+
+			.themeable-section.xds-resources-section {
+				background-color: #ffffff;
+				padding: 2rem 0 4rem 0;
+				min-height: 80vh;
+			}
+
+			.grid-wrapper {
+				max-width: 1400px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+
+			/* Xylem Breadcrumbs */
+			.xds-breadcrumbs-nav {
+				margin-bottom: 1.25rem;
+			}
+
+			.xds-breadcrumbs-list {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.5rem;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				font-size: 0.8125rem;
+				color: #556870;
+			}
+
+			.xds-breadcrumb-item a {
+				color: #556870;
+				text-decoration: none;
+				transition: color 0.15s ease;
+			}
+
+			.xds-breadcrumb-item a:hover {
+				color: var(--xylem-teal);
+				text-decoration: underline;
+			}
+
+			.xds-breadcrumb-sep {
+				color: #94a3b8;
+				user-select: none;
+			}
+
+			.xds-breadcrumb-item.active {
+				color: #1f2937;
+				font-weight: 500;
+			}
+
+			/* Top Section Heading */
+			.top-heading-wrapper {
+				margin-bottom: 2rem;
+			}
+
+			.prose.top-section .xds-main-h1 {
+				font-size: 2.25rem;
+				font-weight: 700;
+				line-height: 1.25;
+				color: var(--xylem-text-heading);
+				letter-spacing: -0.025em;
+				margin: 0;
+				padding-bottom: 0.5rem;
+			}
+
+			@media (max-width: 768px) {
+				.prose.top-section .xds-main-h1 {
+					font-size: 1.75rem;
+				}
+			}
+
+			/* Top Search, Toggle & Sort Bar (Sticky below Header) */
+			.search-results-page__container-top {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+				flex-wrap: wrap;
+				padding: 0.85rem 0;
+				border-bottom: 1px solid var(--xylem-border-subtle);
+				position: sticky;
+				top: 76px;
+				background-color: #ffffff;
+				z-index: 40;
+			}
+
+			.search-results-page__query-input-form {
+				flex: 1;
+				min-width: 260px;
+				max-width: 440px;
+			}
+
+			.input-text-wrapper {
+				position: relative;
+				display: flex;
+				align-items: center;
+				width: 100%;
+			}
+
+			.search-lens-svg {
+				position: absolute;
+				left: 14px;
+				color: #9ca3af;
+				pointer-events: none;
+			}
+
+			.input-text-wrapper .input-text {
+				width: 100%;
+				height: 44px;
+				padding: 0 38px 0 40px;
+				background-color: #ffffff;
+				border: 1px solid var(--xylem-border);
+				border-radius: 4px;
+				font-size: 0.95rem;
+				color: var(--xylem-text-heading);
+				outline: none;
+				transition: border-color 0.2s, box-shadow 0.2s;
+			}
+
+			.input-text-wrapper .input-text:focus {
+				border-color: var(--xylem-teal);
+				box-shadow: 0 0 0 3px rgba(0, 149, 168, 0.15);
+			}
+
+			.clear-search-btn {
+				position: absolute;
+				right: 12px;
+				background: none;
+				border: none;
+				color: #9ca3af;
+				font-size: 1rem;
+				cursor: pointer;
+				padding: 4px;
+			}
+			.clear-search-btn:hover {
+				color: var(--xylem-text-heading);
+			}
+
+			/* Buttons */
+			.xds-button.secondary {
+				background-color: #ffffff;
+				border: 1px solid var(--xylem-dark);
+				color: var(--xylem-dark);
+				height: 44px;
+				padding: 0 1.25rem;
+				font-size: 0.9375rem;
+				font-weight: 600;
+				border-radius: 4px;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+				transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+			}
+
+			.xds-button.secondary:hover {
+				background-color: var(--xylem-dark);
+				color: #ffffff;
+			}
+
+			.xds-button.secondary.danger {
+				border-color: var(--xylem-danger-border);
+				color: var(--xylem-danger);
+				height: 38px;
+				padding: 0 1rem;
+				font-size: 0.875rem;
+			}
+
+			.xds-button.secondary.danger:hover {
+				background-color: var(--xylem-danger);
+				color: #ffffff;
+			}
+
+			/* Sort Dropdown */
+			.dropdown.single-sort-dropdown,
+			.dropdown.single-pagesize-dropdown {
+				position: relative;
+			}
+
+			.select.sort-btn-trigger,
+			.select.pagesize-btn {
+				background-color: #ffffff;
+				border: 1px solid var(--xylem-border);
+				border-radius: 4px;
+				height: 44px;
+				padding: 0 1rem;
+				font-size: 0.9375rem;
+				color: var(--xylem-text-heading);
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				cursor: pointer;
+				font-weight: 500;
+				min-width: 140px;
+				justify-content: space-between;
+			}
+
+			.select.sort-btn-trigger:hover,
+			.select.pagesize-btn:hover {
+				border-color: var(--xylem-teal);
+			}
+
+			.select.pagesize-btn {
+				height: 36px;
+				min-width: 75px;
+				padding: 0 0.75rem;
+			}
+
+			.dropdown--content {
+				position: absolute;
+				top: calc(100% + 4px);
+				right: 0;
+				background: #ffffff;
+				border: 1px solid var(--xylem-border);
+				border-radius: 4px;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+				z-index: 50;
+				min-width: 170px;
+				padding: 6px 0;
+			}
+
+			.dropdown--content ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.sort-option-btn,
+			.pagesize-option {
+				width: 100%;
+				text-align: left;
+				padding: 8px 16px;
+				background: none;
+				border: none;
+				font-size: 0.875rem;
+				color: var(--xylem-text-main);
+				cursor: pointer;
+				transition: background 0.15s;
+			}
+
+			.sort-option-btn:hover,
+			.pagesize-option:hover {
+				background-color: var(--xylem-teal-light);
+				color: var(--xylem-teal-hover);
+			}
+
+			.sort-option-btn.active,
+			.pagesize-option.active {
+				font-weight: 700;
+				color: var(--xylem-teal-hover);
+				background-color: #f0fdfa;
+			}
+
+			/* Main 2-Column Grid Layout */
+			.xds-main-grid-layout {
+				display: grid;
+				grid-template-columns: 280px 1fr;
+				gap: 2rem;
+				align-items: start;
+				min-height: calc(100vh - 120px);
+				transition: all 0.3s ease;
+			}
+
+			.xds-main-grid-layout.filters-collapsed {
+				grid-template-columns: 1fr;
+			}
+
+			.xds-main-grid-layout.filters-collapsed .search--filters--container {
+				display: none;
+			}
+
+			@media (max-width: 992px) {
+				.xds-main-grid-layout {
+					grid-template-columns: 1fr;
+				}
+				.search--filters--container {
+					margin-bottom: 1.5rem;
+				}
+			}
+
+			/* Sidebar Filter Groups - Sticky so it never scrolls up and out of view */
+			.search--filters--container {
+				background-color: #ffffff;
+				border: 1px solid var(--xylem-border);
+				border-radius: 4px;
+				padding: 0;
+				align-self: start;
+				position: -webkit-sticky;
+				position: sticky;
+				top: 136px;
+				max-height: calc(100vh - 150px);
+				overflow-y: auto;
+				overscroll-behavior: contain;
+				scrollbar-width: thin;
+				scrollbar-color: #cbd5e1 transparent;
+				z-index: 30;
+			}
+
+			.search--filters--container::-webkit-scrollbar {
+				width: 5px;
+			}
+
+			.search--filters--container::-webkit-scrollbar-track {
+				background: transparent;
+			}
+
+			.search--filters--container::-webkit-scrollbar-thumb {
+				background: #cbd5e1;
+				border-radius: 4px;
+			}
+
+			.search--filters--container::-webkit-scrollbar-thumb:hover {
+				background: #94a3b8;
+			}
+
+			.dropdown-filter-group {
+				border-bottom: 1px solid var(--xylem-border-subtle);
+			}
+
+			.dropdown-filter-group:last-child {
+				border-bottom: none;
+			}
+
+			.group-header-btn {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 1rem 1.25rem;
+				background: none;
+				border: none;
+				font-size: 0.95rem;
+				font-weight: 700;
+				color: var(--xylem-text-heading);
+				cursor: pointer;
+				text-align: left;
+			}
+
+			.group-header-btn:hover {
+				color: var(--xylem-teal);
+			}
+
+			.accordion-chevron {
+				transition: transform 0.2s ease;
+			}
+
+			.dropdown-filter-group.open .accordion-chevron {
+				transform: rotate(180deg);
+			}
+
+			.dropdown--content-body {
+				display: none;
+				padding: 0 1.25rem 1.25rem 1.25rem;
+			}
+
+			.dropdown-filter-group.open .dropdown--content-body {
+				display: block;
+			}
+
+			.checkbox-group {
+				margin-bottom: 0.65rem;
+			}
+
+			.checkbox-group:last-child {
+				margin-bottom: 0;
+			}
+
+			.field-check {
+				display: flex;
+				align-items: flex-start;
+				gap: 10px;
+			}
+
+			.field-check input[type="checkbox"] {
+				width: 16px;
+				height: 16px;
+				margin-top: 3px;
+				accent-color: var(--xylem-teal);
+				cursor: pointer;
+			}
+
+			.field-check label {
+				font-size: 0.875rem;
+				line-height: 1.4;
+				color: var(--xylem-text-main);
+				cursor: pointer;
+				user-select: none;
+			}
+
+			.field-check label:hover {
+				color: var(--xylem-teal);
+			}
+
+			.facet-count {
+				color: var(--xylem-text-muted);
+				font-size: 0.8125rem;
+				margin-left: 2px;
+			}
+
+			/* Search Results Column */
+			.search-results {
+				min-width: 0;
+			}
+
+			.d-flex { display: flex; }
+			.flex-column { flex-direction: column; }
+			.flex-wrap { flex-wrap: wrap; }
+			.justify-content-between { justify-content: space-between; }
+			.align-items-start { align-items: flex-start; }
+			.align-items-center { align-items: center; }
+			.gap-2 { gap: 0.5rem; }
+			.gap-3 { gap: 0.75rem; }
+			.gap-6 { gap: 1.5rem; }
+			.gap-8 { gap: 2rem; }
+			.xds-mb-12 { margin-bottom: 1.5rem; }
+			.list-reset { list-style: none; margin: 0; padding: 0; }
+
+			/* Active Filter Pills */
+			.active-facet-pill {
+				background-color: var(--xylem-teal-light);
+				border: 1px solid #8fe0ea;
+				color: var(--xylem-teal-hover);
+				padding: 4px 12px;
+				border-radius: 9999px;
+				font-size: 0.8125rem;
+				font-weight: 600;
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+			}
+
+			.pill-remove-btn {
+				background: none;
+				border: none;
+				color: var(--xylem-teal-hover);
+				font-size: 0.8125rem;
+				cursor: pointer;
+				padding: 0 2px;
+				line-height: 1;
+				font-weight: bold;
+			}
+
+			.pill-remove-btn:hover {
+				color: var(--xylem-danger);
+			}
+
+			/* Atlas Tile Card (1000% Xylem Structure) */
+			.atlas-tile-item {
+				margin-bottom: 1.25rem;
+			}
+
+			.atlas-tile-item:last-child {
+				margin-bottom: 0;
+			}
+
+			.atlas-tile-anchor {
+				text-decoration: none;
+				color: inherit;
+				display: block;
+			}
+
+			.atlas-tile-anchor:hover .atlas-tile {
+				border-color: var(--xylem-teal);
+				box-shadow: 0 4px 16px rgba(0, 149, 168, 0.12);
+			}
+
+			.atlas-tile-anchor:hover .atlas-tile__title .a-link {
+				color: var(--xylem-teal);
+				text-decoration: underline;
+			}
+
+			.atlas-tile-anchor:hover .atlas-tile__graphic img {
+				transform: scale(1.05);
+			}
+
+			.atlas-tile {
+				background-color: #ffffff;
+				border: 1px solid var(--xylem-border);
+				border-radius: 4px;
+				padding: 1.5rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: stretch;
+				gap: 1.5rem;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+				position: relative;
+				cursor: pointer;
+			}
+
+			.atlas-tile:hover {
+				border-color: var(--xylem-teal);
+				box-shadow: 0 4px 16px rgba(0, 149, 168, 0.12);
+			}
+
+			.atlas-tile__content {
+				flex: 1;
+				min-width: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+			}
+
+			.atlas-tile__subtitle {
+				font-size: 0.75rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				color: var(--xylem-text-muted);
+				margin-bottom: 0.5rem;
+			}
+
+			.atlas-tile__title {
+				font-size: 1.25rem;
+				font-weight: 700;
+				line-height: 1.35;
+				color: var(--xylem-text-heading);
+				margin: 0 0 0.75rem 0;
+			}
+
+			.atlas-tile__title .a-link {
+				color: inherit;
+				text-decoration: none;
+				transition: color 0.15s ease;
+			}
+
+			.atlas-tile:hover .atlas-tile__title .a-link {
+				color: var(--xylem-teal);
+				text-decoration: underline;
+			}
+
+			.atlas-tile__description {
+				font-size: 0.9375rem;
+				line-height: 1.55;
+				color: #4b5563;
+				margin: 0;
+			}
+
+			.atlas-tile__graphic {
+				width: 250px;
+				min-width: 250px;
+				height: 150px;
+				overflow: hidden;
+				border-radius: 4px;
+				background-color: #f3f4f6;
+				flex-shrink: 0;
+			}
+
+			.tile-image-link {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+
+			.atlas-tile__graphic img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				transition: transform 0.35s ease;
+			}
+
+			.atlas-tile:hover .atlas-tile__graphic img {
+				transform: scale(1.05);
+			}
+
+			@media (max-width: 768px) {
+				.atlas-tile-anchor {
+				text-decoration: none;
+				color: inherit;
+				display: block;
+			}
+
+			.atlas-tile-anchor:hover .atlas-tile {
+				border-color: var(--xylem-teal);
+				box-shadow: 0 4px 16px rgba(0, 149, 168, 0.12);
+			}
+
+			.atlas-tile-anchor:hover .atlas-tile__title .a-link {
+				color: var(--xylem-teal);
+				text-decoration: underline;
+			}
+
+			.atlas-tile-anchor:hover .atlas-tile__graphic img {
+				transform: scale(1.05);
+			}
+
+			.atlas-tile {
+					flex-direction: column-reverse;
+					gap: 1rem;
+					padding: 1.25rem;
+				}
+
+				.atlas-tile__graphic {
+					width: 100%;
+					min-width: 100%;
+					height: 200px;
+				}
+
+				.atlas-tile__title {
+					font-size: 1.125rem;
+				}
+			}
+
+			/* Empty Results Box */
+			.no-results-box {
+				background-color: var(--xylem-bg-gray);
+				border: 1px dashed var(--xylem-border);
+				border-radius: 4px;
+				padding: 3rem 2rem;
+				text-align: center;
+				margin: 2rem 0;
+			}
+
+			.no-results-box h3 {
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: var(--xylem-text-heading);
+				margin: 1rem 0 0.5rem 0;
+			}
+
+			.no-results-box p {
+				color: var(--xylem-text-muted);
+				font-size: 0.95rem;
+				max-width: 480px;
+				margin: 0 auto 1.5rem auto;
+			}
+
+			/* Pagination Bar (Exact Xylem) */
+			.pagination {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 2.5rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid var(--xylem-border-subtle);
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+
+			.pagination .items-info {
+				font-size: 0.875rem;
+				color: var(--xylem-text-muted);
+			}
+
+			.pagination-controls ul {
+				display: flex;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				gap: 4px;
+			}
+
+			.pagination-controls .page-number a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 36px;
+				height: 36px;
+				border-radius: 4px;
+				border: 1px solid var(--xylem-border);
+				color: var(--xylem-text-heading);
+				text-decoration: none;
+				font-size: 0.875rem;
+				font-weight: 600;
+				transition: all 0.2s;
+			}
+
+			.pagination-controls .page-number.active a {
+				background-color: var(--xylem-dark);
+				color: #ffffff;
+				border-color: var(--xylem-dark);
+			}
+
+			.pagination-controls .page-number a:hover:not(.active) {
+				border-color: var(--xylem-teal);
+				color: var(--xylem-teal);
+			}
+
+			.items-per-page {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.page-size-label {
+				font-size: 0.875rem;
+				color: var(--xylem-text-muted);
+			}
+		</style>
+
+		<!-- Client-Side Filter, Search, Sort & Toggle Logic -->
+		<script is:inline>
+			document.addEventListener('DOMContentLoaded', () => {
+				const tileItems = Array.from(document.querySelectorAll('.atlas-tile-item'));
+				const searchInput = document.getElementById('xylemSearchInput');
+				const clearSearchBtn = document.getElementById('clearSearchInputBtn');
+				const toggleFiltersBtn = document.getElementById('toggleFiltersBtn');
+				const mainGridLayout = document.getElementById('mainGridLayout');
+				const filterCheckboxes = document.querySelectorAll('.facet-checkbox');
+				const clearAllBtn = document.getElementById('clearAllBtn');
+				const pillContainer = document.getElementById('pillContainer');
+				const mainTagPill = document.getElementById('mainTagPill');
+				const displayedCountEl = document.getElementById('displayedCount');
+				const noResultsState = document.getElementById('noResultsState');
+				const emptyResetBtn = document.getElementById('emptyResetBtn');
+
+				// Sort elements
+				const sortTriggerBtn = document.getElementById('sortTriggerBtn');
+				const sortDropdownMenu = document.getElementById('sortDropdownMenu');
+				const sortCurrentLabel = document.getElementById('sortCurrentLabel');
+				const sortOptions = document.querySelectorAll('.sort-option-btn');
+
+				// Accordion groups
+				const accordionHeaders = document.querySelectorAll('.group-header-btn');
+
+				// Page size
+				const pageSizeBtn = document.getElementById('pageSizeBtn');
+				const pageSizeMenu = document.getElementById('pageSizeMenu');
+				const pageSizeLabel = document.getElementById('pageSizeLabel');
+				const pageSizeOptions = document.querySelectorAll('.pagesize-option');
+
+				let currentSort = 'relevance';
+				let isMainTagActive = true;
+
+				// 1. Accordion Toggles
+				accordionHeaders.forEach(header => {
+					header.addEventListener('click', () => {
+						const group = header.closest('.dropdown-filter-group');
+						const isOpen = group.classList.contains('open');
+						group.classList.toggle('open');
+						header.setAttribute('aria-expanded', !isOpen);
+					});
+				});
+
+				// 2. Toggle Left Filter Sidebar
+				toggleFiltersBtn?.addEventListener('click', () => {
+					const isCollapsed = mainGridLayout.classList.toggle('filters-collapsed');
+					toggleFiltersBtn.setAttribute('aria-expanded', !isCollapsed);
+				});
+
+				// 3. Sort Dropdown Toggle & Selection
+				sortTriggerBtn?.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const isHidden = sortDropdownMenu.style.display === 'none';
+					sortDropdownMenu.style.display = isHidden ? 'block' : 'none';
+					sortTriggerBtn.setAttribute('aria-expanded', isHidden);
+				});
+
+				document.addEventListener('click', () => {
+					if (sortDropdownMenu) sortDropdownMenu.style.display = 'none';
+					if (pageSizeMenu) pageSizeMenu.style.display = 'none';
+				});
+
+				sortOptions.forEach(opt => {
+					opt.addEventListener('click', () => {
+						sortOptions.forEach(o => o.classList.remove('active'));
+						opt.classList.add('active');
+						currentSort = opt.getAttribute('data-sort');
+						sortCurrentLabel.textContent = `Sort by: ${opt.textContent}`;
+						sortDropdownMenu.style.display = 'none';
+						applyFiltersAndSort();
+					});
+				});
+
+				// 4. Page Size Dropdown Toggle & Selection
+				pageSizeBtn?.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const isHidden = pageSizeMenu.style.display === 'none';
+					pageSizeMenu.style.display = isHidden ? 'block' : 'none';
+				});
+
+				pageSizeOptions.forEach(opt => {
+					opt.addEventListener('click', () => {
+						pageSizeOptions.forEach(o => o.classList.remove('active'));
+						opt.classList.add('active');
+						pageSizeLabel.textContent = opt.textContent;
+						pageSizeMenu.style.display = 'none';
+					});
+				});
+
+				// 5. Search Input Handlers
+				searchInput?.addEventListener('input', () => {
+					if (clearSearchBtn) {
+						clearSearchBtn.style.display = searchInput.value ? 'block' : 'none';
+					}
+					applyFiltersAndSort();
+				});
+
+				clearSearchBtn?.addEventListener('click', () => {
+					searchInput.value = '';
+					clearSearchBtn.style.display = 'none';
+					applyFiltersAndSort();
+				});
+
+				// 6. Checkbox changes
+				filterCheckboxes.forEach(cb => {
+					cb.addEventListener('change', () => {
+						updateFilterPills();
+						applyFiltersAndSort();
+					});
+				});
+
+				// 7. Main tag pill remove
+				mainTagPill?.querySelector('.pill-remove-btn')?.addEventListener('click', () => {
+					isMainTagActive = false;
+					mainTagPill.style.display = 'none';
+					applyFiltersAndSort();
+				});
+
+				// 8. Clear all filters
+				clearAllBtn?.addEventListener('click', resetAllFilters);
+				emptyResetBtn?.addEventListener('click', resetAllFilters);
+
+				function resetAllFilters() {
+					if (searchInput) searchInput.value = '';
+					if (clearSearchBtn) clearSearchBtn.style.display = 'none';
+					filterCheckboxes.forEach(cb => cb.checked = false);
+					isMainTagActive = true;
+					if (mainTagPill) mainTagPill.style.display = 'inline-flex';
+					updateFilterPills();
+					applyFiltersAndSort();
+				}
+
+				// Update dynamic filter pills based on checked checkboxes
+				function updateFilterPills() {
+					// Remove any dynamic pills
+					const dynamicPills = pillContainer.querySelectorAll('.dynamic-pill');
+					dynamicPills.forEach(p => p.remove());
+
+					filterCheckboxes.forEach(cb => {
+						if (cb.checked) {
+							const val = cb.getAttribute('data-value');
+							const pill = document.createElement('div');
+							pill.className = 'active-facet-pill dynamic-pill';
+							pill.innerHTML = `<span>${val}</span><button type="button" class="pill-remove-btn" title="Remove filter">✕</button>`;
+							pill.querySelector('.pill-remove-btn').addEventListener('click', () => {
+								cb.checked = false;
+								pill.remove();
+								applyFiltersAndSort();
+							});
+							pillContainer.appendChild(pill);
+						}
+					});
+				}
+
+				// Master Filter & Sort function
+				function applyFiltersAndSort() {
+					const query = (searchInput?.value || '').trim().toLowerCase();
+					
+					// Gather active checkbox filters by group
+					const activeFilters = {
+						market: [],
+						applications: [],
+						blog: [],
+						topics: [],
+						category: []
+					};
+
+					filterCheckboxes.forEach(cb => {
+						if (cb.checked) {
+							const grp = cb.getAttribute('data-group');
+							const val = cb.getAttribute('data-value');
+							if (activeFilters[grp]) activeFilters[grp].push(val);
+						}
+					});
+
+					let visibleCount = 0;
+					const visibleTiles = [];
+
+					tileItems.forEach(item => {
+						const title = item.getAttribute('data-title') || '';
+						const desc = item.getAttribute('data-desc') || '';
+						const markets = JSON.parse(item.getAttribute('data-markets') || '[]');
+						const applications = JSON.parse(item.getAttribute('data-applications') || '[]');
+						const topics = JSON.parse(item.getAttribute('data-topics') || '[]');
+						const blog = item.getAttribute('data-blog') || '';
+						const category = item.getAttribute('data-category') || '';
+
+						// 1. Text search match
+						let matchesQuery = true;
+						if (query) {
+							matchesQuery = title.includes(query) || desc.includes(query);
+						}
+
+						// 2. Facet filters match (ANY within category must match if category has selected items)
+						let matchesMarket = true;
+						if (activeFilters.market.length > 0) {
+							matchesMarket = activeFilters.market.some(m => markets.includes(m));
+						}
+
+						let matchesApps = true;
+						if (activeFilters.applications.length > 0) {
+							matchesApps = activeFilters.applications.some(a => applications.includes(a));
+						}
+
+						let matchesTopics = true;
+						if (activeFilters.topics.length > 0) {
+							matchesTopics = activeFilters.topics.some(t => topics.includes(t));
+						}
+
+						let matchesBlog = true;
+						if (activeFilters.blog.length > 0) {
+							matchesBlog = activeFilters.blog.includes(blog);
+						}
+
+						let matchesCategory = true;
+						if (activeFilters.category.length > 0) {
+							matchesCategory = activeFilters.category.includes(category);
+						}
+
+						const isVisible = matchesQuery && matchesMarket && matchesApps && matchesTopics && matchesBlog && matchesCategory;
+
+						if (isVisible) {
+							item.style.display = 'block';
+							visibleCount++;
+							visibleTiles.push(item);
+						} else {
+							item.style.display = 'none';
+						}
+					});
+
+					// Update counts
+					if (displayedCountEl) displayedCountEl.textContent = visibleCount;
+					if (noResultsState) {
+						noResultsState.style.display = visibleCount === 0 ? 'block' : 'none';
+					}
+
+					// Apply Sorting to visible items
+					if (visibleCount > 1) {
+						const list = document.getElementById('atlasTileList');
+						if (currentSort === 'az') {
+							visibleTiles.sort((a, b) => {
+								const tA = (a.getAttribute('data-title') || '').trim();
+								const tB = (b.getAttribute('data-title') || '').trim();
+								return tA.localeCompare(tB);
+							});
+							visibleTiles.forEach(tile => list.appendChild(tile));
+						} else if (currentSort === 'za') {
+							visibleTiles.sort((a, b) => {
+								const tA = (a.getAttribute('data-title') || '').trim();
+								const tB = (b.getAttribute('data-title') || '').trim();
+								return tB.localeCompare(tA);
+							});
+							visibleTiles.forEach(tile => list.appendChild(tile));
+						} else {
+							// Default / Relevance: sort by data-id
+							visibleTiles.sort((a, b) => {
+								const idA = parseInt(a.getAttribute('data-id') || '0', 10);
+								const idB = parseInt(b.getAttribute('data-id') || '0', 10);
+								return idA - idB;
+							});
+							visibleTiles.forEach(tile => list.appendChild(tile));
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

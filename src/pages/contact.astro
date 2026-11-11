@@ -1,0 +1,1316 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+import { COMPANY_NAME, COMPANY_PHONE, COMPANY_EMAIL, COMPANY_LOCATION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en-us" data-culture="en-US">
+	<head>
+		<BaseHead
+			title="Contact Us | Aqua Shakti Industries"
+			description="Whether you would like additional information or are interested in getting a quote for industrial water treatment plants, we're here to help."
+			image="/images/hero-plant.jpg"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="xylem-contact-body">
+		<Header />
+
+		<main class="contact-page-main">
+			<div class="content-page-with-sidebar-wrapper content-detail-wrapper" xyl-view="contentDetailPage">
+				<div class="wrapper">
+					<!-- Page Title -->
+					<div class="title-container">
+						<h1 class="page-title">Contact Us</h1>
+					</div>
+
+					<div class="pure-g">
+						<!-- Main Detail Content Area (17/24 width on desktop) -->
+						<div class="detail-content body-copy main-content-area pure-u-1 pure-u-lg-17-24">
+							<div class="pure-u flex-equal-height clear-all">
+								<div class="component-formBlock component-default iconHeading">
+									<div class="embed-code pure-u-1 marketoForm">
+										<div class="description-wrapper prose">
+											<p>
+												Whether you would like additional information or are interested in getting a
+												quote, we're here to help.
+											</p>
+										</div>
+
+										<div class="content form-wrapper pl-1 py-1" data-embedform-id="18578" xyl-view="marketoForm">
+											<p class="all-req-msg">All fields required.</p>
+
+											<h3 class="hidden offline-message" id="offline-message" style="display: none;">
+												Looks like you are offline, your form will be sent as soon as you get back online.
+											</h3>
+
+											<!-- Marketo-Styled Form -->
+											<form id="xylem-rfq-form" class="mktoForm" onsubmit="event.preventDefault(); submitXylemForm();" novalidate>
+												<!-- Row 1: First Name & Last Name -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="FirstName" class="mktoLabel">First Name</label>
+															<input
+																type="text"
+																id="FirstName"
+																name="FirstName"
+																class="mktoField"
+																required
+																autocomplete="given-name"
+															/>
+															<div class="field-error-msg" id="err-FirstName">This field is required.</div>
+														</div>
+													</div>
+
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="LastName" class="mktoLabel">Last Name</label>
+															<input
+																type="text"
+																id="LastName"
+																name="LastName"
+																class="mktoField"
+																required
+																autocomplete="family-name"
+															/>
+															<div class="field-error-msg" id="err-LastName">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Row 2: Business Email & Company -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Email" class="mktoLabel">Business Email</label>
+															<input
+																type="email"
+																id="Email"
+																name="Email"
+																class="mktoField"
+																required
+																autocomplete="email"
+															/>
+															<div class="field-error-msg" id="err-Email">Please enter a valid business email.</div>
+														</div>
+													</div>
+
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Company" class="mktoLabel">Company</label>
+															<input
+																type="text"
+																id="Company"
+																name="Company"
+																class="mktoField"
+																required
+																autocomplete="organization"
+															/>
+															<div class="field-error-msg" id="err-Company">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Row 3: Phone & Industry -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Phone" class="mktoLabel">Phone</label>
+															<input
+																type="tel"
+																id="Phone"
+																name="Phone"
+																class="mktoField"
+																required
+																autocomplete="tel"
+															/>
+															<div class="field-error-msg" id="err-Phone">This field is required.</div>
+														</div>
+													</div>
+
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Industry" class="mktoLabel">Industry:</label>
+															<select id="Industry" name="Industry" class="mktoField" required>
+																<option value="" selected>Select...</option>
+																<option value="Chemicals & Pharmaceuticals">Chemicals &amp; Pharmaceuticals</option>
+																<option value="Textiles & Dyeing">Textiles &amp; Dyeing</option>
+																<option value="Food & Beverage">Food &amp; Beverage</option>
+																<option value="Commercial Buildings / Hospitals / Hotels">Commercial Buildings / Hospitals / Hotels</option>
+																<option value="Manufacturing & Engineering">Manufacturing &amp; Engineering</option>
+																<option value="Agriculture & Irrigation">Agriculture &amp; Irrigation</option>
+																<option value="Power Generation">Energy &amp; Power</option>
+																<option value="Municipal Water & Wastewater">Municipal Water &amp; Wastewater</option>
+																<option value="Metals & Mining">Metals &amp; Mining</option>
+																<option value="Water Treatment & Chemicals">Water Treatment Plants &amp; Chemicals</option>
+																<option value="Other">Other</option>
+															</select>
+															<div class="field-error-msg" id="err-Industry">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Row 4: Select Your Location & State Name -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="countryName" class="mktoLabel">Select Your Location</label>
+															<select id="countryName" name="countryName" class="mktoField" required onchange="handleCountryChange(this.value)">
+																<option value="">Please Select</option>
+																<option value="India" selected>India</option>
+																<option value="United States">United States</option>
+																<option value="United Arab Emirates">United Arab Emirates</option>
+																<option value="Saudi Arabia">Saudi Arabia</option>
+																<option value="Canada">Canada</option>
+																<option value="United Kingdom">United Kingdom</option>
+																<option value="Australia">Australia</option>
+																<option value="Singapore">Singapore</option>
+																<option value="Other">Other Country</option>
+															</select>
+															<div class="field-error-msg" id="err-countryName">This field is required.</div>
+														</div>
+													</div>
+
+													<div class="mktoFormCol" id="stateCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="stateName" class="mktoLabel" id="lblStateName">State Name</label>
+															<select id="stateName" name="stateName" class="mktoField" required>
+																<option value="">Select...</option>
+															</select>
+															<div class="field-error-msg" id="err-stateName">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Row 5: City & Address -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="City" class="mktoLabel">City</label>
+															<input
+																type="text"
+																id="City"
+																name="City"
+																class="mktoField"
+																required
+																autocomplete="address-level2"
+															/>
+															<div class="field-error-msg" id="err-City">This field is required.</div>
+														</div>
+													</div>
+
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Address" class="mktoLabel">Address</label>
+															<input
+																type="text"
+																id="Address"
+																name="Address"
+																class="mktoField"
+																required
+																autocomplete="street-address"
+															/>
+															<div class="field-error-msg" id="err-Address">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Row 6: Plant Requirement & Postal Code -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Xylem_Brand" class="mktoLabel">Plant Requirement</label>
+															<select id="Xylem_Brand" name="Xylem_Brand" class="mktoField" required>
+																<option value="">Please Select</option>
+																<option value="Industrial RO Plant">Industrial RO Plant (500 – 50,000+ LPH)</option>
+																<option value="Commercial RO Plant">Commercial RO Plant (25 – 1,000 LPH)</option>
+																<option value="Effluent Treatment Plant (ETP)">Effluent Treatment Plant (ETP)</option>
+																<option value="Sewage Treatment Plant (STP)">Sewage Treatment Plant (STP)</option>
+																<option value="Industrial Water Softener Plant">Industrial Water Softener Plant</option>
+																<option value="Demineralization (DM) / Mix Bed Plant">Demineralization (DM) / Mix Bed Plant</option>
+																<option value="Ozonation & Packaged Water Plant">Ozonation &amp; Packaged Drinking Water</option>
+																<option value="Rain Water Harvesting System">Rain Water Harvesting System</option>
+																<option value="Swimming Pool Filtration System">Swimming Pool Filtration System</option>
+																<option value="Membranes, Resins, Antiscalants & Spares">Membranes, Resins, Antiscalants &amp; Spares</option>
+																<option value="Other Water Treatment System">Other Water Treatment System</option>
+															</select>
+															<div class="field-error-msg" id="err-Xylem_Brand">This field is required.</div>
+														</div>
+													</div>
+
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="PostalCode" class="mktoLabel">Postal Code</label>
+															<input
+																type="text"
+																id="PostalCode"
+																name="PostalCode"
+																class="mktoField"
+																required
+																autocomplete="postal-code"
+															/>
+															<div class="field-error-msg" id="err-PostalCode">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Row 7: Job Title & How can we help you? -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Title" class="mktoLabel">Job Title:</label>
+															<input
+																type="text"
+																id="Title"
+																name="Title"
+																class="mktoField"
+																required
+																autocomplete="organization-title"
+															/>
+															<div class="field-error-msg" id="err-Title">This field is required.</div>
+														</div>
+													</div>
+
+													<div class="mktoFormCol">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Request_Type__c" class="mktoLabel">How can we help you?</label>
+															<select id="Request_Type__c" name="Request_Type__c" class="mktoField" required>
+																<option value="">Please Select</option>
+																<option value="Request Sizing & Quotation">Request Sizing &amp; Quotation</option>
+																<option value="Buy New Plant">Buy New Plant</option>
+																<option value="Water Test & Technical Analysis">Water Test &amp; Technical Analysis</option>
+																<option value="Aftermarket, Spares & AMC">Aftermarket, Spares &amp; AMC</option>
+																<option value="Customer Support">Customer Support</option>
+																<option value="Other">Other</option>
+															</select>
+															<div class="field-error-msg" id="err-Request_Type__c">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Row 8: Upcoming Project -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol mktoColFull">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="americasUpcomingProject" class="mktoLabel">I have an upcoming project</label>
+															<select id="americasUpcomingProject" name="americasUpcomingProject" class="mktoField" required>
+																<option value="">Select...</option>
+																<option value="Yes">Yes</option>
+																<option value="No">No</option>
+															</select>
+															<div class="field-error-msg" id="err-americasUpcomingProject">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Row 9: What are your project or support needs? -->
+												<div class="mktoFormRow">
+													<div class="mktoFormCol mktoColFull">
+														<div class="mktoFieldWrap mktoRequiredField">
+															<label for="Xylem_Lead_Question" class="mktoLabel">What are your project or support needs?</label>
+															<textarea
+																id="Xylem_Lead_Question"
+																name="Xylem_Lead_Question"
+																class="mktoField mktoTextarea"
+																required
+																rows="4"
+																placeholder="Mention required capacity (e.g. 5,000 LPH), raw water source (borewell, river, effluent), TDS or any specific requirements..."
+															></textarea>
+															<div class="field-error-msg" id="err-Xylem_Lead_Question">This field is required.</div>
+														</div>
+													</div>
+												</div>
+
+												<!-- Required Field Note -->
+												<div class="req-field-msg wide">
+													<span>*</span> Required Field
+												</div>
+
+												<!-- Opt-in Checkbox -->
+												<div class="mktoCheckboxWrap">
+													<input type="checkbox" id="GDPR_Consent__c" name="GDPR_Consent__c" />
+													<label for="GDPR_Consent__c">
+														Yes, I'd like to receive periodic technical updates and product offers from Aqua Shakti Industries
+													</label>
+												</div>
+
+												<!-- Privacy Statement -->
+												<div class="mktoPrivacyText">
+													By submitting this form, you confirm that you agree to the storing and processing of your personal data as described in our <a href="/privacy">Privacy Policy</a>.
+												</div>
+
+												<!-- Submit Button Row -->
+												<div class="mktoButtonRow">
+													<button type="submit" id="mktoSubmitBtn" class="mktoButton">
+														Submit
+													</button>
+												</div>
+											</form>
+
+											<!-- Thank You Confirmation Screen -->
+											<div id="thank-you-view" class="thank-you-container" style="display: none;">
+												<div class="thank-you-icon-circle">
+													<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+														<polyline points="20 6 9 17 4 12"></polyline>
+													</svg>
+												</div>
+												<h2 class="thank-you-title">Thank you for contacting us!</h2>
+												<p class="thank-you-desc">
+													Whether you would like additional information or are interested in getting a quote, we're here to help. Your submission has been received and our engineering support team will review your inquiry and follow up shortly.
+												</p>
+
+												<div class="thank-you-actions-card">
+													<a id="thank-you-wa-btn" href="#" target="_blank" class="mktoButton wa-action-btn">
+														Connect on WhatsApp Now &rarr;
+													</a>
+													<button type="button" class="btn-sub-reset" onclick="resetFormToStart()">
+														Send another message
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Sidebar (7/24 width on desktop) - Clean Aqua Shakti Head Office & Consultation -->
+						<div class="sidebar pure-u-1 pure-u-lg-7-24 mb-1" data-accordion-breakpoint="desktopLarge" xyl-view="accordion">
+							<!-- 1. Aqua Shakti Works & Head Office -->
+							<div class="component-freeTextBlock component-default" xyl-view="freeTextBlock">
+								<div class="accordion-item" data-expandable="false">
+									<div class="title-wrapper">
+										<h3 class="title-content">Works &amp; Head Office</h3>
+									</div>
+									<div class="content">
+										<p>
+											<strong>Aqua Shakti Industries</strong><br />
+											Vapi Timber Compound, Opp. Chandralok Tower,<br />
+											Nr. D Mart, Chanod, VAPI – 396 195<br />
+											Gujarat, India
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- 2. Direct Engineering & Sales -->
+							<div class="component-freeTextBlock component-default" xyl-view="freeTextBlock">
+								<div class="accordion-item" data-expandable="false">
+									<div class="title-wrapper">
+										<h3 class="title-content">Direct Engineering &amp; Sales</h3>
+									</div>
+									<div class="content">
+										<p>
+											<strong>Mobile / Direct Sales:</strong><br />
+											<a href="tel:+919913936995" class="sidebar-contact-link">+91 99139 36995</a> /
+											<a href="tel:+919377555014" class="sidebar-contact-link">+91 93775 55014</a>
+										</p>
+										<p class="sidebar-contact-spaced">
+											<strong>24/7 Helpline:</strong><br />
+											<a href="tel:6356008944" class="sidebar-contact-link">6356008944</a>
+										</p>
+										<p class="sidebar-contact-spaced">
+											<strong>Official Email:</strong><br />
+											<a href="mailto:aquashakti99@gmail.com" class="sidebar-contact-link">aquashakti99@gmail.com</a>
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- 3. Operating Hours -->
+							<div class="component-freeTextBlock component-default" xyl-view="freeTextBlock">
+								<div class="accordion-item" data-expandable="false">
+									<div class="title-wrapper">
+										<h3 class="title-content">Operating Hours</h3>
+									</div>
+									<div class="content">
+										<p>
+											Monday – Saturday: 9:00 AM – 7:30 PM<br />
+											Emergency Breakdown &amp; Spares: 24/7
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Full-Width Horizontal Google Map Section targeting Company Factory Address -->
+			<section class="contact-map-horizontal-section">
+				<div class="map-horizontal-wrapper">
+					<div class="map-heading-bar">
+						<div class="map-title-group">
+							<span class="map-badge">Direct Factory &amp; Works Location</span>
+							<h2 class="map-title">Locate Aqua Shakti Industries on Map</h2>
+							<p class="map-address-text">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+									<circle cx="12" cy="10" r="3"></circle>
+								</svg>
+								<span>Vapi Timber Compound, Opp. Chandralok Tower, Nr. D Mart, Chanod, VAPI – 396 195, Gujarat, India</span>
+							</p>
+						</div>
+						<div class="map-btn-group">
+							<a
+								href="https://maps.google.com/?q=Aqua+Shakti+Industries+Vapi+Timber+Compound+Chanod+VAPI+396195+Gujarat"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="btn-open-gmaps"
+							>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+								</svg>
+								<span>Open in Google Maps &rarr;</span>
+							</a>
+						</div>
+					</div>
+
+					<div class="map-embed-frame">
+						<iframe
+							title="Aqua Shakti Industries Factory Google Map"
+							src="https://maps.google.com/maps?q=Aqua+Shakti+Industries,+Vapi+Timber+Compound,+Opp.+Chandralok+Tower,+Chanod,+Vapi,+Gujarat+396195&t=&z=15&ie=UTF8&iwloc=&output=embed"
+							width="100%"
+							height="460"
+							style="border:0;"
+							allowfullscreen=""
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+						></iframe>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+		<QuoteModal />
+
+		<style>
+			/* ==========================================================================
+			   XYLEM US EXACT STYLING & DESIGN TOKENS
+			   Exact font family, spacing, notch-label forms, colors, sidebar, pure grid
+			   ========================================================================== */
+
+			:root {
+				--xds-font-family: 'Roboto Flex', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+				--atlas-color-blue-digital: #0085ad;
+				--atlas-color-blue-hover: #006f91;
+				--atlas-color-blue-dependable: #0f3550;
+				--atlas-color-text-main: #2b3035;
+				--atlas-color-text-muted: #73777c;
+				--atlas-color-border: #ddd;
+				--atlas-color-border-field: #c8ced3;
+				--atlas-color-error: #d9383a;
+				--atlas-bg-light: #f2f3f4;
+			}
+
+			html, body.xylem-contact-body {
+				background-color: #ffffff !important;
+				color: var(--atlas-color-text-muted);
+				font-family: var(--xds-font-family);
+				font-size: 16px;
+				line-height: 1.5;
+				margin: 0;
+				padding: 0;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			.contact-page-main {
+				background-color: #ffffff;
+				min-height: 70vh;
+			}
+
+			/* Container & Wrappers matching Xylem's .content-page-with-sidebar-wrapper */
+			.content-page-with-sidebar-wrapper {
+				width: 100%;
+			}
+
+			.content-page-with-sidebar-wrapper > .wrapper {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2.25rem 1.5rem 4rem;
+				min-width: 300px;
+				box-sizing: border-box;
+			}
+
+			/* Title Container & H1 matching Xylem */
+			.title-container {
+				margin-bottom: 1.5rem;
+			}
+
+			h1.page-title {
+				font-family: var(--xds-font-family);
+				font-size: 2.25rem;
+				line-height: 2.5rem;
+				font-weight: 300;
+				color: var(--atlas-color-blue-dependable);
+				margin: 0 0 1.25rem;
+				letter-spacing: -0.015em;
+			}
+
+			/* Pure Grid 24-Column Emulation */
+			.pure-g {
+				display: flex;
+				flex-wrap: wrap;
+				margin-left: -15px;
+				margin-right: -15px;
+			}
+
+			.pure-u-1 {
+				width: 100%;
+				box-sizing: border-box;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+
+			@media (min-width: 992px) {
+				.pure-u-lg-17-24 {
+					width: 70.8333%;
+					padding-right: 32px;
+				}
+				.pure-u-lg-7-24 {
+					width: 29.1667%;
+					padding-left: 20px;
+				}
+			}
+
+			/* Detail Content / Main Content Area */
+			.detail-content {
+				box-sizing: border-box;
+			}
+
+			.description-wrapper.prose {
+				margin-bottom: 0.85rem;
+			}
+
+			.description-wrapper.prose p {
+				font-family: var(--xds-font-family);
+				font-size: 1rem;
+				line-height: 1.6;
+				color: var(--atlas-color-text-main);
+				margin: 0;
+			}
+
+			.all-req-msg {
+				font-family: var(--xds-font-family);
+				font-size: 0.813rem;
+				line-height: 1.75rem;
+				color: var(--atlas-color-text-muted);
+				margin: 0 0 1.25rem;
+				font-weight: 400;
+				text-align: left;
+			}
+
+			/* ==========================================================================
+			   MARKETO FORM EXACT FLOATING/NOTCHED LABEL STYLES
+			   ========================================================================== */
+
+			.form-wrapper {
+				background-color: #ffffff;
+			}
+
+			.mktoForm {
+				width: 100% !important;
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			.mktoFormRow {
+				display: flex;
+				flex-wrap: wrap;
+				margin: 0 -10px 14px;
+			}
+
+			.mktoFormCol {
+				flex: 1 1 calc(50% - 20px);
+				min-width: 240px;
+				margin: 10px 10px 0;
+				position: relative;
+				box-sizing: border-box;
+			}
+
+			.mktoColFull {
+				flex: 1 1 100% !important;
+				max-width: 100% !important;
+			}
+
+			.mktoFieldWrap {
+				position: relative;
+				width: 100%;
+			}
+
+			/* Notched Label on border matching Xylem Marketo */
+			.mktoForm .mktoFieldWrap label.mktoLabel {
+				position: absolute;
+				top: -9px;
+				left: 14px;
+				background: #ffffff;
+				padding: 0 5px;
+				font-size: 0.78rem;
+				line-height: 1.2;
+				color: #55595c;
+				font-weight: 400;
+				z-index: 2;
+				pointer-events: none;
+				white-space: nowrap;
+				margin: 0;
+			}
+
+			.mktoRequiredField label.mktoLabel:after {
+				content: "*";
+				color: var(--atlas-color-blue-digital);
+				padding-left: 3px;
+				font-weight: bold;
+			}
+
+			/* Input, Select, Textarea fields */
+			.mktoForm .mktoFieldWrap input.mktoField,
+			.mktoForm .mktoFieldWrap select.mktoField,
+			.mktoForm .mktoFieldWrap textarea.mktoField {
+				border: 1px solid var(--atlas-color-border-field);
+				height: 42px;
+				width: 100% !important;
+				box-sizing: border-box;
+				margin: 0;
+				color: var(--atlas-color-text-main);
+				font-family: var(--xds-font-family);
+				font-size: 0.875rem;
+				padding: 0 14px;
+				border-radius: 2px;
+				background-color: #ffffff;
+				outline: none;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.mktoForm .mktoFieldWrap input.mktoField:focus,
+			.mktoForm .mktoFieldWrap select.mktoField:focus,
+			.mktoForm .mktoFieldWrap textarea.mktoField:focus {
+				border-color: var(--atlas-color-blue-digital);
+				box-shadow: 0 0 0 1px var(--atlas-color-blue-digital);
+			}
+
+			.mktoForm .mktoFieldWrap input.is-invalid,
+			.mktoForm .mktoFieldWrap select.is-invalid,
+			.mktoForm .mktoFieldWrap textarea.is-invalid {
+				border-color: var(--atlas-color-error) !important;
+			}
+
+			.field-error-msg {
+				display: none;
+				font-size: 0.72rem;
+				color: var(--atlas-color-error);
+				margin-top: 3px;
+				padding-left: 14px;
+			}
+
+			.field-error-msg.visible {
+				display: block;
+			}
+
+			/* Select with custom chevron */
+			.mktoForm .mktoFieldWrap select.mktoField {
+				appearance: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2373777c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+				background-repeat: no-repeat;
+				background-position: right 14px center;
+				background-size: 14px;
+				padding-right: 38px;
+				cursor: pointer;
+			}
+
+			/* Textarea */
+			.mktoForm .mktoFieldWrap textarea.mktoField {
+				height: 125px;
+				padding: 12px 14px;
+				resize: vertical;
+				line-height: 1.45;
+			}
+
+			/* Required Field Message */
+			.req-field-msg {
+				font-size: 0.75rem;
+				color: var(--atlas-color-text-muted);
+				margin: 14px 10px 10px;
+				font-weight: 400;
+			}
+
+			.req-field-msg span {
+				color: var(--atlas-color-blue-digital);
+				font-weight: bold;
+			}
+
+			/* Checkbox and GDPR */
+			.mktoCheckboxWrap {
+				display: flex;
+				align-items: flex-start;
+				gap: 10px;
+				margin: 14px 10px 10px;
+			}
+
+			.mktoCheckboxWrap input[type='checkbox'] {
+				width: 18px;
+				height: 18px;
+				margin-top: 1px;
+				accent-color: var(--atlas-color-blue-digital);
+				cursor: pointer;
+				flex-shrink: 0;
+			}
+
+			.mktoCheckboxWrap label {
+				font-size: 0.813rem;
+				line-height: 1.45;
+				color: #55595c;
+				cursor: pointer;
+				font-weight: 400;
+			}
+
+			.mktoPrivacyText {
+				font-size: 0.75rem;
+				line-height: 1.5;
+				color: var(--atlas-color-text-muted);
+				margin: 8px 10px 22px;
+			}
+
+			.mktoPrivacyText a {
+				color: var(--atlas-color-blue-digital);
+				text-decoration: none;
+			}
+
+			.mktoPrivacyText a:hover {
+				text-decoration: underline;
+			}
+
+			/* Submit Button Row matching Xylem */
+			.mktoButtonRow {
+				text-align: center;
+				margin: 22px 0 10px;
+				padding: 0 10px;
+			}
+
+			.mktoButtonRow .mktoButton,
+			.wa-action-btn {
+				display: inline-block;
+				width: 100%;
+				max-width: 348px;
+				height: 48px;
+				line-height: 46px;
+				background-color: var(--atlas-color-blue-digital);
+				color: #ffffff !important;
+				border: 1px solid var(--atlas-color-blue-digital);
+				border-radius: 2rem;
+				font-family: var(--xds-font-family);
+				font-size: 0.938rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				cursor: pointer;
+				text-align: center;
+				box-sizing: border-box;
+				text-decoration: none;
+				transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.mktoButtonRow .mktoButton:hover,
+			.wa-action-btn:hover {
+				background-color: var(--atlas-color-blue-hover);
+				border-color: var(--atlas-color-blue-hover);
+				box-shadow: 0 4px 12px rgba(0, 133, 173, 0.28);
+			}
+
+			/* ==========================================================================
+			   THANK YOU SCREEN
+			   ========================================================================== */
+
+			.thank-you-container {
+				text-align: center;
+				padding: 3rem 1.5rem;
+				animation: fadeIn 0.3s ease-out;
+			}
+
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(6px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.thank-you-icon-circle {
+				width: 64px;
+				height: 64px;
+				border-radius: 50%;
+				background-color: #e0f2fe;
+				color: var(--atlas-color-blue-digital);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto 1.25rem;
+			}
+
+			.thank-you-title {
+				font-size: 1.75rem;
+				font-weight: 400;
+				color: var(--atlas-color-blue-dependable);
+				margin: 0 0 0.75rem;
+			}
+
+			.thank-you-desc {
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: var(--atlas-color-text-muted);
+				max-width: 600px;
+				margin: 0 auto 2rem;
+			}
+
+			.thank-you-actions-card {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			.btn-sub-reset {
+				background: none;
+				border: none;
+				color: var(--atlas-color-blue-digital);
+				font-size: 0.875rem;
+				cursor: pointer;
+				text-decoration: underline;
+				font-family: inherit;
+				padding: 4px 8px;
+			}
+
+			/* ==========================================================================
+			   SIDEBAR CLEAN STYLING
+			   ========================================================================== */
+
+			.sidebar {
+				box-sizing: border-box;
+				padding-top: 0.25rem;
+			}
+
+			.component-freeTextBlock {
+				border-bottom: 2px solid var(--atlas-bg-light);
+				margin-bottom: 1.35rem;
+				padding-bottom: 1.35rem;
+			}
+
+			.component-freeTextBlock:last-child {
+				border-bottom: none;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			.title-content {
+				font-family: var(--xds-font-family);
+				font-weight: 500;
+				font-size: 1.125rem;
+				line-height: 1.3;
+				letter-spacing: -0.01rem;
+				color: var(--atlas-color-blue-digital);
+				margin: 0 0 0.5rem;
+			}
+
+			.component-freeTextBlock .content p {
+				font-family: var(--xds-font-family);
+				font-size: 0.875rem;
+				line-height: 1.6;
+				color: var(--atlas-color-text-muted);
+				margin: 0 0 0.5rem;
+			}
+
+			.sidebar-contact-spaced {
+				margin-top: 0.75rem !important;
+			}
+
+			.sidebar-contact-link {
+				color: var(--atlas-color-blue-digital);
+				text-decoration: none;
+				font-weight: 500;
+			}
+
+			.sidebar-contact-link:hover {
+				text-decoration: underline;
+			}
+
+			/* ==========================================================================
+			   HORIZONTAL GOOGLE MAP SECTION
+			   ========================================================================== */
+
+			.contact-map-horizontal-section {
+				width: 100%;
+				background-color: #f8fafc;
+				border-top: 1px solid var(--atlas-bg-light);
+				padding: 3rem 1.5rem 4rem;
+				box-sizing: border-box;
+			}
+
+			.map-horizontal-wrapper {
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			.map-heading-bar {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				flex-wrap: wrap;
+				gap: 1.25rem;
+				margin-bottom: 1.5rem;
+			}
+
+			.map-badge {
+				display: inline-block;
+				font-size: 0.75rem;
+				font-weight: 700;
+				color: var(--atlas-color-blue-digital);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				margin-bottom: 0.35rem;
+			}
+
+			.map-title {
+				font-family: var(--xds-font-family);
+				font-size: 1.65rem;
+				font-weight: 400;
+				color: var(--atlas-color-blue-dependable);
+				margin: 0 0 0.4rem;
+				line-height: 1.25;
+			}
+
+			.map-address-text {
+				font-family: var(--xds-font-family);
+				font-size: 0.9rem;
+				color: var(--atlas-color-text-muted);
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin: 0;
+			}
+
+			.map-address-text svg {
+				color: var(--atlas-color-blue-digital);
+				flex-shrink: 0;
+			}
+
+			.btn-open-gmaps {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.7rem 1.4rem;
+				background-color: var(--atlas-color-blue-digital);
+				color: #ffffff !important;
+				border: 1px solid var(--atlas-color-blue-digital);
+				border-radius: 2rem;
+				font-family: var(--xds-font-family);
+				font-size: 0.875rem;
+				font-weight: 600;
+				text-decoration: none;
+				transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+			}
+
+			.btn-open-gmaps:hover {
+				background-color: var(--atlas-color-blue-hover);
+				border-color: var(--atlas-color-blue-hover);
+				box-shadow: 0 4px 12px rgba(0, 133, 173, 0.25);
+				transform: translateY(-1px);
+			}
+
+			.map-embed-frame {
+				width: 100%;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+				border: 1px solid #dbe2e8;
+				background-color: #ffffff;
+			}
+
+			.map-embed-frame iframe {
+				display: block;
+				width: 100%;
+				height: 460px;
+				border: none;
+			}
+
+			/* ==========================================================================
+			   RESPONSIVE DESIGN
+			   ========================================================================== */
+
+			@media (max-width: 991px) {
+				.content-page-with-sidebar-wrapper > .wrapper {
+					padding: 1.75rem 1rem 3rem;
+				}
+
+				.contact-map-horizontal-section {
+					padding: 2.25rem 1rem 3rem;
+				}
+
+				.map-heading-bar {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+
+				.map-embed-frame iframe {
+					height: 380px;
+				}
+
+				h1.page-title {
+					font-size: 1.85rem;
+					line-height: 2.15rem;
+				}
+
+				.sidebar {
+					margin-top: 2.5rem;
+					border-top: 2px solid var(--atlas-bg-light);
+					padding-top: 2rem;
+				}
+			}
+
+			@media (max-width: 600px) {
+				.mktoFormCol {
+					flex: 1 1 100%;
+					min-width: 100%;
+					margin: 8px 0;
+				}
+
+				.mktoFormRow {
+					margin: 0 0 8px;
+				}
+
+				.mktoButtonRow .mktoButton,
+				.wa-action-btn {
+					max-width: 100%;
+				}
+
+				.map-title {
+					font-size: 1.35rem;
+				}
+
+				.map-embed-frame iframe {
+					height: 320px;
+				}
+
+				.btn-open-gmaps {
+					width: 100%;
+					justify-content: center;
+				}
+			}
+		</style>
+
+		<!-- ==========================================================================
+		     DYNAMIC LOGIC & MARKETO-STYLE STATE BEHAVIOR
+		     ========================================================================== -->
+		<script is:inline>
+			const STATE_DATA = {
+				'India': [
+					'Gujarat', 'Maharashtra', 'Delhi NCR', 'Karnataka', 'Tamil Nadu', 'Uttar Pradesh',
+					'Rajasthan', 'West Bengal', 'Telangana', 'Andhra Pradesh', 'Haryana', 'Punjab',
+					'Madhya Pradesh', 'Kerala', 'Bihar', 'Odisha', 'Assam', 'Goa', 'Jharkhand', 'Chhattisgarh',
+					'Uttarakhand', 'Himachal Pradesh', 'Jammu & Kashmir'
+				],
+				'United States': [
+					'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
+					'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
+					'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
+					'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada',
+					'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+					'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
+					'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
+					'Wisconsin', 'Wyoming'
+				],
+				'Canada': [
+					'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
+					'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
+					'Quebec', 'Saskatchewan', 'Yukon Territory'
+				],
+				'Australia': [
+					'Australian Capital Territory', 'New South Wales', 'Northern Territory', 'Queensland',
+					'South Australia', 'Tasmania', 'Victoria', 'Western Australia'
+				]
+			};
+
+			function handleCountryChange(country) {
+				const stateSelect = document.getElementById('stateName');
+				const stateLabel = document.getElementById('lblStateName');
+				if (!stateSelect) return;
+
+				stateSelect.innerHTML = '<option value="">Select...</option>';
+
+				if (country === 'Canada') {
+					if (stateLabel) stateLabel.textContent = 'Province Name';
+				} else {
+					if (stateLabel) stateLabel.textContent = 'State Name';
+				}
+
+				if (STATE_DATA[country]) {
+					STATE_DATA[country].forEach(function (state) {
+						const opt = document.createElement('option');
+						opt.value = state;
+						opt.textContent = state;
+						stateSelect.appendChild(opt);
+					});
+				} else {
+					const opt = document.createElement('option');
+					opt.value = 'General / International Region';
+					opt.textContent = 'General / International Region';
+					stateSelect.appendChild(opt);
+				}
+			}
+
+			// Initialize default country states to India (primary)
+			handleCountryChange('India');
+
+			function submitXylemForm() {
+				const fields = [
+					'FirstName',
+					'LastName',
+					'Email',
+					'Company',
+					'Phone',
+					'Industry',
+					'countryName',
+					'stateName',
+					'City',
+					'Address',
+					'Xylem_Brand',
+					'PostalCode',
+					'Title',
+					'Request_Type__c',
+					'americasUpcomingProject',
+					'Xylem_Lead_Question'
+				];
+
+				let hasError = false;
+
+				fields.forEach(function (id) {
+					const el = document.getElementById(id);
+					const err = document.getElementById('err-' + id);
+					if (!el) return;
+
+					let val = el.value.trim();
+					let isValid = val.length > 0;
+
+					if (id === 'Email' && isValid) {
+						isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+					}
+
+					if (!isValid) {
+						el.classList.add('is-invalid');
+						if (err) err.classList.add('visible');
+						if (!hasError) {
+							el.focus();
+							hasError = true;
+						}
+					} else {
+						el.classList.remove('is-invalid');
+						if (err) err.classList.remove('visible');
+					}
+				});
+
+				if (hasError) return;
+
+				// Collect form values
+				const fName = document.getElementById('FirstName').value.trim();
+				const lName = document.getElementById('LastName').value.trim();
+				const email = document.getElementById('Email').value.trim();
+				const company = document.getElementById('Company').value.trim();
+				const phone = document.getElementById('Phone').value.trim();
+				const industry = document.getElementById('Industry').value;
+				const country = document.getElementById('countryName').value;
+				const state = document.getElementById('stateName').value;
+				const city = document.getElementById('City').value.trim();
+				const address = document.getElementById('Address').value.trim();
+				const plantReq = document.getElementById('Xylem_Brand').value;
+				const postalCode = document.getElementById('PostalCode').value.trim();
+				const title = document.getElementById('Title').value.trim();
+				const requestType = document.getElementById('Request_Type__c').value;
+				const upcoming = document.getElementById('americasUpcomingProject').value;
+				const question = document.getElementById('Xylem_Lead_Question').value.trim();
+				const optIn = document.getElementById('GDPR_Consent__c').checked;
+
+				// Construct WhatsApp message text
+				const summaryText = encodeURIComponent(
+					`*Aqua Shakti Water Treatment Inquiry*\n` +
+					`-----------------------------------------\n` +
+					`*Name:* ${fName} ${lName}\n` +
+					`*Title:* ${title}\n` +
+					`*Company:* ${company}\n` +
+					`*Email:* ${email}\n` +
+					`*Phone:* ${phone}\n` +
+					`*Industry:* ${industry}\n` +
+					`*Requirement:* ${plantReq}\n` +
+					`*Request Type:* ${requestType}\n` +
+					`*Upcoming Project:* ${upcoming}\n` +
+					`*Location:* ${address}, ${city}, ${state}, ${country} (${postalCode})\n` +
+					`*Project / Support Needs:*\n${question}\n` +
+					(optIn ? `*Newsletter Opt-in:* Yes\n` : '')
+				);
+
+				const waUrl = `https://wa.me/919913936995?text=${summaryText}`;
+
+				// Switch to Thank You screen
+				const formEl = document.getElementById('xylem-rfq-form');
+				const thankYouEl = document.getElementById('thank-you-view');
+				const waBtn = document.getElementById('thank-you-wa-btn');
+
+				if (formEl) formEl.style.display = 'none';
+				if (thankYouEl) thankYouEl.style.display = 'block';
+				if (waBtn) waBtn.href = waUrl;
+
+				// Scroll smoothly to confirmation
+				thankYouEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+				// Try opening WhatsApp in new tab for direct response
+				try {
+					window.open(waUrl, '_blank');
+				} catch (_) {}
+			}
+
+			function resetFormToStart() {
+				const formEl = document.getElementById('xylem-rfq-form');
+				const thankYouEl = document.getElementById('thank-you-view');
+				if (formEl) {
+					formEl.reset();
+					formEl.style.display = 'block';
+					handleCountryChange('India');
+				}
+				if (thankYouEl) thankYouEl.style.display = 'none';
+			}
+
+			// Clear error message upon input
+			document.addEventListener('input', function (e) {
+				if (e.target && e.target.classList.contains('mktoField')) {
+					e.target.classList.remove('is-invalid');
+					const err = document.getElementById('err-' + e.target.id);
+					if (err) err.classList.remove('visible');
+				}
+			});
+
+			// Offline message listener
+			window.addEventListener('offline', function () {
+				const offlineMsg = document.getElementById('offline-message');
+				if (offlineMsg) offlineMsg.style.display = 'block';
+			});
+			window.addEventListener('online', function () {
+				const offlineMsg = document.getElementById('offline-message');
+				if (offlineMsg) offlineMsg.style.display = 'none';
+			});
+		</script>
+	</body>
+</html>

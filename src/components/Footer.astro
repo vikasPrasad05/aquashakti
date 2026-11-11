@@ -1,0 +1,515 @@
+---
+// src/components/Footer.astro
+// Enterprise B2B Footer matching Google Stitch design with official Logo & Mobile Accordion
+import Logo from './Logo.astro';
+import { COMPANY_NAME, COMPANY_PHONE, COMPANY_EMAIL, COMPANY_ESTD } from '../consts';
+
+interface Props {
+	showPreFooter?: boolean;
+}
+
+const { showPreFooter = false } = Astro.props;
+const currentYear = new Date().getFullYear();
+
+const icons = {
+	arrowUp: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>`,
+	phone: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+	mail: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+	mapPin: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+	badge: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+	chevronDown: `<svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`,
+};
+---
+
+<footer class="clean-stitch-footer" role="contentinfo">
+	<div class="footer-wrapper">
+		<div class="footer-main-grid">
+			<!-- Brand & Certification Column -->
+			<div class="footer-brand-col">
+				<a href="/" class="footer-logo-link" aria-label="Aqua Shakti Home">
+					<Logo size="md" showTagline={true} />
+				</a>
+
+				<p class="footer-bio-text">
+					Leading Indian manufacturer of heavy-duty Industrial RO, DM Plants, Water Softeners, and Turnkey Process Water Treatment Solutions based in Vapi, Gujarat.
+				</p>
+
+				<div class="footer-cert-pill">
+					<span class="cert-icon" set:html={icons.badge} />
+					<span>Certified Industrial Manufacturer</span>
+				</div>
+			</div>
+
+			<!-- Quick Nav Links Columns (With Mobile Accordion Open/Close System) -->
+			<div class="footer-links-grid" id="footer-accordion">
+				<!-- Systems Column -->
+				<div class="footer-col footer-accordion-item">
+					<button type="button" class="footer-col-header" aria-expanded="false" aria-controls="footer-col-systems">
+						<span class="footer-col-heading">Systems</span>
+						<span class="accordion-toggle" set:html={icons.chevronDown} />
+					</button>
+					<ul class="footer-nav-list" id="footer-col-systems">
+						<li><a href="/products#industrial-ro">Industrial RO</a></li>
+						<li><a href="/products#commercial-ro">Commercial RO</a></li>
+						<li><a href="/products#dm-plants">DM Plants &amp; Softeners</a></li>
+						<li><a href="/products#etp-plants">ETP &amp; STP Systems</a></li>
+						<li><a href="/products#water-chemicals">Treatment Chemicals</a></li>
+
+					</ul>
+				</div>
+
+				<!-- Company Column -->
+				<div class="footer-col footer-accordion-item">
+					<button type="button" class="footer-col-header" aria-expanded="false" aria-controls="footer-col-company">
+						<span class="footer-col-heading">Company</span>
+						<span class="accordion-toggle" set:html={icons.chevronDown} />
+					</button>
+					<ul class="footer-nav-list" id="footer-col-company">
+						<li><a href="/about">About Us</a></li>
+						<li><a href="/compliance">Compliance &amp; Certifications</a></li>
+						<li><a href="/#clients-section">Client Portfolio</a></li>
+						<li><a href="/blog">Engineering Blog</a></li>
+						<li><a href="/about#dealers">Dealer Network</a></li>
+						<li><a href="/contact">Emergency Assistance</a></li>
+					</ul>
+				</div>
+
+				<!-- Facility & Works Column -->
+				<div class="footer-col footer-facility-col footer-accordion-item">
+					<button type="button" class="footer-col-header" aria-expanded="false" aria-controls="footer-col-facility">
+						<span class="footer-col-heading">Facility &amp; Works</span>
+						<span class="accordion-toggle" set:html={icons.chevronDown} />
+					</button>
+					<div class="footer-facility-content" id="footer-col-facility">
+						<div class="facility-address">
+							<span class="facility-icon" set:html={icons.mapPin} />
+							<address class="facility-text">
+								Plot No. 42, Vapi Timber Compound,<br />
+								Opp. Chandralok Tower, Nr. D-Mart,<br />
+								Chanod, Vapi - 396195, Gujarat, India.
+							</address>
+						</div>
+
+						<div class="facility-contact-actions">
+							<a href={`tel:${COMPANY_PHONE.replace(/\s+/g, '')}`} class="facility-contact-link">
+								<span class="contact-icon" set:html={icons.phone} />
+								<span>+91 99139 36995</span>
+							</a>
+							<a href={`mailto:${COMPANY_EMAIL}`} class="facility-contact-link">
+								<span class="contact-icon" set:html={icons.mail} />
+								<span>{COMPANY_EMAIL}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Sub-Footer / Copyright Bar -->
+		<div class="footer-bottom-bar">
+			<p class="copyright-text">
+				&copy; {currentYear} Aqua Shakti Water Treatment Plant &amp; Chemicals. All rights reserved.
+			</p>
+
+			<p class="footer-developer-credit">
+				Developed &amp; Designed by <a href="https://davlabs.in" target="_blank" rel="noopener noreferrer">Davlabs.in</a>
+			</p>
+
+			<div class="footer-legal-links">
+				<a href="/privacy">Privacy Policy</a>
+				<span class="legal-divider" aria-hidden="true">&bull;</span>
+				<a href="/terms">Terms of Supply</a>
+				<span class="legal-divider" aria-hidden="true">&bull;</span>
+				<a href="/compliance">GPCB Norms</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<script>
+	function setupFooterAccordion() {
+		const isMobile = () => window.innerWidth <= 768;
+		const accordionItems = document.querySelectorAll<HTMLElement>('.footer-accordion-item');
+
+		accordionItems.forEach((item) => {
+			const btn = item.querySelector<HTMLButtonElement>('.footer-col-header');
+			if (!btn) return;
+
+			btn.addEventListener('click', () => {
+				if (!isMobile()) return; // On desktop, accordion is disabled
+
+				const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+				// Toggle this item
+				btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+				item.classList.toggle('is-open', !isExpanded);
+			});
+		});
+
+		// Auto reset state on window resize
+		window.addEventListener('resize', () => {
+			if (!isMobile()) {
+				accordionItems.forEach((item) => {
+					item.classList.remove('is-open');
+					const btn = item.querySelector<HTMLButtonElement>('.footer-col-header');
+					btn?.setAttribute('aria-expanded', 'false');
+				});
+			}
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', setupFooterAccordion);
+	} else {
+		setupFooterAccordion();
+	}
+	document.addEventListener('astro:page-load', setupFooterAccordion);
+</script>
+
+<style>
+	:root {
+		color-scheme: light;
+	}
+
+	.clean-stitch-footer,
+	.clean-stitch-footer *,
+	.clean-stitch-footer *::before,
+	.clean-stitch-footer *::after {
+		box-sizing: border-box;
+	}
+
+	.clean-stitch-footer {
+		width: 100%;
+		max-width: 100%;
+		background-color: #f1f5f9;
+		border-top: 1px solid #e2e8f0;
+		color: #0f172a;
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+	}
+
+	.footer-wrapper {
+		width: 100%;
+		max-width: 1720px;
+		margin: 0 auto;
+		padding: 4rem clamp(1rem, 2.5vw, 2.25rem) 2.25rem;
+		box-sizing: border-box;
+	}
+
+	.footer-main-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3.5rem;
+		align-items: flex-start;
+		margin-bottom: 3rem;
+	}
+
+	@media (min-width: 900px) {
+		.footer-main-grid {
+			grid-template-columns: 1.15fr 2fr;
+			gap: 4rem;
+		}
+	}
+
+	/* Brand Col */
+	.footer-brand-col {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.footer-logo-link {
+		display: inline-block;
+		text-decoration: none;
+	}
+
+	.footer-bio-text {
+		font-size: 0.88rem;
+		line-height: 1.6;
+		color: #475569;
+		margin: 0;
+		max-width: 380px;
+	}
+
+	.footer-cert-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		background: #ffffff;
+		border: 1px solid #cbd5e1;
+		padding: 0.35rem 0.85rem;
+		border-radius: 9999px;
+		font-size: 0.72rem;
+		font-weight: 700;
+		color: #006194;
+		box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+		width: fit-content;
+	}
+
+	.cert-icon {
+		display: flex;
+		align-items: center;
+		color: #007bb9;
+	}
+
+	/* Links Grid (Desktop: 3 cols; Mobile: Accordion) */
+	.footer-links-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2.5rem;
+	}
+
+	.footer-col {
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+	}
+
+	.footer-col-header {
+		background: transparent;
+		border: none;
+		padding: 0;
+		margin: 0;
+		text-align: left;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		cursor: default;
+	}
+
+	.footer-col-heading {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #0f172a;
+		margin: 0;
+	}
+
+	.accordion-toggle {
+		display: none; /* Hidden on desktop */
+		color: #64748b;
+		transition: transform 0.25s ease;
+	}
+
+	.footer-nav-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.footer-nav-list a {
+		font-size: 0.86rem;
+		color: #475569;
+		text-decoration: none;
+		transition: color 0.15s ease, transform 0.15s ease;
+		display: inline-block;
+	}
+
+	.footer-nav-list a:hover {
+		color: #006194;
+		transform: translateX(2px);
+	}
+
+	/* Facility Address */
+	.footer-facility-content {
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+	}
+
+	.facility-address {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.65rem;
+	}
+
+	.facility-icon {
+		color: #006194;
+		margin-top: 2px;
+		flex-shrink: 0;
+	}
+
+	.facility-text {
+		font-style: normal;
+		font-size: 0.84rem;
+		line-height: 1.55;
+		color: #475569;
+	}
+
+	.facility-contact-actions {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.facility-contact-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.84rem;
+		font-weight: 600;
+		color: #006194;
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+
+	.facility-contact-link:hover {
+		color: #004b73;
+		text-decoration: underline;
+	}
+
+	/* Sub-Footer */
+	.footer-bottom-bar {
+		border-top: 1px solid #e2e8f0;
+		padding-top: 1.75rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	@media (min-width: 768px) {
+		.footer-bottom-bar {
+			flex-direction: row;
+		}
+	}
+
+	.copyright-text {
+		font-size: 0.8rem;
+		color: #64748b;
+		margin: 0;
+	}
+
+	.footer-developer-credit {
+		font-size: 0.8rem;
+		color: #64748b;
+		margin: 0;
+		text-align: center;
+	}
+
+	.footer-developer-credit a {
+		color: #0284c7;
+		font-weight: 600;
+		text-decoration: none;
+		transition: color 0.15s ease, text-decoration 0.15s ease;
+	}
+
+	.footer-developer-credit a:hover {
+		color: #0369a1;
+		text-decoration: underline;
+	}
+
+	.footer-legal-links {
+		display: flex;
+		align-items: center;
+		gap: 0.85rem;
+		font-size: 0.78rem;
+		flex-wrap: wrap;
+	}
+
+	.footer-legal-links a {
+		color: #64748b;
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+
+	.footer-legal-links a:hover {
+		color: #006194;
+		text-decoration: underline;
+	}
+
+	.legal-divider {
+		color: #cbd5e1;
+	}
+
+	.back-to-top-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		background: #ffffff;
+		border: 1px solid #cbd5e1;
+		padding: 0.35rem 0.75rem;
+		border-radius: 0.5rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: #334155;
+		transition: all 0.2s ease;
+	}
+
+	.back-to-top-btn:hover {
+		background: #006194;
+		color: #ffffff;
+		border-color: #006194;
+		transform: translateY(-2px);
+	}
+
+	/* ==========================================================================
+	   Mobile Responsive + Open / Close Accordion System
+	   ========================================================================== */
+	@media (max-width: 768px) {
+		.footer-links-grid {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+
+		.footer-accordion-item {
+			background: #ffffff;
+			border: 1px solid #e2e8f0;
+			border-radius: 0.75rem;
+			padding: 0.85rem 1.15rem;
+			gap: 0;
+			transition: all 0.2s ease;
+		}
+
+		.footer-accordion-item.is-open {
+			border-color: #93ccff;
+			box-shadow: 0 4px 12px rgba(0, 97, 148, 0.05);
+		}
+
+		.footer-col-header {
+			cursor: pointer;
+			padding: 0.35rem 0;
+		}
+
+		.accordion-toggle {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.footer-accordion-item.is-open .accordion-chevron {
+			transform: rotate(180deg);
+		}
+
+		.footer-nav-list,
+		.footer-facility-content {
+			display: none;
+			padding-top: 1rem;
+			border-top: 1px solid #f1f5f9;
+			margin-top: 0.75rem;
+		}
+
+		.footer-accordion-item.is-open .footer-nav-list,
+		.footer-accordion-item.is-open .footer-facility-content {
+			display: flex;
+			animation: slideDown 0.22s ease-out;
+		}
+
+		@keyframes slideDown {
+			from {
+				opacity: 0;
+				transform: translateY(-6px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
+</style>

@@ -1,0 +1,362 @@
+---
+// src/pages/privacy.astro
+// Privacy Policy & Client Data Confidentiality for Aqua Shakti Industries
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+import { COMPANY_NAME, COMPANY_PHONE, COMPANY_EMAIL, COMPANY_LOCATION } from '../consts';
+
+const lastUpdated = 'October 2026';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Privacy Policy & Client Data Protection | ${COMPANY_NAME}`}
+			description="Privacy Policy and Industrial Data Confidentiality standards for Aqua Shakti Industries water treatment engineering clients, laboratory water sample testing, and quotations."
+			image="/images/hero-plant.jpg"
+		/>
+	</head>
+	<body class="legal-page-body">
+		<Header />
+		<main id="main-content" class="legal-page-main">
+			<!-- Header Banner -->
+			<section class="legal-hero-section">
+				<div class="site-container">
+					<div class="legal-hero-content">
+						<span class="legal-category-pill">DATA PROTECTION &amp; CONFIDENTIALITY</span>
+						<h1 class="legal-main-title">Privacy Policy</h1>
+						<p class="legal-subtitle">
+							How Aqua Shakti Industries handles and protects industrial water test analyses, plant blueprints, and commercial quotation data.
+						</p>
+						<div class="legal-meta-bar">
+							<span>Last updated: {lastUpdated}</span>
+							<span class="meta-dot" aria-hidden="true">&bull;</span>
+							<span>Applies to Gujarat Works &amp; PAN-India Operations</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Content Section -->
+			<section class="legal-content-section">
+				<div class="site-container">
+					<div class="legal-layout-grid">
+						<!-- Sticky Table of Contents -->
+						<aside class="legal-toc-aside">
+							<div class="legal-toc-card">
+								<h3 class="toc-title">Table of Contents</h3>
+								<nav class="toc-nav" aria-label="Privacy sections">
+									<a href="#water-sample-data" class="toc-link">1. Water Sample Testing Data</a>
+									<a href="#quotation-engineering" class="toc-link">2. Quotation &amp; Plant Design</a>
+									<a href="#intellectual-property" class="toc-link">3. Engineering Confidentiality</a>
+									<a href="#third-parties" class="toc-link">4. Spares &amp; Sub-Vendors</a>
+									<a href="#security-storage" class="toc-link">5. Data Retention &amp; Security</a>
+									<a href="#contact-officer" class="toc-link">6. Compliance Officer Contact</a>
+								</nav>
+							</div>
+						</aside>
+
+						<!-- Main Policy Copy -->
+						<article class="legal-article">
+							<section id="water-sample-data" class="legal-block">
+								<h2>1. Industrial Water Sample &amp; Laboratory Data</h2>
+								<p>
+									When manufacturing units, pharmaceutical plants, or hospitality properties submit raw water samples to our laboratory in Vapi, Gujarat for chemical titration, TDS profiling, hardness evaluation, or microbial culture, we treat all test findings as strictly confidential commercial intelligence.
+								</p>
+								<p>
+									Laboratory analysis certificates (COA) and water chemistry reports are linked solely to your organization and are never disclosed to third parties or competitor facilities without written authorization.
+								</p>
+							</section>
+
+							<section id="quotation-engineering" class="legal-block">
+								<h2>2. Information Collected for Plant Sizing &amp; Quotations</h2>
+								<p>
+									To accurately engineer customized turnkey systems (including Commercial RO, Heavy Industrial RO skids, Softeners, DM units, and ETP/STP systems), we collect:
+								</p>
+								<ul class="legal-checklist">
+									<li><strong>Contact Identifiers:</strong> Name, professional email address, direct phone/WhatsApp number, and plant facility address.</li>
+									<li><strong>Facility Specifications:</strong> Daily flow rate requirement (LPH / KLD), inlet water source (borewell, municipal, river, or effluent), operating hours, and intended pure water application.</li>
+									<li><strong>Regulatory Records:</strong> Pollution control consent numbers, discharge permit limits, and statutory emission parameters needed for GPCB / CPCB compliance sizing.</li>
+								</ul>
+							</section>
+
+							<section id="intellectual-property" class="legal-block">
+								<h2>3. Engineering Blueprint &amp; CAD Confidentiality</h2>
+								<p>
+									Process flow diagrams (PFD), piping &amp; instrumentation diagrams (P&amp;ID), 3D skid layouts, electrical control logic, and PLC automation programs developed for client projects remain protected under bilateral industrial non-disclosure agreements.
+								</p>
+							</section>
+
+							<section id="third-parties" class="legal-block">
+								<h2>4. Authorized Component Partners &amp; Sub-Vendors</h2>
+								<p>
+									Aqua Shakti Industries partners with certified international OEMs for high-pressure pumps, composite FRP vessels, and reverse osmosis polyamide membranes (e.g., Dow Filmtec, Hydranautics, Toray). We share only technical boundary conditions (e.g. required flux rate, feed TDS, operating bar pressure) without revealing your private corporate proprietary records.
+								</p>
+							</section>
+
+							<section id="security-storage" class="legal-block">
+								<h2>5. Data Retention &amp; Record Security</h2>
+								<p>
+									Commercial invoices, warranty records, Annual Maintenance Contract (AMC) logs, and skid serial numbers are retained for a minimum of seven (7) years to support equipment service continuity, spare part reorders, and statutory tax compliance under Indian industrial legislation.
+								</p>
+							</section>
+
+							<section id="contact-officer" class="legal-block">
+								<h2>6. Compliance &amp; Grievance Redressal</h2>
+								<p>
+									If you have any questions regarding your facility data or wish to request an update to your records, please contact our administrative office:
+								</p>
+								<div class="legal-contact-callout">
+									<strong>Aqua Shakti Industries — Compliance Desk</strong><br />
+									Plot No. 42, Vapi Timber Compound, Opp. Chandralok Tower, Nr. D-Mart, Chanod, Vapi - 396195, Gujarat, India.<br />
+									Phone: <a href={`tel:${COMPANY_PHONE.replace(/\s+/g, '')}`}>{COMPANY_PHONE}</a> &bull; Email: <a href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a>
+								</div>
+							</section>
+						</article>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+		<QuoteModal />
+	</body>
+</html>
+
+<style>
+	:root {
+		color-scheme: light;
+	}
+
+	.legal-page-body {
+		background-color: #faf8ff;
+		color: #0f172a;
+		font-family: 'Inter', -apple-system, sans-serif;
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
+	}
+
+	.legal-page-main {
+		width: 100%;
+		padding-top: 0;
+	}
+
+	.site-container {
+		width: 100%;
+		max-width: 1720px;
+		margin: 0 auto;
+		padding-left: clamp(1rem, 2.5vw, 2.25rem);
+		padding-right: clamp(1rem, 2.5vw, 2.25rem);
+		box-sizing: border-box;
+	}
+
+	/* Hero */
+	.legal-hero-section {
+		background: linear-gradient(180deg, #f0f9ff 0%, #faf8ff 100%);
+		border-bottom: 1px solid #e2e8f0;
+		position: relative;
+		padding-top: clamp(2.5rem, 5vw, 4rem);
+		padding-bottom: clamp(2.5rem, 5vh, 4rem);
+	}
+
+	.legal-hero-content {
+		max-width: 920px;
+	}
+
+	.legal-category-pill {
+		display: inline-block;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #006194;
+		background: #cce5ff;
+		border: 1px solid #93ccff;
+		padding: 0.35rem 0.85rem;
+		border-radius: 9999px;
+		margin-bottom: 1rem;
+	}
+
+	.legal-main-title {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		font-size: clamp(2.2rem, 4vw, 3.2rem);
+		font-weight: 800;
+		color: #0f172a;
+		line-height: 1.15;
+		margin: 0 0 1rem;
+		letter-spacing: -0.03em;
+	}
+
+	.legal-subtitle {
+		font-size: clamp(1rem, 1.6vw, 1.15rem);
+		line-height: 1.6;
+		color: #475569;
+		margin: 0 0 1.5rem;
+	}
+
+	.legal-meta-bar {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		font-size: 0.82rem;
+		color: #64748b;
+		flex-wrap: wrap;
+	}
+
+	.meta-dot {
+		color: #cbd5e1;
+	}
+
+	/* Layout */
+	.legal-content-section {
+		padding: clamp(3rem, 6vw, 5rem) 0;
+	}
+
+	.legal-layout-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+		align-items: flex-start;
+	}
+
+	@media (min-width: 1024px) {
+		.legal-layout-grid {
+			grid-template-columns: 320px 1fr;
+			gap: 4.5rem;
+		}
+	}
+
+	/* Table of Contents Aside */
+	.legal-toc-aside {
+		position: sticky;
+		top: 6.5rem;
+	}
+
+	.legal-toc-card {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 1.15rem;
+		padding: 1.5rem;
+		box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+	}
+
+	.toc-title {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		font-size: 0.88rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: #0f172a;
+		margin: 0 0 1rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid #f1f5f9;
+	}
+
+	.toc-nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+	}
+
+	.toc-link {
+		font-size: 0.84rem;
+		color: #475569;
+		text-decoration: none;
+		line-height: 1.4;
+		transition: color 0.15s ease, transform 0.15s ease;
+	}
+
+	.toc-link:hover {
+		color: #006194;
+		transform: translateX(3px);
+	}
+
+	/* Article Copy */
+	.legal-article {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		border-radius: 1.25rem;
+		padding: clamp(2rem, 4vw, 3.5rem);
+		box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+	}
+
+	.legal-block {
+		margin-bottom: 3rem;
+		scroll-margin-top: 7rem;
+	}
+
+	.legal-block:last-child {
+		margin-bottom: 0;
+	}
+
+	.legal-block h2 {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+		font-weight: 800;
+		color: #0f172a;
+		letter-spacing: -0.02em;
+		margin: 0 0 1rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid #f0f9ff;
+	}
+
+	.legal-block p {
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: #334155;
+		margin: 0 0 1.15rem;
+	}
+
+	.legal-checklist {
+		list-style: none;
+		padding: 0;
+		margin: 1rem 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.legal-checklist li {
+		position: relative;
+		padding-left: 1.5rem;
+		font-size: 0.92rem;
+		line-height: 1.55;
+		color: #334155;
+	}
+
+	.legal-checklist li::before {
+		content: '✔';
+		position: absolute;
+		left: 0;
+		top: 0;
+		color: #0284c7;
+		font-size: 0.85rem;
+		font-weight: bold;
+	}
+
+	.legal-contact-callout {
+		background: #f8fafc;
+		border-left: 4px solid #006194;
+		border-radius: 0 0.85rem 0.85rem 0;
+		padding: 1.25rem 1.5rem;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: #1e293b;
+		margin-top: 1rem;
+	}
+
+	.legal-contact-callout a {
+		color: #006194;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.legal-contact-callout a:hover {
+		text-decoration: underline;
+	}
+</style>

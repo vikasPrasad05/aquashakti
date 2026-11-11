@@ -1,0 +1,861 @@
+---
+// src/components/Header.astro
+// Exact AquaShakti Water Solution Navigation Bar
+import FloatingSidebar from "./FloatingSidebar.astro";
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isHome = currentPath === "/";
+const isAbout = currentPath.startsWith("/about");
+const isProducts =
+	currentPath.startsWith("/sewage-treatement-plant") ||
+	currentPath.startsWith("/reverse-osmosis-system") ||
+	currentPath.startsWith("/swimming-pool-filter") ||
+	currentPath.startsWith("/effluent-treatement-plant") ||
+	currentPath.startsWith("/demineralisation-plant") ||
+	currentPath.startsWith("/rain-water-harvesting") ||
+	currentPath.startsWith("/ozonation-system") ||
+	currentPath.startsWith("/water-softner");
+const isContact = currentPath.startsWith("/contact");
+const isBlog = currentPath.startsWith("/blog");
+const isServices =
+	currentPath.startsWith("/services") ||
+	currentPath.startsWith("/compliance");
+---
+
+<header class="as-header" id="as-site-header">
+	<div class="as-header-container">
+		<!-- 1. Left: Official Brand Logo -->
+		<a href="/" class="as-logo-link" aria-label="AquaShakti Home">
+			<img
+				src="/images/aquashakti-logo-transparent.png"
+				alt="AquaShakti"
+				class="as-logo-img"
+				width="200"
+				height="44"
+				loading="eager"
+				decoding="async"
+			/>
+		</a>
+
+		<!-- 2. Center: Navigation Links -->
+		<nav class="as-nav-desktop" aria-label="Main Navigation">
+			<ul class="as-menu-list">
+				<li>
+					<a
+						href="/"
+						class:list={["as-menu-item", { active: isHome }]}
+						>Home</a
+					>
+				</li>
+				<li>
+					<a
+						href="/about"
+						class:list={["as-menu-item", { active: isAbout }]}
+						>About us</a
+					>
+				</li>
+				<li class="as-dropdown-parent">
+					<div
+						class:list={[
+							"as-menu-item as-dropdown-trigger",
+							{ active: isProducts },
+						]}
+						role="button"
+						tabindex="0"
+						aria-haspopup="true"
+						aria-expanded="false"
+					>
+						<span>Product</span>
+						<svg
+							class="as-chevron"
+							width="10"
+							height="10"
+							viewBox="0 0 12 12"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+						>
+							<path
+								d="M2 4.5L6 8.5L10 4.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"></path>
+						</svg>
+					</div>
+					<!-- Products Dropdown Menu (Direct 8 Products) -->
+					<div class="as-dropdown-menu">
+						<ul class="as-dropdown-list">
+							<li>
+								<a
+									href="/sewage-treatement-plant"
+									class="as-dropdown-link"
+									>Sewage Treatement Plant</a
+								>
+							</li>
+							<li>
+								<a
+									href="/reverse-osmosis-system"
+									class="as-dropdown-link"
+									>Reverse Osmosis Plants</a
+								>
+							</li>
+							<li>
+								<a
+									href="/swimming-pool-filter"
+									class="as-dropdown-link"
+									>Swimming Pool Filter</a
+								>
+							</li>
+							<li>
+								<a
+									href="/effluent-treatement-plant"
+									class="as-dropdown-link"
+									>Effluent Treatment Plant</a
+								>
+							</li>
+							<li>
+								<a
+									href="/demineralisation-plant"
+									class="as-dropdown-link"
+									>Demineralisation Plant</a
+								>
+							</li>
+							<li>
+								<a
+									href="/rain-water-harvesting"
+									class="as-dropdown-link"
+									>Rain Water Harvesting</a
+								>
+							</li>
+							<li>
+								<a
+									href="/ozonation-system"
+									class="as-dropdown-link"
+									>Ozonation System</a
+								>
+							</li>
+							<li>
+								<a
+									href="/water-softner"
+									class="as-dropdown-link"
+									>Water Softner Plant</a
+								>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<a
+						href="/blog"
+						class:list={["as-menu-item", { active: isBlog }]}
+						>Blogs</a
+					>
+				</li>
+				<li>
+					<a
+						href="/services"
+						class:list={["as-menu-item", { active: isServices }]}
+						>Services</a
+					>
+				</li>
+				<li>
+					<a
+						href="/contact"
+						class:list={["as-menu-item", { active: isContact }]}
+						>Contact Us</a
+					>
+				</li>
+			</ul>
+		</nav>
+
+		<!-- 3. Right: Phone Number with Ringing Handset Icon -->
+		<div class="as-header-right">
+			<a
+				href="tel:+918799374555"
+				class="as-phone-link"
+				aria-label="Call +91 8799374555"
+			>
+				<div class="as-phone-icon-wrap" aria-hidden="true">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<!-- Handset -->
+						<path
+							d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+							fill="#f26522"></path>
+						<!-- Ring waves -->
+						<path
+							d="M14.05 2a9 9 0 0 1 8 7.94"
+							stroke="#f26522"
+							stroke-width="2.2"
+							stroke-linecap="round"></path>
+						<path
+							d="M14.05 6A5 5 0 0 1 18 10"
+							stroke="#f26522"
+							stroke-width="2.2"
+							stroke-linecap="round"></path>
+					</svg>
+				</div>
+				<div class="as-phone-details">
+					<span class="as-phone-title">Phone Number</span>
+					<span class="as-phone-value">+91 8799374555</span>
+				</div>
+			</a>
+
+			<!-- Mobile Drawer Toggle Button -->
+			<button
+				type="button"
+				class="as-mobile-toggle"
+				id="as-mobile-toggle-btn"
+				aria-label="Toggle navigation menu"
+				aria-expanded="false"
+			>
+				<span class="as-toggle-bar"></span>
+				<span class="as-toggle-bar"></span>
+				<span class="as-toggle-bar"></span>
+			</button>
+		</div>
+	</div>
+
+	<!-- Mobile Navigation Drawer -->
+	<div class="as-mobile-drawer" id="as-mobile-drawer" aria-hidden="true">
+		<ul class="as-mobile-list">
+			<li>
+				<a href="/" class:list={["as-mobile-link", { active: isHome }]}
+					>Home</a
+				>
+			</li>
+			<li>
+				<a
+					href="/about"
+					class:list={["as-mobile-link", { active: isAbout }]}
+					>About us</a
+				>
+			</li>
+			<li>
+				<details class="as-mobile-acc" open={isProducts}>
+					<summary class:list={["as-mobile-acc-summary", { active: isProducts }]}>
+						<span>Products</span>
+						<svg
+							class="as-mobile-acc-chevron"
+							width="12"
+							height="12"
+							viewBox="0 0 12 12"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+						>
+							<path
+								d="M2 4.5L6 8.5L10 4.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"></path>
+						</svg>
+					</summary>
+					<div class="as-mobile-acc-content">
+						<ul class="as-mobile-nested-list">
+							<li><a href="/sewage-treatement-plant" class="as-mobile-nested-link">Sewage Treatement Plant</a></li>
+							<li><a href="/reverse-osmosis-system" class="as-mobile-nested-link">Reverse Osmosis Plants</a></li>
+							<li><a href="/swimming-pool-filter" class="as-mobile-nested-link">Swimming Pool Filter</a></li>
+							<li><a href="/effluent-treatement-plant" class="as-mobile-nested-link">Effluent Treatment Plant</a></li>
+							<li><a href="/demineralisation-plant" class="as-mobile-nested-link">Demineralisation Plant</a></li>
+							<li><a href="/rain-water-harvesting" class="as-mobile-nested-link">Rain Water Harvesting</a></li>
+							<li><a href="/ozonation-system" class="as-mobile-nested-link">Ozonation System</a></li>
+							<li><a href="/water-softner" class="as-mobile-nested-link">Water Softner Plant</a></li>
+						</ul>
+					</div>
+				</details>
+			</li>
+			<li>
+				<a
+					href="/blog"
+					class:list={["as-mobile-link", { active: isBlog }]}
+					>Blogs</a
+				>
+			</li>
+			<li>
+				<a
+					href="/services"
+					class:list={["as-mobile-link", { active: isServices }]}
+					>Services</a
+				>
+			</li>
+			<li>
+				<a
+					href="/contact"
+					class:list={["as-mobile-link", { active: isContact }]}
+					>Contact Us</a
+				>
+			</li>
+		</ul>
+		<div class="as-mobile-phone-wrap">
+			<a href="tel:+918799374555" class="as-mobile-phone-card" aria-label="Call +91 8799374555">
+				<div class="as-phone-icon-wrap" aria-hidden="true">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path
+							d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+							fill="#f26522"></path>
+						<path
+							d="M14.05 2a9 9 0 0 1 8 7.94"
+							stroke="#f26522"
+							stroke-width="2.2"
+							stroke-linecap="round"></path>
+						<path
+							d="M14.05 6A5 5 0 0 1 18 10"
+							stroke="#f26522"
+							stroke-width="2.2"
+							stroke-linecap="round"></path>
+					</svg>
+				</div>
+				<div class="as-phone-details">
+					<span class="as-phone-title">Phone Number</span>
+					<span class="as-phone-value">+91 8799374555</span>
+				</div>
+			</a>
+		</div>
+	</div>
+</header>
+
+<!-- Floating Sidebar (Right Center) -->
+<FloatingSidebar />
+
+<style>
+	:root {
+		--as-navy: #18346f;
+		--as-orange: #f26522;
+		--as-orange-hover: #e05514;
+	}
+
+	.as-header {
+		position: sticky;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		max-width: 100%;
+		background-color: #ffffff;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+		z-index: 10000;
+		box-sizing: border-box;
+		font-family:
+			-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+			"Helvetica Neue", Arial, sans-serif;
+	}
+
+	.as-header-container {
+		width: 100%;
+		max-width: 1280px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+		height: 76px;
+		min-height: 76px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		box-sizing: border-box;
+	}
+
+	/* Logo */
+	.as-logo-link {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+		flex-shrink: 0;
+	}
+
+	.as-logo-img {
+		height: 44px;
+		width: auto;
+		display: block;
+		object-fit: contain;
+	}
+
+	/* Desktop Menu */
+	.as-nav-desktop {
+		display: flex;
+		align-items: center;
+		flex: 1;
+		justify-content: center;
+	}
+
+	.as-menu-list {
+		display: flex;
+		align-items: center;
+		gap: 1.4rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.as-menu-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		font-size: 0.92rem;
+		font-weight: 600;
+		color: #18346f;
+		text-decoration: none;
+		padding: 0.65rem 0.35rem;
+		transition: color 0.18s ease;
+		white-space: nowrap;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.as-dropdown-trigger {
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.as-menu-item:hover {
+		color: #f26522;
+	}
+
+	.as-menu-item.active {
+		color: #f26522;
+	}
+
+	.as-chevron {
+		transition: transform 0.2s ease;
+		color: currentColor;
+	}
+
+	/* Dropdown */
+	.as-dropdown-parent {
+		position: relative;
+	}
+
+	.as-dropdown-parent:hover .as-chevron,
+	.as-dropdown-parent.is-open .as-chevron {
+		transform: rotate(180deg);
+	}
+
+	.as-dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 275px;
+		background: #ffffff;
+		border: 1px solid #e5e7eb;
+		border-top: 3px solid #f26522;
+		border-radius: 0 0 6px 6px;
+		box-shadow:
+			0 12px 28px -4px rgba(0, 0, 0, 0.12),
+			0 8px 10px -6px rgba(0, 0, 0, 0.08);
+		padding: 0.45rem 0;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(8px);
+		transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+		pointer-events: none;
+		z-index: 1010;
+	}
+
+	.as-dropdown-parent:hover > .as-dropdown-menu,
+	.as-dropdown-parent:focus-within > .as-dropdown-menu,
+	.as-dropdown-parent.is-open > .as-dropdown-menu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
+
+	.as-dropdown-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.as-dropdown-link {
+		display: block;
+		padding: 0.62rem 1.25rem;
+		font-size: 0.86rem;
+		font-weight: 500;
+		color: #18346f;
+		text-decoration: none;
+		transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+		line-height: 1.35;
+		white-space: nowrap;
+	}
+
+	.as-dropdown-link:hover {
+		background-color: #f8fafc;
+		color: #f26522;
+		padding-left: 1.45rem;
+	}
+
+	/* Phone Number Area */
+	.as-header-right {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-shrink: 0;
+	}
+
+	.as-phone-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.65rem;
+		text-decoration: none;
+		transition: transform 0.2s ease;
+	}
+
+	.as-phone-link:hover {
+		transform: translateY(-1px);
+	}
+
+	.as-phone-icon-wrap {
+		width: 32px;
+		height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.as-phone-details {
+		display: flex;
+		flex-direction: column;
+		line-height: 1.15;
+	}
+
+	.as-phone-title {
+		font-size: 0.68rem;
+		font-weight: 600;
+		color: #374151;
+		text-transform: capitalize;
+		letter-spacing: 0.02em;
+	}
+
+	.as-phone-value {
+		font-size: 0.95rem;
+		font-weight: 800;
+		color: #18346f;
+		letter-spacing: 0.01em;
+		white-space: nowrap;
+	}
+
+	.as-phone-link:hover .as-phone-value {
+		color: #f26522;
+	}
+
+	/* Mobile Toggle */
+	.as-mobile-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 42px;
+		height: 42px;
+		padding: 12px 9px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		box-sizing: border-box;
+		border-radius: 6px;
+		flex-shrink: 0;
+		transition: background-color 0.2s ease;
+	}
+
+	.as-mobile-toggle:hover,
+	.as-mobile-toggle:active {
+		background-color: rgba(24, 52, 111, 0.06);
+	}
+
+	.as-toggle-bar {
+		width: 100%;
+		height: 2.5px;
+		background-color: #18346f;
+		border-radius: 2px;
+		transition: transform 0.25s ease, opacity 0.2s ease;
+		transform-origin: center;
+	}
+
+	/* Transform into an 'X' icon when drawer is open */
+	.as-mobile-toggle[aria-expanded="true"] .as-toggle-bar:nth-child(1) {
+		transform: translateY(7.5px) rotate(45deg);
+	}
+	.as-mobile-toggle[aria-expanded="true"] .as-toggle-bar:nth-child(2) {
+		opacity: 0;
+	}
+	.as-mobile-toggle[aria-expanded="true"] .as-toggle-bar:nth-child(3) {
+		transform: translateY(-7.5px) rotate(-45deg);
+	}
+
+	/* Mobile Drawer */
+	.as-mobile-drawer {
+		display: none;
+		width: 100%;
+		max-width: 100%;
+		box-sizing: border-box;
+		background: #ffffff;
+		border-top: 1px solid #f3f4f6;
+		padding: 1rem 1.5rem 2rem;
+		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+		max-height: calc(100vh - 64px);
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.as-mobile-drawer.open {
+		display: block;
+	}
+
+	.as-mobile-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.as-mobile-link {
+		display: block;
+		padding: 0.65rem 0.5rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #18346f;
+		text-decoration: none;
+		border-radius: 4px;
+		transition:
+			background-color 0.15s ease,
+			color 0.15s ease;
+	}
+
+	.as-mobile-link:hover,
+	.as-mobile-link.active {
+		color: #f26522;
+		background-color: #fef3eb;
+	}
+
+	/* Mobile Products Accordion */
+	.as-mobile-acc {
+		border-radius: 6px;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		overflow: hidden;
+		margin: 0.25rem 0;
+	}
+
+	.as-mobile-acc-summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.7rem 0.75rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #18346f;
+		cursor: pointer;
+		list-style: none;
+		user-select: none;
+		transition: background-color 0.15s ease, color 0.15s ease;
+	}
+
+	.as-mobile-acc-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.as-mobile-acc-summary:hover,
+	.as-mobile-acc-summary.active {
+		color: #f26522;
+	}
+
+	.as-mobile-acc-chevron {
+		transition: transform 0.2s ease;
+		color: currentColor;
+	}
+
+	.as-mobile-acc[open] .as-mobile-acc-chevron {
+		transform: rotate(180deg);
+	}
+
+	.as-mobile-acc-content {
+		padding: 0.5rem 0.75rem 0.75rem;
+		border-top: 1px solid #e2e8f0;
+		background: #ffffff;
+	}
+
+	.as-mobile-nested-list {
+		list-style: none;
+		margin: 0;
+		padding: 0 0 0 0.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		border-left: 2px solid #f1f5f9;
+	}
+
+	.as-mobile-nested-link {
+		display: block;
+		padding: 0.35rem 0.5rem;
+		font-size: 0.84rem;
+		font-weight: 500;
+		color: #334155;
+		text-decoration: none;
+		border-radius: 4px;
+		transition: all 0.15s ease;
+	}
+
+	.as-mobile-nested-link:hover {
+		color: #f26522;
+		background: #f8fafc;
+		padding-left: 0.75rem;
+	}
+
+	.as-mobile-view-all {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: #18346f;
+		text-decoration: none;
+		margin-top: 0.35rem;
+		padding-top: 0.5rem;
+		border-top: 1px dashed #e2e8f0;
+		transition: color 0.15s ease;
+	}
+
+	.as-mobile-view-all:hover {
+		color: #f26522;
+	}
+
+	.as-mobile-phone-wrap {
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid #e5e7eb;
+	}
+
+	.as-mobile-phone-card {
+		display: flex;
+		align-items: center;
+		gap: 0.85rem;
+		padding: 0.85rem 1rem;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+		text-decoration: none;
+		transition: background 0.15s ease, border-color 0.15s ease;
+	}
+
+	.as-mobile-phone-card:hover {
+		background: #f1f5f9;
+		border-color: #cbd5e1;
+	}
+
+	.as-mobile-phone-card .as-phone-title {
+		font-size: 0.76rem;
+		font-weight: 600;
+		color: #64748b;
+		display: block;
+		line-height: 1.15;
+	}
+
+	.as-mobile-phone-card .as-phone-value {
+		font-size: 1.05rem;
+		font-weight: 800;
+		color: #18346f;
+		letter-spacing: 0.01em;
+		white-space: nowrap;
+		display: block;
+		margin-top: 2px;
+	}
+
+	.as-mobile-phone-card:hover .as-phone-value {
+		color: #f26522;
+	}
+
+	@media (max-width: 1040px) {
+		.as-nav-desktop {
+			display: none;
+		}
+		/* Hide phone number from top header on mobile/tablet - it shows inside the 3-line/dot drawer menu */
+		.as-phone-link {
+			display: none !important;
+		}
+		.as-mobile-toggle {
+			display: flex;
+		}
+		.as-header-container {
+			height: 64px;
+			min-height: 64px;
+			padding: 0 1rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.as-header-container {
+			padding: 0 0.85rem;
+			height: 60px;
+			min-height: 60px;
+		}
+		.as-logo-img {
+			height: 38px;
+			max-width: 175px;
+		}
+		.as-mobile-toggle {
+			width: 38px;
+			height: 38px;
+			padding: 10px 8px;
+		}
+	}
+</style>
+
+<script is:inline>
+	function initHeader() {
+		const toggleBtn = document.getElementById("as-mobile-toggle-btn");
+		const drawer = document.getElementById("as-mobile-drawer");
+		if (toggleBtn && drawer) {
+			toggleBtn.addEventListener("click", () => {
+				const isOpen = drawer.classList.toggle("open");
+				toggleBtn.setAttribute(
+					"aria-expanded",
+					isOpen ? "true" : "false",
+				);
+			});
+
+			// Close mobile drawer when clicking any link
+			const drawerLinks = drawer.querySelectorAll("a");
+			drawerLinks.forEach((link) => {
+				link.addEventListener("click", () => {
+					drawer.classList.remove("open");
+					toggleBtn.setAttribute("aria-expanded", "false");
+				});
+			});
+		}
+
+		// Desktop Dropdown: Clicking 'Product' should toggle dropdown rather than navigating to a page
+		const dropdownParent = document.querySelector(".as-dropdown-parent");
+		const dropdownTrigger = document.querySelector(".as-dropdown-trigger");
+		if (dropdownParent && dropdownTrigger) {
+			dropdownTrigger.addEventListener("click", (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				const isOpen = dropdownParent.classList.toggle("is-open");
+				dropdownTrigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+			});
+
+			// Close dropdown when clicking outside
+			document.addEventListener("click", (e) => {
+				if (!dropdownParent.contains(e.target)) {
+					dropdownParent.classList.remove("is-open");
+					dropdownTrigger.setAttribute("aria-expanded", "false");
+				}
+			});
+
+			// Close dropdown when any link inside it is clicked
+			const dropdownLinks = dropdownParent.querySelectorAll(".as-dropdown-link");
+			dropdownLinks.forEach((link) => {
+				link.addEventListener("click", () => {
+					dropdownParent.classList.remove("is-open");
+					dropdownTrigger.setAttribute("aria-expanded", "false");
+				});
+			});
+		}
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initHeader);
+	} else {
+		initHeader();
+	}
+	document.addEventListener("astro:page-load", initHeader);
+</script>

@@ -1,0 +1,1546 @@
+---
+// src/pages/about.astro
+// Exact 1000% faithful replica of https://aquashakti.com/company-profile/
+// Matching original structure, copy, official imagery, certifications, testimonials, metrics, and inquiry form
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import QuoteModal from '../components/QuoteModal.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Company Profile | Aquashakti Water Solution"
+			description="Aquashakti Water Solution is one of the leading manufacturers & suppliers of industrial water and waste water treatment plants strategically located in Ahmedabad, Gujarat."
+			image="/images/company-profile/about-page.jpg"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	</head>
+	<body class="company-profile-page">
+		<Header />
+
+		<main id="content" class="site-main">
+			<!-- ========================================================
+			     HERO SECTION: Pure Water Solutions Powering Industries Worldwide
+			     ======================================================== -->
+			<section class="about-hero" id="hero">
+				<div class="hero-bg-wrapper">
+					<img
+						src="/images/water-splash-world-map.jpg"
+						alt="AquaShakti Global Water Splash World Map"
+						class="hero-bg-img"
+						loading="eager"
+					/>
+				</div>
+
+				<div class="container hero-container">
+					<div class="hero-card-content">
+						<span class="hero-eyebrow">GLOBAL WATER TECHNOLOGY</span>
+						<h1 class="hero-heading">Pure water solutions powering industries worldwide.</h1>
+						<p class="hero-subheading">
+							From heavy-duty industrial reverse osmosis to turnkey wastewater treatment, engineered for zero-breakdown reliability across 20+ countries.
+						</p>
+						<div class="hero-cta-wrap">
+							<a href="/reverse-osmosis-system" class="btn-hero-primary">
+								<span>Explore our solutions</span>
+								<svg width="14" height="14" viewBox="0 0 16 18" fill="currentColor">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M12.2056 9.86991H-0.0078125V7.86991H12.2046L6.58074 2.16365L8.0052 0.759766L15.3069 8.16848L15.9987 8.87043L15.3069 9.57237L8.0052 16.9811L6.58074 15.5772L12.2056 9.86991Z" />
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 2. Row 1: About Intro (home-about-sec) -->
+			<section class="vc_row home-about-sec">
+				<div class="container">
+					<div class="row-flex align-center">
+						<div class="col-sm-4 image-col">
+							<div class="about-img-wrap">
+								<img
+									src="/images/company-profile/about-page.jpg"
+									alt="treatment plant"
+									class="about-img"
+									width="381"
+									height="358"
+									loading="eager"
+								/>
+							</div>
+						</div>
+						<div class="col-sm-8 text-col">
+							<div class="about-heading-wrap">
+								<h5 class="eyebrow-heading">Welcome To The Aquashakti Water Solution !</h5>
+								<h2 class="main-heading">Manufacturer &amp; Suppliers of Industrial Water &amp; waste water Treatment Plants</h2>
+								<div class="about-body-text">
+									<p>
+										Aquashakti Water Solution is one of the leading manufacturers of water and waste water treatment plant set sup manufacturers and suppliers. They are strategically located in Ahmedabad, the capital city of Gujarat. The company was established in 2007 and now has a proven track record of supplying high-quality products at the most reasonable rates. The company management, as well as core staff, thoroughly values the importance of considering the individual needs of customers and their projects.
+									</p>
+									<p>
+										The company is working under the guidance and leadership of Mr Shital Patel, who has been credited with leading the organization to set new benchmarks of trading. He has the prowess to create a success of the projects the company handles due to his insight and rich experience. Under his authority, Aquashakti has rendered great outcomes and associated itself with high profile clients. Some of the other reputable clients include Dow Chemical International Pvt. Ltd, Jain Irrigation Systems and Pidilite industries LTd , Cure afiya pharmaceutical ltd ,diftech india .
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 3. Row 2: Official Certifications Gallery -->
+			<section class="vc_row certificates-sec">
+				<div class="container">
+					<div class="cert-grid">
+						<div class="cert-card">
+							<a href="/images/company-profile/ISO-1.jpg" target="_blank" rel="noopener noreferrer" class="cert-link" title="Click to view ISO Certificate">
+								<img
+									src="/images/company-profile/ISO-1.jpg"
+									alt="ISO Certificate"
+									class="cert-img"
+									width="594"
+									height="847"
+									loading="lazy"
+								/>
+								<div class="cert-overlay">
+									<span class="cert-badge">ISO 9001:2015 Certified</span>
+								</div>
+							</a>
+						</div>
+						<div class="cert-card">
+							<a href="/images/company-profile/CERTIE-01.jpg" target="_blank" rel="noopener noreferrer" class="cert-link" title="Click to view Certificate">
+								<img
+									src="/images/company-profile/CERTIE-01.jpg"
+									alt="Certificate"
+									class="cert-img"
+									width="594"
+									height="847"
+									loading="lazy"
+								/>
+								<div class="cert-overlay">
+									<span class="cert-badge">Official Accreditation</span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 4. Row 3: Services We Offer (home-product-sec about-quality-sec) -->
+			<section class="vc_row home-product-sec about-quality-sec">
+				<div class="container">
+					<div class="section-title-wrap text-center">
+						<h5 class="eyebrow-heading">Services We Offer</h5>
+						<h2 class="section-title-light">High Quality Services Of Multiple Industries</h2>
+						<p class="section-subtext-light">
+							Aquashakti Are A Industry &amp; Manufacturing Services Provider Institutions. Suitable For Factory, Manufacturing, Industry, Engineering, Construction And Any Related Industry Care Field.
+						</p>
+					</div>
+
+					<div class="quality-grid">
+						<!-- Infrastructure Box -->
+						<div class="quality-card">
+							<div class="quality-icon-wrap">
+								<img
+									src="/images/company-profile/infrastructure.png"
+									alt="Infrastructure"
+									class="quality-icon"
+									width="63"
+									height="61"
+									loading="lazy"
+								/>
+							</div>
+							<h3 class="quality-card-title">Infrastructure</h3>
+							<p class="quality-card-desc">
+								The company is set up in a vast area for rendering services as per the best industry standards. There are well- organized units, which have a great collaboration with each other. There are different specialized departments for handling the process in an efficient manner. Every department is led by the corresponding specialist of the field. The company management takes care to procure the latest technology equipment and machines for all areas.
+							</p>
+						</div>
+
+						<!-- Company Mission Box -->
+						<div class="quality-card">
+							<div class="quality-icon-wrap">
+								<img
+									src="/images/company-profile/company-mission.png"
+									alt="Company mission"
+									class="quality-icon"
+									width="63"
+									height="61"
+									loading="lazy"
+								/>
+							</div>
+							<h3 class="quality-card-title">Company mission</h3>
+							<p class="quality-card-desc">
+								The company has defined its mission as providing services which exceed customer requirements. That is why they do not hesitate to go a step further in order to render value-added services. Customers get integrated packages for meeting their fuel and water management goals.
+							</p>
+						</div>
+
+						<!-- Company Vision Box -->
+						<div class="quality-card">
+							<div class="quality-icon-wrap">
+								<img
+									src="/images/company-profile/vompany-vision.png"
+									alt="Company Vision"
+									class="quality-icon"
+									width="63"
+									height="61"
+									loading="lazy"
+								/>
+							</div>
+							<h3 class="quality-card-title">Company Vision</h3>
+							<p class="quality-card-desc">
+								The management of the company makes sure that systems are wired to meet the needs of clients in coming times too. Thus, you get hassle-free services for innovative solutions with a complete explanation of benefits and implementation of better processes for greater profit. The company looks forward to expanding its services for a growing customer base of reputable businessmen of various industries.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 5. Row 4: Testimonials (home-testimonial-sec) -->
+			<section class="vc_row home-testimonial-sec">
+				<div class="container">
+					<div class="section-title-wrap text-center">
+						<h2 class="main-heading">What our client says</h2>
+						<p class="testimonial-sub-heading">
+							Customer satisfaction is a primary goal for our company, here is what our customers feel about our products!
+						</p>
+					</div>
+
+					<div class="testimonials-grid">
+						<!-- Kamath Rahul -->
+						<div class="testimonial-card">
+							<div class="testimonial-quote-icon">
+								<img src="/images/company-profile/Review-icon.jpg" alt="Review quote" width="36" height="36" />
+							</div>
+							<div class="testimonial-stars" aria-label="5 out of 5 stars">
+								★★★★★
+							</div>
+							<p class="testimonial-text">
+								"Aquashakti Water Solution is pioneer in manufacturing water treatment system. Their service and support is always up-to the mark. As per my experience, the staff is very professional and the firm is itself very ethical and transparent."
+							</p>
+							<div class="testimonial-author">
+								<h4 class="author-name">Kamath Rahul</h4>
+								<span class="author-role">Customer</span>
+							</div>
+						</div>
+
+						<!-- Chin Yang -->
+						<div class="testimonial-card">
+							<div class="testimonial-quote-icon">
+								<img src="/images/company-profile/Review-icon.jpg" alt="Review quote" width="36" height="36" />
+							</div>
+							<div class="testimonial-stars" aria-label="5 out of 5 stars">
+								★★★★★
+							</div>
+							<p class="testimonial-text">
+								"I would love to recommend Aquashakti Water Solution especially for RO Plants, they are one of the top RO Plant Manufacturers in India. Customer services is very good."
+							</p>
+							<div class="testimonial-author">
+								<h4 class="author-name">Chin Yang</h4>
+								<span class="author-role">Customer</span>
+							</div>
+						</div>
+
+						<!-- John S Odell -->
+						<div class="testimonial-card">
+							<div class="testimonial-quote-icon">
+								<img src="/images/company-profile/Review-icon.jpg" alt="Review quote" width="36" height="36" />
+							</div>
+							<div class="testimonial-stars" aria-label="5 out of 5 stars">
+								★★★★★
+							</div>
+							<p class="testimonial-text">
+								"Aquashakti Water Solution is very specializes in providing hi-tech reverse osmosis plants at the most affordable rates. Their excellent quality water plants prove the name itself. Their RO Plant solves all your hard water problems and many more."
+							</p>
+							<div class="testimonial-author">
+								<h4 class="author-name">John S Odell</h4>
+								<span class="author-role">Customer</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 6. Row 5: Best Service & Key Metrics (home-info-sec about-info-sec) -->
+			<section class="vc_row home-info-sec about-info-sec">
+				<div class="container">
+					<div class="info-row-flex">
+						<!-- Left column -->
+						<div class="info-left-col">
+							<h2 class="main-heading">Aquashakti Provide The Best Service For Sustainable Progress</h2>
+							<p class="info-sub-desc">
+								Aquashakti Are A Industry &amp; Manufacturing Services Provider Institutions. Suitable For Factory, Manufacturing, Industry, Engineering, Construction And Any Related Industry Care Field.
+							</p>
+							<div class="info-badge-feature">
+								<span class="badge-icon">✓</span>
+								<span>Engineered for zero-breakdown reliability &amp; compliance</span>
+							</div>
+						</div>
+
+						<!-- Right column (4 Metric Cards in 2x2 grid) -->
+						<div class="info-right-col">
+							<div class="metrics-grid">
+								<!-- Metric 1 -->
+								<div class="metric-card">
+									<div class="metric-icon-wrap">
+										<img
+											src="/images/company-profile/customer-ratring.png"
+											alt="Customer rating"
+											width="50"
+											height="50"
+											loading="lazy"
+										/>
+									</div>
+									<div class="metric-text-wrap">
+										<h3 class="metric-title">4.7 Customer rating</h3>
+										<p class="metric-desc">Regular support for your organization's department.</p>
+									</div>
+								</div>
+
+								<!-- Metric 2 -->
+								<div class="metric-card">
+									<div class="metric-icon-wrap">
+										<img
+											src="/images/company-profile/customer-review-.png"
+											alt="Happy customers"
+											width="50"
+											height="50"
+											loading="lazy"
+										/>
+									</div>
+									<div class="metric-text-wrap">
+										<h3 class="metric-title">500+ Happy customers</h3>
+										<p class="metric-desc">people who value your brand beyond the initial purchase.</p>
+									</div>
+								</div>
+
+								<!-- Metric 3 -->
+								<div class="metric-card">
+									<div class="metric-icon-wrap">
+										<img
+											src="/images/company-profile/cerified-company-copy.png"
+											alt="Certified company"
+											width="50"
+											height="50"
+											loading="lazy"
+										/>
+									</div>
+									<div class="metric-text-wrap">
+										<h3 class="metric-title">2015 Certified company</h3>
+										<p class="metric-desc">Ensure the quality of organizations.</p>
+									</div>
+								</div>
+
+								<!-- Metric 4 -->
+								<div class="metric-card">
+									<div class="metric-icon-wrap">
+										<img
+											src="/images/company-profile/service.png"
+											alt="Working hour"
+											width="50"
+											height="50"
+											loading="lazy"
+										/>
+									</div>
+									<div class="metric-text-wrap">
+										<h3 class="metric-title">24/7 Working hour</h3>
+										<p class="metric-desc">We can monitor and support you 24/7.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 7. Legal Information Section -->
+			<section class="vc_row legal-info-sec">
+				<div class="container">
+					<div class="legal-card-wrap">
+						<div class="legal-title-wrap">
+							<span class="legal-badge">Verified Credentials</span>
+							<h3 class="legal-heading">Legal &amp; Registration Information</h3>
+						</div>
+						<div class="legal-grid">
+							<div class="legal-item">
+								<span class="legal-label">GSTIN / UIN NO</span>
+								<strong class="legal-value">24BAKPP2913A1Z5</strong>
+							</div>
+							<div class="legal-item">
+								<span class="legal-label">REGISTRAR OF COMPANIES (ROC)</span>
+								<strong class="legal-value">ROC Ahmedabad</strong>
+							</div>
+							<div class="legal-item">
+								<span class="legal-label">DGFT / IE CODE</span>
+								<strong class="legal-value">0812025717</strong>
+							</div>
+							<div class="legal-item">
+								<span class="legal-label">MANUFACTURING WORKS</span>
+								<strong class="legal-value">75, Panchratna Estate, Kathwada GIDC, Ahmedabad</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 8. Row 6: Book Your Free Consultation Now & Form (home-bottom-sec) -->
+			<section class="vc_row home-bottom-sec bottom-sec" id="consultation">
+				<div class="container">
+					<!-- Top CTA Strip -->
+					<div class="consultation-strip">
+						<div class="strip-left">
+							<h2 class="consultation-heading">
+								Book Your <span class="txt-heading">Free</span> Consultation now!
+							</h2>
+						</div>
+
+						<div class="strip-center">
+							<a class="phone-circle" href="tel:+918799374555" aria-label="Call +91 8799374555">
+								<svg class="phone-svg" viewBox="0 0 82 82" width="60" height="60" fill="currentColor">
+									<path d="M64.5,78.2c1.7-1.9,3.6-3.6,5.4-5.4c2.6-2.7,2.7-5.9,0-8.6c-3.1-3.2-6.3-6.3-9.4-9.4
+										c-2.6-2.6-5.8-2.6-8.4,0c-2,1.9-3.9,3.9-5.9,5.9c-0.1,0.1-0.3,0.2-0.4,0.3l-1.3,1.3c-0.4,0.2-0.7,0.2-1.2,0
+										c-1.3-0.7-2.6-1.2-3.8-2c-5.7-3.6-10.5-8.2-14.7-13.4c-2.1-2.6-4-5.3-5.3-8.4c-0.2-0.5-0.2-0.9,0.1-1.3l1.3-1.3
+										c0.1-0.1,0.1-0.2,0.2-0.3c0.6-0.6,1.2-1.1,1.8-1.7c1.4-1.3,2.7-2.7,4.1-4.1c2.7-2.7,2.7-5.9,0-8.6c-1.5-1.5-3.1-3.1-4.6-4.6
+										c-1.6-1.6-3.2-3.2-4.8-4.8c-2.6-2.5-5.8-2.5-8.4,0c-2,1.9-3.9,3.9-5.9,5.9c-1.9,1.8-2.8,3.9-3,6.5c-0.3,4.1,0.7,8,2.1,11.8
+										C5.2,43.8,9.6,50.7,15,57.1c7.2,8.6,15.9,15.4,26,20.4c4.6,2.2,9.3,3.9,14.4,4.2C58.9,81.8,62,81,64.5,78.2z"></path>
+									<path d="M41.1,15.7c-0.7,0-1.5,0.1-2.2,0.4c-1.7,0.8-2.5,2.8-2,4.8c0.4,1.8,2,3,3.9,3c4.6,0.1,8.6,1.5,12,4.6
+										c3.7,3.4,5.4,7.7,5.6,12.8c0,0.9,0.4,1.9,0.9,2.6c1.1,1.5,3,1.9,4.8,1.2c1.6-0.6,2.5-2,2.5-3.9c-0.1-7-2.6-12.9-7.5-18.1
+										C54.1,18.4,48.1,15.8,41.1,15.7z"></path>
+									<path d="M69,11.4c8.5,8.7,12.5,18.1,12.8,29.1c0.1,2.5-1.5,4.2-3.9,4.3c-2.6,0.1-4.3-1.4-4.4-4c-0.1-5.4-1.4-10.5-4-15.2
+										C63.5,14.9,54.2,9.3,42,8.6c-1.4-0.1-2.6-0.2-3.6-1.3c-1.2-1.4-1.3-3-0.7-4.6c0.7-1.6,2-2.4,3.8-2.4c8,0.1,15.3,2.4,22,6.8
+										C65.7,8.6,67.8,10.4,69,11.4z"></path>
+								</svg>
+							</a>
+						</div>
+
+						<div class="strip-right">
+							<div class="contact-links">
+								<a href="tel:+918799374555" class="contact-link">+91 8799374555</a>
+								<a href="tel:+919558374555" class="contact-link">+91 9558374555</a>
+								<a href="mailto:info@aquashakti.com" class="contact-link email-link">info@aquashakti.com</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Official Inquiry Form (new-enquiry-form) -->
+					<div class="form-container">
+						<form class="new-enquiry-form" id="consultationForm">
+							<div class="form-grid">
+								<!-- Full Name -->
+								<div class="form-group">
+									<input type="text" name="fullname" id="fullName" placeholder="Full Name *" required class="form-control" />
+								</div>
+
+								<!-- Email -->
+								<div class="form-group">
+									<input type="email" name="email" id="email" placeholder="Email *" required class="form-control" />
+								</div>
+
+								<!-- Country -->
+								<div class="form-group">
+									<select name="coutrylist" id="country" class="form-control" required>
+										<option value="India" selected>India</option>
+										<option value="United States">United States</option>
+										<option value="United Arab Emirates">United Arab Emirates</option>
+										<option value="United Kingdom">United Kingdom</option>
+										<option value="Saudi Arabia">Saudi Arabia</option>
+										<option value="Kenya">Kenya</option>
+										<option value="Nigeria">Nigeria</option>
+										<option value="Bangladesh">Bangladesh</option>
+										<option value="Sri Lanka">Sri Lanka</option>
+										<option value="Nepal">Nepal</option>
+										<option value="Germany">Germany</option>
+										<option value="Australia">Australia</option>
+										<option value="Other">Other Country</option>
+									</select>
+								</div>
+
+								<!-- Mobile No -->
+								<div class="form-group tel-group">
+									<span class="country-prefix">+91</span>
+									<input type="tel" name="tel-24" id="phone" placeholder="Mobile No *" required class="form-control tel-input" />
+								</div>
+
+								<!-- Company Name -->
+								<div class="form-group">
+									<input type="text" name="companyname" id="companyName" placeholder="Company Name" class="form-control" />
+								</div>
+
+								<!-- Industry Type -->
+								<div class="form-group">
+									<select name="industrytype" id="industryType" class="form-control">
+										<option value="">Select Industry Type</option>
+										<option value="Manufacturing">Manufacturing</option>
+										<option value="Chemical">Chemical</option>
+										<option value="Pharmaceutical">Pharmaceutical</option>
+										<option value="Food & Beverage">Food &amp; Beverage</option>
+										<option value="Textile">Textile</option>
+										<option value="Hospitality / Commercial">Hospitality / Commercial</option>
+										<option value="Other">Other</option>
+									</select>
+								</div>
+
+								<!-- Size of Facility -->
+								<div class="form-group">
+									<select name="sizeoffacility" id="sizeOfFacility" class="form-control">
+										<option value="">Select Size of Facility</option>
+										<option value="Small">Small (&lt; 10,000 sq ft)</option>
+										<option value="Medium">Medium (10,000 - 50,000 sq ft)</option>
+										<option value="Large">Large (&gt; 50,000 sq ft)</option>
+									</select>
+								</div>
+
+								<!-- Daily Water Usage -->
+								<div class="form-group">
+									<input type="text" name="dailywaterusage" id="waterUsage" placeholder="Estimated Daily Water Usage (e.g. 5,000 LPH)" class="form-control" />
+								</div>
+
+								<!-- Project Timeline -->
+								<div class="form-group full-width">
+									<select name="projecttimeline" id="timeline" class="form-control">
+										<option value="">Select Project Timeline</option>
+										<option value="Immediate">Immediate (Within 1-2 weeks)</option>
+										<option value="1-3 Months">1-3 Months</option>
+										<option value="3-6 Months">3-6 Months</option>
+										<option value="Over 6 Months">Over 6 Months</option>
+									</select>
+								</div>
+
+								<!-- Enter Requirement -->
+								<div class="form-group full-width">
+									<textarea name="textarea-590" id="requirement" placeholder="Enter Requirement / Details about water quality, source TDS, or specific treatment challenges *" rows="4" required class="form-control"></textarea>
+								</div>
+							</div>
+
+							<!-- Submit Button & Feedback -->
+							<div class="form-actions text-center">
+								<button type="submit" class="submit-btn" id="submitConsultationBtn">
+									<span>Submit Consultation Request</span>
+									<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+										<polyline points="12 5 19 12 12 19"></polyline>
+									</svg>
+								</button>
+								<p class="form-note">🔒 Your details are securely transmitted directly to our senior plant engineers in Ahmedabad.</p>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer />
+		<QuoteModal />
+
+		<script>
+			// Interactive Consultation Form Submission Handler
+			const form = document.getElementById('consultationForm') as HTMLFormElement | null;
+			if (form) {
+				form.addEventListener('submit', (e) => {
+					e.preventDefault();
+					const nameInput = document.getElementById('fullName') as HTMLInputElement;
+					const phoneInput = document.getElementById('phone') as HTMLInputElement;
+					const emailInput = document.getElementById('email') as HTMLInputElement;
+					const companyInput = document.getElementById('companyName') as HTMLInputElement;
+					const industrySelect = document.getElementById('industryType') as HTMLSelectElement;
+					const reqInput = document.getElementById('requirement') as HTMLTextAreaElement;
+
+					const name = nameInput?.value.trim() || '';
+					const phone = phoneInput?.value.trim() || '';
+					const email = emailInput?.value.trim() || '';
+					const company = companyInput?.value.trim() || 'N/A';
+					const industry = industrySelect?.value || 'Industrial';
+					const req = reqInput?.value.trim() || 'Consultation inquiry from Website';
+
+					// Format WhatsApp message to AquaShakti engineering team
+					const text = `Hello AquaShakti Team,\n\nI would like to request a consultation from the Company Profile page.\n\n*Name:* ${name}\n*Phone:* +91 ${phone}\n*Email:* ${email}\n*Company:* ${company}\n*Industry:* ${industry}\n*Requirement:* ${req}`;
+					const waUrl = `https://api.whatsapp.com/send?phone=918799374555&text=${encodeURIComponent(text)}`;
+					
+					// Open WhatsApp inquiry in new tab
+					window.open(waUrl, '_blank');
+
+					// Show confirmation message
+					alert('Thank you, ' + name + '! Your consultation request has been initiated. Our engineering representative will connect with you shortly.');
+					form.reset();
+				});
+			}
+		</script>
+
+		<style>
+			/* ==========================================================================
+			   Aquashakti Company Profile Styles (Exact Match with Production)
+			   ========================================================================== */
+
+			:root {
+				--as-orange: #ec741d;
+				--as-blue: #173e6e;
+				--as-blue-dark: #0f2746;
+				--as-bg-light: #fafafa;
+				--as-text-dark: #333333;
+				--as-text-muted: #666666;
+				--as-border-color: #e5e7eb;
+			}
+
+			body.company-profile-page {
+				font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+				color: var(--as-text-dark);
+				background-color: #ffffff;
+				margin: 0;
+				padding: 0;
+			}
+
+			main#content {
+				padding-top: 0 !important;
+				margin-top: 0 !important;
+			}
+
+			.container {
+				width: 100%;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 20px;
+				box-sizing: border-box;
+			}
+
+			/* ================= Page Title & Breadcrumb Banner ================= */
+			.page-title.solid-bg {
+				background-color: #f7f9fa;
+				border-bottom: 1px solid #ebeff2;
+				padding: 30px 0;
+			}
+
+			/* ================= About Hero Section (Water Splash World Map) ================= */
+			.about-hero {
+				position: relative;
+				height: 50vh;
+				min-height: 50vh;
+				display: flex;
+				align-items: center;
+				background: #f8fafc;
+				overflow: hidden;
+			}
+
+			.about-hero::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					90deg,
+					rgba(255, 255, 255, 0.4) 0%,
+					rgba(255, 255, 255, 0.15) 40%,
+					transparent 70%
+				);
+				z-index: 1;
+				pointer-events: none;
+			}
+
+			.about-hero .hero-bg-wrapper {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
+			}
+
+			.about-hero .hero-bg-img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center center;
+				opacity: 0.42;
+				filter: none;
+				display: block;
+				transform: none;
+			}
+
+			.about-hero .hero-container {
+				position: relative;
+				z-index: 10;
+				padding-top: 2rem;
+				padding-bottom: 2rem;
+				width: 100%;
+			}
+
+			.about-hero .hero-card-content {
+				max-width: 580px;
+				background: transparent;
+				border: none;
+				box-shadow: none;
+				padding: 0;
+			}
+
+			.about-hero .hero-eyebrow {
+				display: block;
+				font-family: 'Poppins', sans-serif;
+				font-size: 0.8rem;
+				font-weight: 800;
+				letter-spacing: 0.1em;
+				color: #0060b8;
+				margin-bottom: 0.5rem;
+				text-transform: uppercase;
+				text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95);
+			}
+
+			.about-hero .hero-heading {
+				font-family: 'Poppins', sans-serif;
+				font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+				font-weight: 800;
+				line-height: 1.15;
+				letter-spacing: -0.03em;
+				color: #002244;
+				margin-bottom: 0.75rem;
+				text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 12px rgba(255, 255, 255, 0.8);
+			}
+
+			.about-hero .hero-subheading {
+				font-size: 0.95rem;
+				font-weight: 600;
+				line-height: 1.5;
+				color: #0f172a;
+				margin-bottom: 1.25rem;
+				max-width: 540px;
+				text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 8px rgba(255, 255, 255, 0.75);
+			}
+
+			.about-hero .hero-cta-wrap {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			.btn-hero-primary {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.65rem;
+				background-color: #0072ce;
+				color: #ffffff;
+				font-weight: 700;
+				font-size: 0.95rem;
+				padding: 0.7rem 1.6rem;
+				border-radius: 9999px;
+				text-decoration: none;
+				transition: all 0.25s ease;
+				box-shadow: 0 4px 14px rgba(0, 114, 206, 0.35);
+			}
+
+			.btn-hero-primary:hover {
+				background-color: #005a9e;
+				color: #ffffff;
+				transform: translateY(-2px);
+				box-shadow: 0 6px 20px rgba(0, 114, 206, 0.5);
+			}
+
+			@media (max-width: 768px) {
+				.about-hero {
+					height: auto;
+					min-height: 50vh;
+					padding: 2.5rem 0;
+				}
+				.about-hero .hero-card-content {
+					padding: 0;
+					background: transparent;
+				}
+			}
+
+			.page-title-inner {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 15px;
+			}
+
+			.page-title-head h1 {
+				margin: 0;
+				font-size: 28px;
+				font-weight: 700;
+				color: var(--as-blue);
+				letter-spacing: -0.3px;
+			}
+
+			.page-title-breadcrumbs {
+				display: flex;
+				align-items: center;
+				font-size: 13px;
+				color: #888888;
+			}
+
+			.page-title-breadcrumbs .assistive-text {
+				margin-right: 8px;
+				font-weight: 400;
+			}
+
+			.breadcrumbs {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				align-items: center;
+				gap: 6px;
+			}
+
+			.breadcrumbs a {
+				color: #555555;
+				text-decoration: none;
+				transition: color 0.2s ease;
+			}
+
+			.breadcrumbs a:hover {
+				color: var(--as-orange);
+			}
+
+			.breadcrumbs .separator {
+				color: #cccccc;
+			}
+
+			.breadcrumbs .current {
+				color: var(--as-orange);
+				font-weight: 500;
+			}
+
+			/* ================= Global Section Structure ================= */
+			.vc_row {
+				padding-top: 70px;
+				padding-bottom: 70px;
+				box-sizing: border-box;
+			}
+
+			.row-flex {
+				display: flex;
+				flex-wrap: wrap;
+				margin: 0 -15px;
+			}
+
+			.align-center {
+				align-items: center;
+			}
+
+			.col-sm-4 {
+				flex: 0 0 33.333333%;
+				max-width: 33.333333%;
+				padding: 0 15px;
+				box-sizing: border-box;
+			}
+
+			.col-sm-8 {
+				flex: 0 0 66.666667%;
+				max-width: 66.666667%;
+				padding: 0 15px;
+				box-sizing: border-box;
+			}
+
+			.eyebrow-heading {
+				color: var(--as-orange) !important;
+				font-size: 16px;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				margin: 0 0 12px 0;
+			}
+
+			.main-heading {
+				color: var(--as-blue) !important;
+				font-size: 32px;
+				line-height: 42px;
+				font-weight: 700;
+				margin: 0 0 20px 0;
+			}
+
+			/* ================= Row 1: About Intro ================= */
+			.home-about-sec {
+				background-color: #ffffff;
+			}
+
+			.about-img-wrap {
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 10px 25px rgba(23, 62, 110, 0.08);
+				border: 1px solid #e2e8f0;
+			}
+
+			.about-img {
+				width: 100%;
+				height: auto;
+				display: block;
+				object-fit: cover;
+				transition: transform 0.4s ease;
+			}
+
+			.about-img-wrap:hover .about-img {
+				transform: scale(1.03);
+			}
+
+			.about-body-text p {
+				color: #4b5563;
+				font-size: 15px;
+				line-height: 27px;
+				text-align: justify;
+				margin: 0 0 18px 0;
+			}
+
+			.about-body-text p:last-child {
+				margin-bottom: 0;
+			}
+
+			/* ================= Row 2: Certificates ================= */
+			.certificates-sec {
+				background-color: #fbfcfe;
+				padding-top: 20px;
+				padding-bottom: 60px;
+				border-top: 1px solid #f1f5f9;
+			}
+
+			.cert-grid {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 40px;
+				flex-wrap: wrap;
+			}
+
+			.cert-card {
+				flex: 0 0 calc(30% - 20px);
+				max-width: 320px;
+				background: #ffffff;
+				padding: 12px;
+				border-radius: 8px;
+				box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+				border: 1px solid #e2e8f0;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.cert-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 15px 35px rgba(23, 62, 110, 0.15);
+			}
+
+			.cert-link {
+				display: block;
+				position: relative;
+				text-decoration: none;
+				border-radius: 4px;
+				overflow: hidden;
+			}
+
+			.cert-img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+
+			.cert-overlay {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background: linear-gradient(to top, rgba(23, 62, 110, 0.9), transparent);
+				padding: 20px 10px 10px;
+				text-align: center;
+			}
+
+			.cert-badge {
+				color: #ffffff;
+				font-size: 12px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+
+			/* ================= Row 3: Services / Quality (about-quality-sec) ================= */
+			.about-quality-sec {
+				background-color: var(--as-blue);
+				color: #ffffff;
+			}
+
+			.section-title-wrap {
+				max-width: 820px;
+				margin: 0 auto 50px auto;
+			}
+
+			.text-center {
+				text-align: center;
+			}
+
+			.section-title-light {
+				color: #ffffff !important;
+				font-size: 32px;
+				line-height: 42px;
+				font-weight: 700;
+				margin: 0 0 16px 0;
+			}
+
+			.section-subtext-light {
+				color: #cbd5e1;
+				font-size: 15px;
+				line-height: 26px;
+				margin: 0;
+			}
+
+			.quality-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 30px;
+			}
+
+			.quality-card {
+				background: rgba(255, 255, 255, 0.05);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				border-radius: 8px;
+				padding: 35px 25px;
+				text-align: center;
+				transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+			}
+
+			.quality-card:hover {
+				transform: translateY(-6px);
+				background: rgba(255, 255, 255, 0.09);
+				border-color: var(--as-orange);
+			}
+
+			.quality-icon-wrap {
+				width: 80px;
+				height: 80px;
+				margin: 0 auto 20px auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 50%;
+			}
+
+			.quality-icon {
+				width: 48px;
+				height: 48px;
+				object-fit: contain;
+			}
+
+			.quality-card-title {
+				color: #ffffff;
+				font-size: 20px;
+				font-weight: 600;
+				margin: 0 0 16px 0;
+			}
+
+			.quality-card-desc {
+				color: #e2e8f0;
+				font-size: 13px;
+				line-height: 23px;
+				text-align: justify;
+				margin: 0;
+			}
+
+			/* ================= Row 4: Testimonials (home-testimonial-sec) ================= */
+			.home-testimonial-sec {
+				background-color: var(--as-bg-light);
+			}
+
+			.testimonial-sub-heading {
+				color: #666666;
+				font-size: 15px;
+				margin-top: -10px;
+				margin-bottom: 40px;
+			}
+
+			.testimonials-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 30px;
+			}
+
+			.testimonial-card {
+				background: #ffffff;
+				border-radius: 8px;
+				padding: 35px 28px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+				border: 1px solid #eaedf0;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.testimonial-card:hover {
+				transform: translateY(-4px);
+				box-shadow: 0 12px 30px rgba(23, 62, 110, 0.1);
+			}
+
+			.testimonial-quote-icon {
+				position: absolute;
+				top: 24px;
+				right: 24px;
+				opacity: 0.8;
+			}
+
+			.testimonial-stars {
+				color: #f59e0b;
+				font-size: 20px;
+				letter-spacing: 3px;
+				margin-bottom: 16px;
+			}
+
+			.testimonial-text {
+				color: #4b5563;
+				font-size: 14px;
+				line-height: 24px;
+				font-style: italic;
+				margin: 0 0 24px 0;
+				flex-grow: 1;
+			}
+
+			.testimonial-author {
+				border-top: 1px solid #f1f5f9;
+				padding-top: 16px;
+			}
+
+			.author-name {
+				color: var(--as-blue);
+				font-size: 16px;
+				font-weight: 700;
+				margin: 0 0 4px 0;
+			}
+
+			.author-role {
+				color: var(--as-orange);
+				font-size: 12px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+
+			/* ================= Row 5: Sustainable Progress & Metrics (about-info-sec) ================= */
+			.about-info-sec {
+				background-color: #ffffff;
+			}
+
+			.info-row-flex {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 40px;
+				align-items: center;
+			}
+
+			.info-left-col {
+				flex: 1 1 450px;
+			}
+
+			.info-sub-desc {
+				color: #555555;
+				font-size: 15px;
+				line-height: 26px;
+				margin: 0 0 24px 0;
+			}
+
+			.info-badge-feature {
+				display: inline-flex;
+				align-items: center;
+				gap: 10px;
+				background: #f0fdf4;
+				border: 1px solid #bbf7d0;
+				color: #166534;
+				padding: 10px 16px;
+				border-radius: 6px;
+				font-size: 13px;
+				font-weight: 600;
+			}
+
+			.badge-icon {
+				background: #22c55e;
+				color: #ffffff;
+				width: 18px;
+				height: 18px;
+				border-radius: 50%;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 11px;
+			}
+
+			.info-right-col {
+				flex: 1 1 550px;
+			}
+
+			.metrics-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 24px;
+			}
+
+			.metric-card {
+				background: #ffffff;
+				border: 1px solid #e2e8f0;
+				border-radius: 8px;
+				padding: 24px;
+				display: flex;
+				align-items: flex-start;
+				gap: 18px;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+				transition: border-color 0.3s ease, transform 0.3s ease;
+			}
+
+			.metric-card:hover {
+				border-color: var(--as-orange);
+				transform: translateY(-3px);
+			}
+
+			.metric-icon-wrap {
+				flex-shrink: 0;
+			}
+
+			.metric-icon-wrap img {
+				width: 44px;
+				height: 44px;
+				object-fit: contain;
+			}
+
+			.metric-title {
+				color: var(--as-blue);
+				font-size: 18px;
+				font-weight: 700;
+				margin: 0 0 6px 0;
+			}
+
+			.metric-desc {
+				color: #64748b;
+				font-size: 13px;
+				line-height: 20px;
+				margin: 0;
+			}
+
+			/* ================= Section 7: Legal Information ================= */
+			.legal-info-sec {
+				background: linear-gradient(135deg, #0d2542, #173e6e);
+				color: #ffffff;
+				padding-top: 50px;
+				padding-bottom: 50px;
+			}
+
+			.legal-card-wrap {
+				background: rgba(255, 255, 255, 0.06);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				border-radius: 10px;
+				padding: 35px 30px;
+			}
+
+			.legal-title-wrap {
+				margin-bottom: 25px;
+			}
+
+			.legal-badge {
+				background: var(--as-orange);
+				color: #ffffff;
+				font-size: 11px;
+				font-weight: 700;
+				padding: 4px 10px;
+				border-radius: 4px;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				display: inline-block;
+				margin-bottom: 8px;
+			}
+
+			.legal-heading {
+				color: #ffffff;
+				font-size: 22px;
+				font-weight: 700;
+				margin: 0;
+			}
+
+			.legal-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 20px;
+			}
+
+			.legal-item {
+				background: rgba(0, 0, 0, 0.2);
+				border-left: 3px solid var(--as-orange);
+				padding: 14px 16px;
+				border-radius: 0 6px 6px 0;
+			}
+
+			.legal-label {
+				display: block;
+				font-size: 11px;
+				color: #94a3b8;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				margin-bottom: 4px;
+			}
+
+			.legal-value {
+				display: block;
+				font-size: 14px;
+				color: #ffffff;
+				word-break: break-word;
+			}
+
+			/* ================= Row 6: Consultation & Form (home-bottom-sec) ================= */
+			.home-bottom-sec {
+				background-color: #f8fafc;
+				padding-top: 60px;
+				padding-bottom: 70px;
+			}
+
+			.consultation-strip {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 20px;
+				padding-bottom: 40px;
+				border-bottom: 1px solid #e2e8f0;
+				margin-bottom: 40px;
+			}
+
+			.strip-left {
+				flex: 1 1 350px;
+			}
+
+			.consultation-heading {
+				font-size: 32px;
+				line-height: 42px;
+				color: var(--as-blue);
+				font-weight: 700;
+				margin: 0;
+			}
+
+			.txt-heading {
+				color: var(--as-orange) !important;
+			}
+
+			.strip-center {
+				flex: 0 0 auto;
+			}
+
+			.phone-circle {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 70px;
+				height: 70px;
+				background: #ffffff;
+				color: var(--as-orange);
+				border-radius: 50%;
+				box-shadow: 0 6px 20px rgba(236, 116, 29, 0.2);
+				border: 2px solid #fed7aa;
+				transition: transform 0.3s ease, background 0.3s ease;
+			}
+
+			.phone-circle:hover {
+				transform: scale(1.08);
+				background: #fff7ed;
+			}
+
+			.phone-svg {
+				width: 36px;
+				height: 36px;
+			}
+
+			.strip-right {
+				flex: 1 1 300px;
+				text-align: right;
+			}
+
+			.contact-links {
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+			}
+
+			.contact-link {
+				font-size: 20px;
+				line-height: 30px;
+				font-weight: 700;
+				color: var(--as-blue);
+				text-decoration: none;
+				transition: color 0.2s ease;
+			}
+
+			.contact-link:hover {
+				color: var(--as-orange);
+			}
+
+			.email-link {
+				font-size: 16px;
+				font-weight: 500;
+				color: #475569;
+			}
+
+			/* ================= Form Container & Fields ================= */
+			.form-container {
+				max-width: 900px;
+				margin: 0 auto;
+				background: #ffffff;
+				padding: 40px;
+				border-radius: 12px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+				border: 1px solid #e2e8f0;
+			}
+
+			.form-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+			}
+
+			.full-width {
+				grid-column: span 2;
+			}
+
+			.form-group {
+				position: relative;
+			}
+
+			.form-control {
+				width: 100%;
+				padding: 12px 16px;
+				border: 1px solid #cbd5e1;
+				border-radius: 6px;
+				font-family: inherit;
+				font-size: 14px;
+				color: #1e293b;
+				background-color: #ffffff;
+				box-sizing: border-box;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.form-control:focus {
+				outline: none;
+				border-color: var(--as-orange);
+				box-shadow: 0 0 0 3px rgba(236, 116, 29, 0.15);
+			}
+
+			.tel-group {
+				display: flex;
+			}
+
+			.country-prefix {
+				display: inline-flex;
+				align-items: center;
+				padding: 0 14px;
+				background: #f1f5f9;
+				border: 1px solid #cbd5e1;
+				border-right: none;
+				border-radius: 6px 0 0 6px;
+				font-size: 14px;
+				font-weight: 600;
+				color: #475569;
+			}
+
+			.tel-input {
+				border-radius: 0 6px 6px 0 !important;
+			}
+
+			textarea.form-control {
+				resize: vertical;
+				min-height: 110px;
+			}
+
+			.form-actions {
+				margin-top: 30px;
+			}
+
+			.submit-btn {
+				background-color: var(--as-orange);
+				color: #ffffff;
+				border: none;
+				padding: 15px 40px;
+				font-size: 16px;
+				font-weight: 600;
+				border-radius: 6px;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				gap: 10px;
+				transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+				box-shadow: 0 6px 20px rgba(236, 116, 29, 0.3);
+			}
+
+			.submit-btn:hover {
+				background-color: #d8620f;
+				transform: translateY(-2px);
+				box-shadow: 0 8px 25px rgba(236, 116, 29, 0.4);
+			}
+
+			.form-note {
+				font-size: 12px;
+				color: #64748b;
+				margin-top: 14px;
+			}
+
+			/* ================= Responsive Styles ================= */
+			@media (max-width: 991px) {
+				.quality-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+
+				.testimonials-grid {
+					grid-template-columns: repeat(1, 1fr);
+				}
+
+				.legal-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+
+			@media (max-width: 768px) {
+				.vc_row {
+					padding-top: 40px !important;
+					padding-bottom: 40px !important;
+				}
+
+				.col-sm-4,
+				.col-sm-8 {
+					flex: 0 0 100%;
+					max-width: 100%;
+				}
+
+				.image-col {
+					margin-bottom: 25px;
+				}
+
+				.main-heading,
+				.section-title-light,
+				.consultation-heading {
+					font-size: 24px !important;
+					line-height: 34px !important;
+				}
+
+				.quality-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.metrics-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.form-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.full-width {
+					grid-column: span 1;
+				}
+
+				.form-container {
+					padding: 24px 18px;
+				}
+
+				.consultation-strip {
+					flex-direction: column;
+					text-align: center;
+				}
+
+				.strip-right {
+					text-align: center;
+				}
+
+				.legal-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</body>
+</html>

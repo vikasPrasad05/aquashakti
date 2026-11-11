@@ -1,0 +1,709 @@
+---
+// src/components/LiquidSlider.astro
+// Compact water-capacity liquid slider with 1D wave physics, rising bubbles,
+// 3D glass beaker and preset chips. SVG-only visuals — no emojis.
+
+interface Props {
+	defaultValue?: number;
+	min?: number;
+	max?: number;
+	id?: string;
+	className?: string;
+}
+
+const {
+	defaultValue = 10000,
+	min = 500,
+	max = 50000,
+	id = 'aqua-liquid-slider',
+	className = '',
+} = Astro.props;
+---
+
+<div
+	class={`compact-liquid-container ${className}`}
+	id={id}
+	data-min={min}
+	data-max={max}
+	data-value={defaultValue}
+>
+	<!-- Left: Interactive glass cylinder -->
+	<div class="liquid-cylinder-col">
+		<svg
+			id={`${id}-svg`}
+			class="compact-liquid-svg"
+			viewBox="0 0 115 150"
+			width="115"
+			height="150"
+			role="slider"
+			aria-label="Water capacity liquid gauge"
+			aria-valuemin={min}
+			aria-valuemax={max}
+			aria-valuenow={defaultValue}
+			aria-valuetext={`${defaultValue.toLocaleString()} liters per day`}
+			tabindex="0"
+		>
+			<defs>
+				<linearGradient id={`${id}-water-grad`} x1="0" y1="0" x2="0" y2="1">
+					<stop offset="0%" stop-color="#0284c7" />
+					<stop offset="60%" stop-color="#0369a1" />
+					<stop offset="100%" stop-color="#0c4a6e" />
+				</linearGradient>
+
+				<linearGradient id={`${id}-surface-grad`} x1="0" y1="0" x2="1" y2="0">
+					<stop offset="0%" stop-color="#38bdf8" />
+					<stop offset="50%" stop-color="#7dd3fc" />
+					<stop offset="100%" stop-color="#0284c7" />
+				</linearGradient>
+
+				<clipPath id={`${id}-glass-clip`}>
+					<path d="M 22 16 L 88 16 L 88 132 A 33 5.5 0 0 1 22 132 Z" />
+				</clipPath>
+			</defs>
+
+			<!-- Glass back -->
+			<path class="glass-back" d="M 22 16 A 33 5.5 0 0 1 88 16 L 88 132 A 33 5.5 0 0 1 22 132 Z" />
+			<path class="glass-floor-rim" d="M 22 132 A 33 5.5 0 0 1 88 132" />
+
+			<!-- Liquid (clipped) -->
+			<g clip-path={`url(#${id}-glass-clip)`}>
+				<path id={`${id}-body`} class="liquid-body" fill={`url(#${id}-water-grad)`} d="M 22 75 L 88 75 L 88 132 A 33 5.5 0 0 1 22 132 Z" />
+				<g id={`${id}-bubbles`}></g>
+				<path id={`${id}-surface`} class="liquid-surface" fill={`url(#${id}-surface-grad)`} d="M 22 75 A 33 5.5 0 1 0 88 75 A 33 5.5 0 1 0 22 75 Z" />
+				<path
+					id={`${id}-lip`}
+					class="liquid-lip"
+					stroke="rgba(255,255,255,0.75)"
+					stroke-width="1"
+					fill="none"
+					stroke-linecap="round"
+					d="M 22 75 A 33 5.5 0 0 0 88 75"
+				/>
+			</g>
+
+			<!-- Graduations -->
+			<g class="glass-graduations" id={`${id}-ticks`}></g>
+
+			<!-- Glass front -->
+			<ellipse class="glass-rim" cx="55" cy="16" rx="33" ry="5.5" />
+			<path class="glass-walls" d="M 22 16 L 22 132 A 33 5.5 0 0 0 88 132 L 88 16" />
+			<line class="glass-reflection" x1="26" y1="26" x2="26" y2="124" />
+		</svg>
+		<span class="cylinder-hint">Drag water to fill</span>
+	</div>
+
+	<!-- Right: readout + preset chips -->
+	<div class="liquid-controls-col">
+		<div class="liquid-compact-readout">
+			<span class="compact-label">Daily pure water</span>
+			<div class="compact-val-row">
+				<span class="compact-number" id={`${id}-val`}>{defaultValue.toLocaleString()}</span>
+				<span class="compact-unit">L / day</span>
+			</div>
+		</div>
+
+		<div class="compact-preset-grid">
+			<button type="button" class="compact-chip" data-val="500">500 L</button>
+			<button type="button" class="compact-chip" data-val="2000">2,000 L</button>
+			<button type="button" class="compact-chip" data-val="5000">5,000 L</button>
+			<button type="button" class="compact-chip active" data-val="10000">10,000 L</button>
+			<button type="button" class="compact-chip" data-val="25000">25,000 L</button>
+			<button type="button" class="compact-chip" data-val="50000">50,000+ L</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	/* ==========================================================
+	   SHELL
+	   ========================================================== */
+	.compact-liquid-container {
+		display: grid;
+		grid-template-columns: 115px 1fr;
+		gap: 0.85rem;
+		align-items: center;
+		padding: 0.7rem 0.85rem;
+		background: var(--surface-alt);
+		border: 1px solid var(--line-200);
+		border-radius: var(--radius-md);
+		user-select: none;
+		-webkit-user-select: none;
+		margin-bottom: 0.65rem;
+	}
+
+	:global(html.dark) .compact-liquid-container {
+		background: rgba(15, 23, 42, 0.6);
+		border-color: rgba(255, 255, 255, 0.08);
+	}
+
+	/* ==========================================================
+	   CYLINDER
+	   ========================================================== */
+	.liquid-cylinder-col {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		cursor: grab;
+		touch-action: none;
+	}
+
+	.liquid-cylinder-col.is-dragging {
+		cursor: grabbing;
+	}
+
+	.compact-liquid-svg {
+		outline: none;
+		overflow: visible;
+		filter: drop-shadow(0 6px 14px rgba(2, 132, 199, 0.18));
+	}
+
+	.compact-liquid-svg:focus-visible {
+		outline: 2px solid var(--brand-500);
+		outline-offset: 4px;
+		border-radius: 8px;
+	}
+
+	.cylinder-hint {
+		font-size: 0.6rem;
+		font-weight: 600;
+		color: var(--ink-400);
+		letter-spacing: 0.02em;
+		margin-top: 3px;
+	}
+
+	:global(html.dark) .cylinder-hint { color: var(--ink-300); }
+
+	/* Glass */
+	.glass-back { fill: rgba(255, 255, 255, 0.95); }
+	:global(html.dark) .glass-back { fill: rgba(15, 23, 42, 0.8); }
+
+	.glass-floor-rim {
+		fill: none;
+		stroke: var(--line-300);
+		stroke-width: 0.8;
+	}
+	:global(html.dark) .glass-floor-rim { stroke: rgba(255, 255, 255, 0.15); }
+
+	.glass-rim,
+	.glass-walls {
+		fill: none;
+		stroke: var(--ink-300);
+		stroke-width: 1.4;
+	}
+	:global(html.dark) .glass-rim,
+	:global(html.dark) .glass-walls { stroke: rgba(255, 255, 255, 0.3); }
+
+	.glass-reflection {
+		stroke: rgba(255, 255, 255, 0.65);
+		stroke-width: 2.2;
+		stroke-linecap: round;
+	}
+	:global(html.dark) .glass-reflection { stroke: rgba(255, 255, 255, 0.2); }
+
+	/* ==========================================================
+	   CONTROLS
+	   ========================================================== */
+	.liquid-controls-col {
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+	}
+
+	.liquid-compact-readout {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.compact-label {
+		font-size: 0.65rem;
+		font-weight: 700;
+		color: var(--ink-400);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	:global(html.dark) .compact-label { color: var(--ink-300); }
+
+	.compact-val-row {
+		display: flex;
+		align-items: baseline;
+		gap: 0.3rem;
+	}
+
+	.compact-number {
+		font-size: 1.4rem;
+		font-weight: 800;
+		color: var(--brand-500);
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+		font-variant-numeric: tabular-nums;
+	}
+	:global(html.dark) .compact-number { color: var(--brand-400); }
+
+	.compact-unit {
+		font-size: 0.74rem;
+		font-weight: 600;
+		color: var(--ink-400);
+	}
+	:global(html.dark) .compact-unit { color: var(--ink-300); }
+
+	/* ==========================================================
+	   PRESET CHIPS
+	   ========================================================== */
+	.compact-preset-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.35rem;
+	}
+
+	.compact-chip {
+		background: var(--surface);
+		color: var(--ink-700);
+		border: 1px solid var(--line-200);
+		border-radius: 8px;
+		padding: 0.4rem 0.4rem;
+		font-size: 0.72rem;
+		font-weight: 600;
+		cursor: pointer;
+		text-align: center;
+		transition: background 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease);
+		font-family: inherit;
+	}
+
+	:global(html.dark) .compact-chip {
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.12);
+		color: var(--line-300);
+	}
+
+	.compact-chip:hover {
+		background: var(--brand-50);
+		color: var(--brand-500);
+		border-color: var(--brand-400);
+	}
+	:global(html.dark) .compact-chip:hover {
+		background: rgba(2, 132, 199, 0.15);
+		color: var(--brand-400);
+		border-color: rgba(56, 189, 248, 0.4);
+	}
+
+	.compact-chip.active {
+		background: var(--brand-500);
+		color: #ffffff;
+		border-color: var(--brand-500);
+	}
+
+	:global(html.dark) .compact-chip.active {
+		background: var(--brand-400);
+		color: #0f172a;
+		border-color: var(--brand-400);
+	}
+
+	.compact-chip:focus-visible {
+		outline: 2px solid var(--brand-500);
+		outline-offset: 2px;
+	}
+
+	/* ==========================================================
+	   RESPONSIVE
+	   ========================================================== */
+	@media (max-width: 420px) {
+		.compact-liquid-container {
+			grid-template-columns: 100px 1fr;
+			gap: 0.6rem;
+			padding: 0.5rem;
+		}
+		.compact-number { font-size: 1.2rem; }
+		.compact-chip { font-size: 0.68rem; padding: 0.3rem 0.3rem; }
+	}
+
+	@media (max-width: 360px) {
+		.compact-liquid-container {
+			grid-template-columns: 1fr;
+			justify-items: center;
+			text-align: center;
+			gap: 0.65rem;
+		}
+		.liquid-compact-readout { align-items: center; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.compact-liquid-svg { filter: none; }
+	}
+</style>
+
+<script is:inline>
+	(function () {
+		function initSingleSlider(container) {
+			if (!container || container.dataset.initialized === 'true') return;
+			container.dataset.initialized = 'true';
+
+			const cid = container.id || 'aqua-liquid-slider';
+			const svg = container.querySelector('.compact-liquid-svg') || document.getElementById(cid + '-svg');
+			const bodyEl = container.querySelector('.liquid-body') || document.getElementById(cid + '-body');
+			const surfaceEl = container.querySelector('.liquid-surface') || document.getElementById(cid + '-surface');
+			const lipEl = container.querySelector('.liquid-lip') || document.getElementById(cid + '-lip');
+			const bubblesContainer = container.querySelector('[id$="-bubbles"]') || document.getElementById(cid + '-bubbles');
+			const ticksContainer = container.querySelector('.glass-graduations') || document.getElementById(cid + '-ticks');
+			const readoutEl = container.querySelector('.compact-number') || document.getElementById(cid + '-val');
+			const colWrapper = container.querySelector('.liquid-cylinder-col');
+			const presetBtns = container.querySelectorAll('.compact-chip');
+			if (!svg) return;
+
+			// Compact geometry
+			const WIDTH = 115;
+			const HEIGHT = 150;
+			const LEFT = 22;
+			const RIGHT = 88;
+			const CX = 55;
+			const RADIUS = 33;
+			const RY = 5.5;
+			const RIM_Y = 16;
+			const FLOOR_Y = 132;
+			const EMPTY_Y = FLOOR_Y;
+			const FULL_Y = RIM_Y + 8;
+
+			const STEPS = [500, 2000, 5000, 10000, 25000, 50000];
+			let currentValue = parseInt(container.getAttribute('data-value') || '10000', 10);
+
+			function valueToFraction(val) {
+				const idx = STEPS.indexOf(val);
+				if (idx !== -1) return idx / (STEPS.length - 1);
+				for (let i = 0; i < STEPS.length - 1; i++) {
+					if (val >= STEPS[i] && val <= STEPS[i + 1]) {
+						const t = (val - STEPS[i]) / (STEPS[i + 1] - STEPS[i]);
+						return (i + t) / (STEPS.length - 1);
+					}
+				}
+				return 0.5;
+			}
+
+			function fractionToValue(frac) {
+				const scaled = Math.min(Math.max(frac, 0), 1) * (STEPS.length - 1);
+				const idx = Math.round(scaled);
+				return STEPS[idx];
+			}
+
+			function levelToY(level) {
+				return EMPTY_Y - level * (EMPTY_Y - FULL_Y);
+			}
+
+			function f(n) {
+				return n.toFixed(1);
+			}
+
+			const COLUMNS = 22;
+			const COLUMN_X = [];
+			const DEPTH = [];
+			for (let i = 0; i < COLUMNS; i++) {
+				const t = i / (COLUMNS - 1);
+				const x = LEFT + t * (RIGHT - LEFT);
+				COLUMN_X.push(x);
+				const u = (x - CX) / RADIUS;
+				DEPTH.push(RY * Math.sqrt(Math.max(0, 1 - u * u)));
+			}
+
+			if (ticksContainer && ticksContainer.children.length === 0) {
+				STEPS.forEach((stepVal, i) => {
+					const frac = i / (STEPS.length - 1);
+					const y = Math.round(levelToY(frac) + RY * 0.45);
+					const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+					const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+					line.setAttribute('x1', RIGHT - 6);
+					line.setAttribute('x2', RIGHT - 1);
+					line.setAttribute('y1', y);
+					line.setAttribute('y2', y);
+					line.setAttribute('stroke', '#64748b');
+					line.setAttribute('stroke-width', '0.9');
+
+					const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+					text.setAttribute('x', RIGHT + 4);
+					text.setAttribute('y', y + 2.5);
+					text.setAttribute('fill', '#64748b');
+					text.setAttribute('font-size', '7.5');
+					text.setAttribute('font-family', 'sans-serif');
+					text.setAttribute('font-weight', '700');
+					text.textContent = stepVal >= 1000 ? `${stepVal / 1000}k` : `${stepVal}`;
+
+					g.appendChild(line);
+					g.appendChild(text);
+					ticksContainer.appendChild(g);
+				});
+			}
+
+			const MAX_BUBBLES = 8;
+			const bubbleElements = [];
+			if (bubblesContainer) {
+				bubblesContainer.innerHTML = '';
+				for (let i = 0; i < MAX_BUBBLES; i++) {
+					const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+					circle.setAttribute('fill', 'rgba(255,255,255,0.45)');
+					circle.setAttribute('stroke', 'rgba(255,255,255,0.85)');
+					circle.setAttribute('stroke-width', '0.6');
+					circle.style.opacity = '0';
+					bubblesContainer.appendChild(circle);
+					bubbleElements.push(circle);
+				}
+			}
+
+			const sim = {
+				heights: new Float32Array(COLUMNS),
+				speeds: new Float32Array(COLUMNS),
+				level: valueToFraction(currentValue),
+				target: valueToFraction(currentValue),
+				levelSpeed: 0,
+				bubbles: [],
+				held: false,
+				px: 0,
+				py: 0,
+				raf: null,
+			};
+
+			function surfacePath(levelY, heights) {
+				let d = '';
+				for (let i = 0; i < COLUMNS; i++) {
+					const y = Math.min(levelY + heights[i] - DEPTH[i], FLOOR_Y);
+					d += `${i === 0 ? 'M' : 'L'}${f(COLUMN_X[i])} ${f(y)}`;
+				}
+				for (let i = COLUMNS - 1; i >= 0; i--) {
+					const y = Math.min(levelY + heights[i] + DEPTH[i], FLOOR_Y + DEPTH[i]);
+					d += `L${f(COLUMN_X[i])} ${f(y)}`;
+				}
+				return d + 'Z';
+			}
+
+			function bodyPath(levelY, heights) {
+				let d = '';
+				for (let i = 0; i < COLUMNS; i++) {
+					const y = Math.min(levelY + heights[i] + DEPTH[i], FLOOR_Y + DEPTH[i]);
+					d += `${i === 0 ? 'M' : 'L'}${f(COLUMN_X[i])} ${f(y)}`;
+				}
+				d += `L${RIGHT} ${FLOOR_Y} A${RADIUS} ${RY} 0 0 1 ${LEFT} ${FLOOR_Y}Z`;
+				return d;
+			}
+
+			function lipPath(levelY, heights) {
+				let d = '';
+				for (let i = 1; i < COLUMNS - 1; i++) {
+					const y = Math.min(levelY + heights[i] + DEPTH[i], FLOOR_Y + DEPTH[i]);
+					d += `${i === 1 ? 'M' : 'L'}${f(COLUMN_X[i])} ${f(y)}`;
+				}
+				return d;
+			}
+
+			function render() {
+				const y = levelToY(sim.level);
+				if (surfaceEl) surfaceEl.setAttribute('d', surfacePath(y, sim.heights));
+				if (bodyEl) bodyEl.setAttribute('d', bodyPath(y, sim.heights));
+				if (lipEl) lipEl.setAttribute('d', lipPath(y, sim.heights));
+
+				for (let i = 0; i < MAX_BUBBLES; i++) {
+					const el = bubbleElements[i];
+					const b = sim.bubbles[i];
+					if (!el) continue;
+					if (b) {
+						const wobble = Math.sin(b.phase) * 1.2;
+						el.setAttribute('cx', f(b.x + wobble));
+						el.setAttribute('cy', f(b.y));
+						el.setAttribute('r', f(b.r));
+						el.style.opacity = '1';
+					} else {
+						el.style.opacity = '0';
+					}
+				}
+			}
+
+			function stepPhysics() {
+				const STEP = 1 / 80;
+				const force = (sim.target - sim.level) * 220 - sim.levelSpeed * 26;
+				sim.levelSpeed += force * STEP;
+				sim.level += sim.levelSpeed * STEP;
+
+				if (Math.abs(sim.levelSpeed) > 0.4 && sim.bubbles.length < MAX_BUBBLES && Math.random() < 0.3) {
+					sim.bubbles.push({
+						x: LEFT + 8 + Math.random() * (RIGHT - LEFT - 16),
+						y: FLOOR_Y - 2,
+						r: 1 + Math.random() * 1.4,
+						speed: 40 + Math.random() * 50,
+						phase: Math.random() * Math.PI * 2,
+					});
+				}
+
+				const SPREAD = 2200;
+				const VISCOSITY = 18;
+				const TENSION = 26;
+				const DAMPING = 2.4;
+				const levelY = levelToY(sim.level);
+				const a = new Float32Array(COLUMNS);
+
+				for (let i = 0; i < COLUMNS; i++) {
+					const l = i === 0 ? 0 : i - 1;
+					const r = i === COLUMNS - 1 ? i : i + 1;
+					let accel =
+						SPREAD * (sim.heights[l] + sim.heights[r] - 2 * sim.heights[i]) +
+						VISCOSITY * (sim.speeds[l] + sim.speeds[r] - 2 * sim.speeds[i]) -
+						TENSION * sim.heights[i] -
+						DAMPING * sim.speeds[i];
+
+					if (sim.held) {
+						const reach = (COLUMN_X[i] - sim.px) / ((RIGHT - LEFT) / COLUMNS);
+						const weight = Math.exp(-(reach * reach) / 5.5);
+						const pull = Math.min(Math.max(sim.py - (levelY + sim.heights[i]), -10), 10);
+						accel += 700 * pull * weight * 0.05;
+					}
+					a[i] = accel;
+				}
+
+				let mean = 0;
+				for (let i = 0; i < COLUMNS; i++) {
+					sim.speeds[i] += a[i] * STEP;
+					sim.heights[i] = Math.min(Math.max(sim.heights[i] + sim.speeds[i] * STEP, -12), 12);
+					mean += sim.heights[i];
+				}
+				mean /= COLUMNS;
+				let energy = 0;
+				for (let i = 0; i < COLUMNS; i++) {
+					sim.heights[i] -= mean;
+					energy += Math.abs(sim.heights[i]);
+				}
+
+				for (let i = sim.bubbles.length - 1; i >= 0; i--) {
+					const b = sim.bubbles[i];
+					b.y -= b.speed * STEP;
+					b.phase += STEP * 8;
+					if (b.y <= levelY + 2) {
+						sim.bubbles.splice(i, 1);
+					}
+				}
+
+				render();
+
+				const isResting =
+					!sim.held &&
+					energy < 0.04 &&
+					Math.abs(sim.target - sim.level) < 0.001 &&
+					sim.bubbles.length === 0;
+				if (!isResting) {
+					sim.raf = requestAnimationFrame(stepPhysics);
+				} else {
+					sim.level = sim.target;
+					sim.heights.fill(0);
+					sim.speeds.fill(0);
+					sim.raf = null;
+					render();
+				}
+			}
+
+			function wakePhysics() {
+				if (!sim.raf) {
+					sim.raf = requestAnimationFrame(stepPhysics);
+				}
+			}
+
+			function setValue(newVal, notify = true) {
+				currentValue = newVal;
+				sim.target = valueToFraction(newVal);
+				if (readoutEl) readoutEl.textContent = newVal.toLocaleString();
+
+				presetBtns.forEach((btn) => {
+					if (parseInt(btn.getAttribute('data-val') || '0', 10) === newVal) {
+						btn.classList.add('active');
+					} else {
+						btn.classList.remove('active');
+					}
+				});
+
+				if (notify) {
+					container.dispatchEvent(
+						new CustomEvent('liquid-slider-change', {
+							bubbles: true,
+							detail: { value: newVal },
+						})
+					);
+					const calcSelect = document.getElementById('calc-usage');
+					if (calcSelect) {
+						calcSelect.value = String(newVal);
+					}
+					if (typeof window.calculatePlant === 'function') {
+						window.calculatePlant();
+					}
+				}
+
+				sim.speeds[Math.floor(COLUMNS / 2)] += 35;
+				wakePhysics();
+			}
+
+			presetBtns.forEach((btn) => {
+				btn.addEventListener('click', (e) => {
+					e.preventDefault();
+					const val = parseInt(btn.getAttribute('data-val') || '10000', 10);
+					setValue(val);
+				});
+			});
+
+			function getPointerPos(e) {
+				const rect = svg.getBoundingClientRect();
+				const x = ((e.clientX - rect.left) / rect.width) * WIDTH;
+				const y = ((e.clientY - rect.top) / rect.height) * HEIGHT;
+				return { x, y };
+			}
+
+			function handlePointerDown(e) {
+				if (e.pointerType === 'mouse' && e.button !== 0) return;
+				e.preventDefault();
+				svg.setPointerCapture(e.pointerId);
+				sim.held = true;
+				colWrapper?.classList.add('is-dragging');
+
+				const pos = getPointerPos(e);
+				sim.px = Math.min(Math.max(pos.x, LEFT), RIGHT);
+				sim.py = Math.min(Math.max(pos.y, FULL_Y), EMPTY_Y);
+
+				const rawFrac = Math.min(Math.max((EMPTY_Y - pos.y) / (EMPTY_Y - FULL_Y), 0), 1);
+				const snapped = fractionToValue(rawFrac);
+				setValue(snapped);
+			}
+
+			function handlePointerMove(e) {
+				if (!sim.held) return;
+				const pos = getPointerPos(e);
+				sim.px = Math.min(Math.max(pos.x, LEFT), RIGHT);
+				sim.py = Math.min(Math.max(pos.y, FULL_Y), EMPTY_Y);
+
+				const rawFrac = Math.min(Math.max((EMPTY_Y - pos.y) / (EMPTY_Y - FULL_Y), 0), 1);
+				const snapped = fractionToValue(rawFrac);
+				if (snapped !== currentValue) {
+					setValue(snapped);
+				}
+			}
+
+			function handlePointerUp() {
+				if (!sim.held) return;
+				sim.held = false;
+				colWrapper?.classList.remove('is-dragging');
+				wakePhysics();
+			}
+
+			svg.addEventListener('pointerdown', handlePointerDown);
+			svg.addEventListener('pointermove', handlePointerMove);
+			svg.addEventListener('pointerup', handlePointerUp);
+			svg.addEventListener('pointercancel', handlePointerUp);
+
+			render();
+			wakePhysics();
+		}
+		
+		function initAllLiquidSliders() {
+			const containers = document.querySelectorAll('.compact-liquid-container');
+			containers.forEach((c) => initSingleSlider(c));
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initAllLiquidSliders);
+		} else {
+			initAllLiquidSliders();
+		}
+		document.addEventListener('astro:page-load', initAllLiquidSliders);
+	})();
+</script>

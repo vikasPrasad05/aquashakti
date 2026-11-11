@@ -1,0 +1,418 @@
+---
+// src/components/ClientsBanner.astro
+// Enterprise 100% Full-Width Infinite Dual-Marquee for Aqua Shakti Industries
+// Inspired by MagicUI / Aceternity UI / 21st.dev - Built for Traditional B2B Industrial Reliability
+
+interface Props {
+	title?: string;
+	subtitle?: string;
+	showEyebrow?: boolean;
+}
+
+const {
+	title = 'Our reputed clients & corporate partners',
+	subtitle = 'Chosen by premier industrial leaders, pharmaceutical manufacturers, and hospitality groups across Western India.',
+	showEyebrow = true,
+} = Astro.props;
+
+/* Row 1: Premier Industrial Leaders */
+const row1Clients = [
+	{ name: 'Sterling Generators', tag: 'Power & Engineering', logo: '/images/striling.jpg' },
+	{ name: 'Macleods Pharma', tag: 'Formulations & R&D', logo: '/images/maleods.jpg' },
+	{ name: 'Blue Star', tag: 'Cooling & HVAC', logo: '/images/bluestar.jpg' },
+	{ name: 'Shapoorji Pallonji', tag: 'Infrastructure & EPC', logo: '/images/shapoorji.jpg' },
+	{ name: 'Lords Hotels & Resorts', tag: 'Hospitality & Luxury', logo: '/images/lords.jpg' },
+	{ name: 'Pluz Resort', tag: 'Resort & Wellness', logo: '/images/plus.jpg' },
+	{ name: 'Powerica', tag: 'Power Systems', logo: '/images/powerica.jpg' },
+	{ name: 'Transrail Lighting', tag: 'Transmission & Towers', logo: '/images/transrail.jpg' },
+	{ name: 'Nilkamal', tag: 'Industrial Storage', logo: '/images/nikamal.png' },
+];
+
+/* Row 2: Heavy Manufacturing & Healthcare Partners */
+const row2Clients = [
+	{ name: 'Softech Pharma', tag: 'Pharma & Cleanrooms', logo: '/images/softechpharma.jpg' },
+	{ name: 'Jay Jagdamba', tag: 'Steel & Profiles', logo: '/images/jayjagdamba.jpg' },
+	{ name: 'Chhaparia Group', tag: 'Packaging Materials', logo: '/images/chhapariagroup.jpg' },
+	{ name: 'Tema Treats', tag: 'Food & Beverage', logo: '/images/tema.jpg' },
+	{ name: 'Viral Corporation', tag: 'Industrial Supplies', logo: '/images/viralcopration.png' },
+	{ name: 'Vijay Technologies', tag: 'Automation Systems', logo: '/images/vijaytechnologies.jpg' },
+	{ name: 'Olive Healthcare', tag: 'Healthcare Products', logo: '/images/olive.jpg' },
+	{ name: 'STI Industries', tag: 'Precision Tubes', logo: '/images/sti.jpg' },
+	{ name: 'Blue Star', tag: 'HVAC Desalination', logo: '/images/bluestar.jpg' },
+];
+
+/* Duplicate arrays to enable seamless 50% translation loop */
+const track1 = [...row1Clients, ...row1Clients];
+const track2 = [...row2Clients, ...row2Clients];
+
+const icons = {
+	shield: `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+	pause: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`,
+	play: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
+};
+---
+
+<section class="clients-marquee-section" id="clients-section" aria-labelledby="clients-heading">
+	<div class="site-container">
+		<div class="section-title-centered">
+			{showEyebrow && (
+				<div class="pill-badge pill-badge-blue">
+					<span set:html={icons.shield} />
+					<span>TRUSTED ACROSS INDUSTRIES</span>
+				</div>
+			)}
+			<h2 id="clients-heading" class="section-title-text">{title}</h2>
+			{subtitle && <p class="section-subtitle-text">{subtitle}</p>}
+		</div>
+	</div>
+
+	<!-- 100% Full-Bleed Viewport with Edge Fade Masks -->
+	<div class="marquee-dual-viewport" id="marquee-viewport" aria-label="Corporate clients infinite showcase">
+		<!-- Edge Fades for Smooth Infinite Transitions -->
+		<div class="marquee-edge-fade edge-left" aria-hidden="true"></div>
+		<div class="marquee-edge-fade edge-right" aria-hidden="true"></div>
+
+		<!-- Track 1: Smooth Left Flow -->
+		<div class="marquee-track-row track-flow-left" id="marquee-track-1">
+			{track1.map((client) => (
+				<div class="marquee-client-card" title={`${client.name} - ${client.tag}`}>
+					<div class="marquee-card-logo">
+						<img
+							src={client.logo}
+							alt={`${client.name} logo`}
+							class="client-img"
+							loading="lazy"
+							decoding="async"
+							width="80"
+							height="40"
+						/>
+					</div>
+					<div class="marquee-card-info">
+						<span class="client-name">{client.name}</span>
+						<span class="client-sector">{client.tag}</span>
+					</div>
+				</div>
+			))}
+		</div>
+
+		<!-- Track 2: Smooth Right Flow (Reverse) -->
+		<div class="marquee-track-row track-flow-right" id="marquee-track-2">
+			{track2.map((client) => (
+				<div class="marquee-client-card" title={`${client.name} - ${client.tag}`}>
+					<div class="marquee-card-logo">
+						<img
+							src={client.logo}
+							alt={`${client.name} logo`}
+							class="client-img"
+							loading="lazy"
+							decoding="async"
+							width="80"
+							height="40"
+						/>
+					</div>
+					<div class="marquee-card-info">
+						<span class="client-name">{client.name}</span>
+						<span class="client-sector">{client.tag}</span>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	:root {
+		color-scheme: light;
+	}
+
+	.clients-marquee-section {
+		width: 100%;
+		max-width: 100%;
+		padding: clamp(3.5rem, 6vw, 5rem) 0;
+		background: #ffffff;
+		border-top: 1px solid #e2e8f0;
+		border-bottom: 1px solid #e2e8f0;
+		position: relative;
+		overflow: hidden;
+		box-sizing: border-box;
+	}
+
+	.site-container {
+		width: 100%;
+		max-width: 1720px;
+		margin: 0 auto;
+		padding-left: clamp(1rem, 2.5vw, 2.25rem);
+		padding-right: clamp(1rem, 2.5vw, 2.25rem);
+		box-sizing: border-box;
+	}
+
+	.section-title-centered {
+		text-align: center;
+		max-width: 780px;
+		margin: 0 auto clamp(2rem, 3.5vw, 2.75rem);
+	}
+
+	.pill-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		padding: 0.35rem 0.85rem;
+		border-radius: 9999px;
+		margin-bottom: 0.85rem;
+	}
+
+	.pill-badge-blue {
+		color: #006194;
+		background: #cce5ff;
+		border: 1px solid #93ccff;
+	}
+
+	.section-title-text {
+		font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+		font-size: clamp(1.75rem, 3vw, 2.35rem);
+		font-weight: 800;
+		color: #0f172a;
+		letter-spacing: -0.03em;
+		line-height: 1.2;
+		margin: 0 0 0.65rem;
+	}
+
+	.section-subtitle-text {
+		font-family: 'Inter', -apple-system, sans-serif;
+		font-size: 0.98rem;
+		line-height: 1.6;
+		color: #475569;
+		margin: 0 auto;
+	}
+
+	/* ==========================================================================
+	   100% Full-Width Dual Infinite Marquee Viewport
+	   ========================================================================== */
+	.marquee-dual-viewport {
+		position: relative;
+		width: 100%;
+		max-width: 100vw;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+		padding: 0.75rem 0;
+		mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+	}
+
+	/* Gradient edge fades for browsers without mask support */
+	.marquee-edge-fade {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: clamp(50px, 8vw, 120px);
+		z-index: 5;
+		pointer-events: none;
+	}
+
+	.edge-left {
+		left: 0;
+		background: linear-gradient(to right, #ffffff, transparent);
+	}
+
+	.edge-right {
+		right: 0;
+		background: linear-gradient(to left, #ffffff, transparent);
+	}
+
+	/* Track Row Container */
+	.marquee-track-row {
+		display: flex;
+		gap: 1.15rem;
+		width: max-content;
+		will-change: transform;
+	}
+
+	/* Flow directions & smooth constant speeds */
+	.track-flow-left {
+		animation: scrollFlowLeft 42s linear infinite;
+	}
+
+	.track-flow-right {
+		animation: scrollFlowRight 46s linear infinite;
+	}
+
+	/* Hover: Pause track smoothly on hover for inspection */
+	.marquee-dual-viewport:hover .marquee-track-row,
+	.marquee-dual-viewport.is-paused .marquee-track-row {
+		animation-play-state: paused;
+	}
+
+	@keyframes scrollFlowLeft {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+
+	@keyframes scrollFlowRight {
+		0% {
+			transform: translateX(-50%);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	/* Respect user motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.track-flow-left,
+		.track-flow-right {
+			animation-duration: 90s;
+		}
+	}
+
+	/* ==========================================================================
+	   Client Card: Clean, Industrial B2B Aesthetic (No clunky large boxes)
+	   ========================================================================== */
+	.marquee-client-card {
+		display: flex;
+		align-items: center;
+		gap: 0.95rem;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 0.85rem;
+		padding: 0.65rem 1.15rem;
+		flex-shrink: 0;
+		transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+		box-shadow: 0 2px 6px rgba(15, 23, 42, 0.02);
+		cursor: default;
+		user-select: none;
+	}
+
+	.marquee-client-card:hover {
+		background: #ffffff;
+		border-color: #0284c7;
+		transform: translateY(-2px);
+		box-shadow: 
+			0 10px 22px -4px rgba(2, 132, 199, 0.12),
+			0 0 0 1px #0284c7;
+	}
+
+	/* Clean Logo Frame */
+	.marquee-card-logo {
+		width: 50px;
+		height: 50px;
+		border-radius: 0.55rem;
+		background: #ffffff;
+		border: 1px solid #f1f5f9;
+		padding: 0.35rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+	}
+
+	.client-img {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		display: block;
+		filter: contrast(1.02);
+		transition: transform 0.2s ease;
+	}
+
+	.marquee-client-card:hover .client-img {
+		transform: scale(1.06);
+	}
+
+	/* Info & Typography */
+	.marquee-card-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		text-align: left;
+	}
+
+	.client-name {
+		font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+		font-size: 0.92rem;
+		font-weight: 700;
+		color: #0f172a;
+		line-height: 1.25;
+		white-space: nowrap;
+	}
+
+	.client-sector {
+		font-family: 'Inter', -apple-system, sans-serif;
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: #0284c7;
+		background: #eff6ff;
+		padding: 0.15rem 0.5rem;
+		border-radius: 4px;
+		border: 1px solid #dbeafe;
+		white-space: nowrap;
+		display: inline-block;
+		width: fit-content;
+	}
+
+	/* Bottom Micro-Bar */
+	.clients-sub-bar {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: clamp(1.5rem, 3vw, 2.25rem);
+		padding: 0 1rem;
+	}
+
+	.sub-bar-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: 'Inter', -apple-system, sans-serif;
+		font-size: 0.78rem;
+		font-weight: 600;
+		color: #64748b;
+		background: #f1f5f9;
+		padding: 0.4rem 1rem;
+		border-radius: 9999px;
+		border: 1px solid #e2e8f0;
+	}
+
+	.verified-dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: #10b981;
+		box-shadow: 0 0 6px #10b981;
+	}
+
+	/* Responsive scaling across all zooms (Ctrl+ / Ctrl-) */
+	@media (max-width: 768px) {
+		.marquee-dual-viewport {
+			gap: 0.85rem;
+		}
+
+		.marquee-client-card {
+			padding: 0.5rem 0.95rem;
+			gap: 0.75rem;
+		}
+
+		.marquee-card-logo {
+			width: 42px;
+			height: 42px;
+		}
+
+		.client-name {
+			font-size: 0.85rem;
+		}
+
+		.client-sector {
+			font-size: 0.68rem;
+		}
+	}
+</style>
