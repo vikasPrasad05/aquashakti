@@ -888,17 +888,21 @@ import QuoteModal from '../components/QuoteModal.astro';
 				}
 			}
 
-			@media (max-width: 640px) {
-				.form-fields-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.col-half {
-					grid-column: span 1;
-				}
-
+			@media (max-width: 768px) {
 				.service-form-card {
-					padding: 1.5rem;
+					padding: 1.5rem 1.25rem;
+				}
+
+				.form-fields-grid {
+					display: flex;
+					flex-direction: column;
+					gap: 1.25rem;
+				}
+
+				.col-half,
+				.col-full {
+					width: 100%;
+					grid-column: auto;
 				}
 
 				.steps-cards-grid {

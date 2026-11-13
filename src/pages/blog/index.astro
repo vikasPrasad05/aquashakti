@@ -676,15 +676,6 @@ const filterCategories = [
 				display: none;
 			}
 
-			@media (max-width: 992px) {
-				.xds-main-grid-layout {
-					grid-template-columns: 1fr;
-				}
-				.search--filters--container {
-					margin-bottom: 1.5rem;
-				}
-			}
-
 			/* Sidebar Filter Groups - Sticky so it never scrolls up and out of view */
 			.search--filters--container {
 				background-color: #ffffff;
@@ -701,6 +692,48 @@ const filterCategories = [
 				scrollbar-width: thin;
 				scrollbar-color: #cbd5e1 transparent;
 				z-index: 30;
+			}
+
+			@media (max-width: 992px) {
+				.xds-breadcrumbs-nav,
+				.xds-breadcrumbs-list {
+					display: none !important;
+				}
+
+				#toggleFiltersBtn {
+					display: none !important;
+				}
+
+				#sortDropdownContainer {
+					display: none !important;
+				}
+
+				.search-results-page__container-top {
+					padding: 0.5rem 0;
+					margin-bottom: 1rem;
+				}
+
+				.search-results-page__container-top .flex-grow-1 {
+					width: 100%;
+				}
+
+				.search-results-page__query-input-form {
+					max-width: 100%;
+					width: 100%;
+					min-width: 0;
+					flex: 1 1 100%;
+				}
+
+				.xds-main-grid-layout {
+					grid-template-columns: 1fr;
+					gap: 1rem;
+				}
+				.search--filters--container {
+					display: none !important;
+					position: static;
+					max-height: none;
+					margin-bottom: 1.5rem;
+				}
 			}
 
 			.search--filters--container::-webkit-scrollbar {
@@ -970,8 +1003,7 @@ const filterCategories = [
 				transform: scale(1.05);
 			}
 
-			@media (max-width: 768px) {
-				.atlas-tile-anchor {
+			.atlas-tile-anchor {
 				text-decoration: none;
 				color: inherit;
 				display: block;
@@ -991,7 +1023,8 @@ const filterCategories = [
 				transform: scale(1.05);
 			}
 
-			.atlas-tile {
+			@media (max-width: 768px) {
+				.atlas-tile {
 					flex-direction: column-reverse;
 					gap: 1rem;
 					padding: 1.25rem;
@@ -1141,8 +1174,13 @@ const filterCategories = [
 
 				// 2. Toggle Left Filter Sidebar
 				toggleFiltersBtn?.addEventListener('click', () => {
-					const isCollapsed = mainGridLayout.classList.toggle('filters-collapsed');
-					toggleFiltersBtn.setAttribute('aria-expanded', !isCollapsed);
+					if (window.innerWidth <= 992) {
+						const isOpen = mainGridLayout.classList.toggle('mobile-filters-open');
+						toggleFiltersBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+					} else {
+						const isCollapsed = mainGridLayout.classList.toggle('filters-collapsed');
+						toggleFiltersBtn.setAttribute('aria-expanded', !isCollapsed);
+					}
 				});
 
 				// 3. Sort Dropdown Toggle & Selection

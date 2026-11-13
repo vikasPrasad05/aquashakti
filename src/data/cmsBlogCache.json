@@ -1,20 +1,5 @@
 [
   {
-    "id": "5bed489b-df08-42c4-82ab-fd8b4dcd5f16",
-    "collection_slug": "blog",
-    "workspace_id": "ws_32bfd30e-5f74-4085-8ee6-a9b0619558dd",
-    "data": {
-      "title": "Gand Masti ",
-      "content": "<p>Gand masti </p>",
-      "thumbnail": null,
-      "description": "gand masti karoge bacche",
-      "published": "2026-11-10",
-      "category": "ETP"
-    },
-    "created_at": "2026-11-11T11:32:43.781Z",
-    "updated_at": "2026-11-11T11:33:48.882Z"
-  },
-  {
     "id": "f4c5c32d-05f8-46d3-b79c-8f9ccbd216f0",
     "collection_slug": "blog",
     "workspace_id": "ws_32bfd30e-5f74-4085-8ee6-a9b0619558dd",
